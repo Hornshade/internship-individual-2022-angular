@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./styles/variables.scss";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: $primary_font_family; }
+
+// added from the default css file of the project
+
+*:where(:not(iframe, canvas, img, svg, video, input):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    font-family: $primary_font_family;
+  }
+  
+  a,
+  button {
+    cursor: revert;
+    pointer-events: revert;
+  }
+  
+  ol,
+  ul,
+  menu {
+    list-style: none;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  
+  textarea {
+    white-space: revert;
+  }
+  
+  meter {
+    -webkit-appearance: revert;
+    appearance: revert;
+  }
+  
+  ::placeholder {
+    color: unset;
+  }
+  
+  :where([hidden]) {
+    display: none;
+  }
+
+  :where([contenteditable]) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    -webkit-linebreak: after-white-space;
+    overflow-wrap: break-word;
+  }
+  
+  :where([draggable="true"]) {
+    -webkit-user-drag: element;
+  }
