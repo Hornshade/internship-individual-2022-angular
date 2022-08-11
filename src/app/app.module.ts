@@ -10,6 +10,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { CardComponent } from './components/card/card.component';
 import { CardsComponent } from './components/cards/cards.component';
+import { FavoriteModalComponent } from './components/modal/favorite-modal/favorite-modal.component';
+import { DeleteModalComponent } from './components/modal/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { CardsComponent } from './components/cards/cards.component';
     HeaderComponent,
     DropdownComponent,
     CardComponent,
-    CardsComponent
+    CardsComponent,
+    FavoriteModalComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,
