@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
     imports: [MatButtonModule,
@@ -14,7 +15,8 @@ import { MatMenuModule } from '@angular/material/menu';
         MatInputModule,
         MatToolbarModule,
         MatSelectModule,
-        MatMenuModule
+        MatMenuModule,
+        MatCardModule
     ],
     exports: [MatButtonModule,
         MatIconModule,
@@ -22,7 +24,8 @@ import { MatMenuModule } from '@angular/material/menu';
         MatInputModule,
         MatToolbarModule,
         MatSelectModule,
-        MatMenuModule
+        MatMenuModule,
+        MatCardModule
     ]
 })
 

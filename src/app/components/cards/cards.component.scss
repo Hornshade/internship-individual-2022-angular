@@ -1,0 +1,66 @@
+@import "../../../styles/variables.scss";
+
+.c-title {
+    color: $color-black;
+    font-size: $font-h3;
+    font-weight: $font-bold;
+    margin-bottom: 30px;
+}
+
+.c-filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    &__left {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        &--text {
+            color: $color-gray-400;
+            font-size: $font-body-small;
+            font-weight: $font-semibold;
+        }
+    }
+    &__right {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        &--text {
+            color: $color-gray-400;
+            font-size: $font-body-small;
+            font-weight: $font-semibold;
+        }
+        &--order {
+            margin-right: 10px;
+        }
+        &--icons { 
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 15px;
+            gap: 10px;
+            &--grid {
+                color: $color-gray-700;
+                cursor: pointer;
+            }
+            &--list { 
+                color: $color-gray-700;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.c-cards {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    flex-wrap: wrap;
+    gap: 30px;
+}

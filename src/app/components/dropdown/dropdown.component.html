@@ -1,10 +1,38 @@
 
-<mat-form-field appearance="outline">
-    <mat-label>Categories</mat-label>
-    <mat-select panelClass="myPanelClass" placeholder="Categories">
-        <mat-option>None</mat-option>
-        <mat-option *ngFor="let category of categories" [value]="category.value">
-            {{category.viewValue}}
-        </mat-option>
-    </mat-select>
+<mat-form-field appearance="outline" >
+    <div *ngIf='options === "categories"'>
+        <!-- <mat-label>Category</mat-label> -->
+        <mat-select panelClass="myPanelClass" class="c-select__category" placeholder="Category">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let category of categories" [value]="category.value">
+                {{category.viewValue}}
+            </mat-option>
+        </mat-select>
+    </div>
+    <div *ngIf='options === "locations"'>
+        <!-- <mat-label>Location</mat-label> -->
+        <mat-select panelClass="myPanelClass" class="c-select__filter" placeholder="Location">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let location of locations" [value]="location.value">
+                {{location.viewValue}}
+            </mat-option>
+        </mat-select>
+    </div>
+    <div *ngIf='options === "prices"'>
+        <!-- <mat-label>Price</mat-label> -->
+        <mat-select panelClass="myPanelClass" class="c-select__filter" placeholder="Price">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let price of prices" [value]="price.value">
+                {{price.viewValue}}
+            </mat-option>
+        </mat-select>
+    </div>
+    <div *ngIf='options === "orders"'>
+        <!-- <mat-label>Order</mat-label> -->
+        <mat-select panelClass="myPanelClass" class="c-select__filter" placeholder="Most popular">
+            <mat-option *ngFor="let order of orders" [value]="order.value">
+                {{order.viewValue}}
+            </mat-option>
+        </mat-select>
+    </div>
 </mat-form-field>

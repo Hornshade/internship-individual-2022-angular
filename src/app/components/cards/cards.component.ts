@@ -1,0 +1,27 @@
+import { Component, OnInit } from '@angular/core';
+import { Listing } from '../../listing';
+import { LISTINGS } from '../../mock-listings';
+
+@Component({
+  selector: 'app-cards',
+  templateUrl: './cards.component.html',
+  styleUrls: ['./cards.component.scss']
+})
+export class CardsComponent implements OnInit {
+  listings: Listing[] = LISTINGS;
+  gridView:boolean = true;
+
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  setGridView() {
+    this.gridView = true;
+  }
+  setListView() {
+    this.gridView = false;
+  }
+
+}
