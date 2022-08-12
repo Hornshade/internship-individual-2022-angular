@@ -9,9 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { CardComponent } from './components/card/card.component';
-import { CardsComponent } from './components/cards/cards.component';
+import { CardsComponent } from './pages/cards/cards.component';
 import { FavoriteModalComponent } from './components/modal/favorite-modal/favorite-modal.component';
 import { DeleteModalComponent } from './components/modal/delete-modal/delete-modal.component';
+import { FiltersComponent } from './components/filters/filters.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { DeleteModalComponent } from './components/modal/delete-modal/delete-mod
     CardComponent,
     CardsComponent,
     FavoriteModalComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,

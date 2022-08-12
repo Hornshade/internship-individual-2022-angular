@@ -11,27 +11,26 @@
     </div>
     <div *ngIf='options === "locations"'>
         <!-- <mat-label>Location</mat-label> -->
-        <mat-select panelClass="myPanelClass" class="c-select__filter" placeholder="Location">
-            <mat-option>None</mat-option>
+        <mat-select panelClass="myPanelClass" class="c-select__filter" placeholder="Location" multiple>
             <mat-option *ngFor="let location of locations" [value]="location.value">
                 {{location.viewValue}}
             </mat-option>
         </mat-select>
     </div>
-    <div *ngIf='options === "prices"'>
+    <div *ngIf='options === "prices"' >
         <!-- <mat-label>Price</mat-label> -->
-        <mat-select panelClass="myPanelClass" class="c-select__filter" placeholder="Price">
-            <mat-option>None</mat-option>
-            <mat-option *ngFor="let price of prices" [value]="price.value">
-                {{price.viewValue}}
+        <mat-select panelClass="myPanelClass" class="c-select__filter" placeholder="Price" >
+            <mat-option >All</mat-option>
+            <mat-option *ngFor="let price of prices" [value]="price.value" >
+                <mat-radio-button [value]="price.value" color="primary">{{price.viewValue}}</mat-radio-button>
             </mat-option>
         </mat-select>
     </div>
     <div *ngIf='options === "orders"'>
         <!-- <mat-label>Order</mat-label> -->
-        <mat-select panelClass="myPanelClass" class="c-select__filter" placeholder="Most popular">
+        <mat-select panelClass="myPanelClass" class="c-select__filter" placeholder="Most popular" [(value)]="selectedOrder">
             <mat-option *ngFor="let order of orders" [value]="order.value">
-                {{order.viewValue}}
+                <mat-radio-button [value]="order.value" color="primary">{{order.viewValue}}</mat-radio-button>
             </mat-option>
         </mat-select>
     </div>

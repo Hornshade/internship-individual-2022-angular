@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+.c-title {
+    color: $color-black;
+    font-size: $font-h3;
+    font-weight: $font-bold;
+    margin-bottom: 30px;
+}
+
+
+
+.c-cards {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    flex-wrap: wrap;
+    gap: 30px;
+}

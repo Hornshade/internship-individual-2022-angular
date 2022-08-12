@@ -1,0 +1,15 @@
+
+<!-- category page title  -->
+<h1 class="c-title">{{listings[0].category}}</h1>
+<!-- filters  -->
+<div class="c-filters">
+    <app-filters></app-filters>
+</div>
+<!-- cards view  -->
+<div class="c-cards">
+<app-card class="c-cards__card" *ngFor="let listing of listings" [listing]="listing"></app-card>
+</div>
+<!-- list view  -->
+<div class="c-list">
+    
+</div>

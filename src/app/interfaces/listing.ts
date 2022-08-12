@@ -8,3 +8,4 @@ export interface Listing {
     images: string[],
     category:string
 }
+//for mock data, needs changes for backend call

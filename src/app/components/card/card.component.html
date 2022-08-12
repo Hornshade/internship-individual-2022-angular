@@ -8,8 +8,7 @@
     </mat-card-content>
     <mat-card-actions class="c-card__actions">
         <button mat-icon-button class="c-card__actions--button" (click)="setFavorite()">
-            <mat-icon *ngIf="favorite === false">favorite_border</mat-icon>
-            <mat-icon *ngIf="favorite === true" style="color: red;">favorite</mat-icon>
+            <mat-icon [ngStyle]="{color: favorite? 'red' : 'white'}"> {{ favorite ? 'favorite ' : 'favorite_border' }} </mat-icon>
         </button>
     </mat-card-actions>
   </mat-card>

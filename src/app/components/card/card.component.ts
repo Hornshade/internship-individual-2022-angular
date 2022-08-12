@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Listing} from "../../listing";
+import {Listing} from "../../interfaces/listing";
 import {MatDialog} from '@angular/material/dialog';
 import { FavoriteModalComponent } from '../modal/favorite-modal/favorite-modal.component';
-import { DeleteModalComponent } from '../modal/delete-modal/delete-modal.component';
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',

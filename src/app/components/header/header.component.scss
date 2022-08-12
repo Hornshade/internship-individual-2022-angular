@@ -9,6 +9,8 @@ mat-toolbar {
     width: 100%;
     background-color: $color-white;
     border-bottom: 1px solid $color-gray-200;
+    position: fixed;
+    top: 0;
 }
 
 .c-header {

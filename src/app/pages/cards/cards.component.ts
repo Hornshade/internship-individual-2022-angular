@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Listing } from '../../listing';
+import { Listing } from '../../interfaces/listing';
 import { LISTINGS } from '../../mock-listings';
 
 @Component({
@@ -9,19 +9,10 @@ import { LISTINGS } from '../../mock-listings';
 })
 export class CardsComponent implements OnInit {
   listings: Listing[] = LISTINGS;
-  gridView:boolean = true;
-
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  setGridView() {
-    this.gridView = true;
-  }
-  setListView() {
-    this.gridView = false;
   }
 
 }

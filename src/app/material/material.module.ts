@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
     imports: [MatButtonModule,
@@ -18,7 +19,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatSelectModule,
         MatMenuModule,
         MatCardModule,
-        MatDialogModule
+        MatDialogModule,
+        MatRadioModule
     ],
     exports: [MatButtonModule,
         MatIconModule,
@@ -28,7 +30,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatSelectModule,
         MatMenuModule,
         MatCardModule,
-        MatDialogModule
+        MatDialogModule,
+        MatRadioModule
     ]
 })
 
