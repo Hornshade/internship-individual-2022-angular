@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filters',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
-  gridView:boolean = true;
+  @Input() gridView:boolean = true;
+  @Output() gridViewChange = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -15,8 +16,11 @@ export class FiltersComponent implements OnInit {
 
   setGridView() {
     this.gridView = true;
+    this.gridViewChange.emit(this.gridView);
   }
   setListView() {
     this.gridView = false;
+    this.gridViewChange.emit(this.gridView);
+
   }
 }

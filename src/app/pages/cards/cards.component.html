@@ -3,13 +3,13 @@
 <h1 class="c-title">{{listings[0].category}}</h1>
 <!-- filters  -->
 <div class="c-filters">
-    <app-filters></app-filters>
+    <app-filters [(gridView)]="gridView"></app-filters>
 </div>
 <!-- cards view  -->
 <div class="c-cards" *ngIf="gridView">
 <app-card class="c-cards__card" *ngFor="let listing of listings" [listing]="listing"></app-card>
 </div>
 <!-- list view  -->
-<div class="c-list">
+<div class="c-list" *ngIf="!gridView">
     <app-list *ngFor="let listing of listings" [listing]="listing"></app-list>
 </div>
