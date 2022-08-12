@@ -7,11 +7,16 @@
     margin-bottom: 30px;
 }
 
-
-
 .c-cards {
     display: grid;
     grid-template-columns: auto auto auto auto;
     flex-wrap: wrap;
     gap: 30px;
+}
+
+.c-list {
+    display: grid;
+    grid-template-columns: auto;
+    flex-wrap: wrap;
+    gap: 20px;
 }

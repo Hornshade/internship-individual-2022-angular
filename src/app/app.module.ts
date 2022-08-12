@@ -13,6 +13,7 @@ import { CardsComponent } from './pages/cards/cards.component';
 import { FavoriteModalComponent } from './components/modal/favorite-modal/favorite-modal.component';
 import { DeleteModalComponent } from './components/modal/delete-modal/delete-modal.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { ListComponent } from './components/list/list.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     FavoriteModalComponent,
     DeleteModalComponent,
     FiltersComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,

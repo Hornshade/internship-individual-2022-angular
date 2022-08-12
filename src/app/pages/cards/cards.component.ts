@@ -9,6 +9,7 @@ import { LISTINGS } from '../../mock-listings';
 })
 export class CardsComponent implements OnInit {
   listings: Listing[] = LISTINGS;
+  gridView:boolean = false;
 
   constructor() { }
 
