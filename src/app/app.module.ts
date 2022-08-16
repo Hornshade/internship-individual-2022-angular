@@ -38,7 +38,6 @@ import { TabsComponent } from './components/tabs/tabs.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule
-    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
