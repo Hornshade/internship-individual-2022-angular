@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./styles/variables.scss";
 
+//owl carousel imports
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
 html, body { height: 100%;font-family: $primary_font_family; font-family: $primary_font_family;  }
 body { margin: 0; 
   
@@ -128,6 +132,7 @@ meter {
   padding-bottom: 7px;
 }
 
+//overwriting the Material tabs to have a vertical alignment
 .mat-tab-group {
   display: flex;
   flex-direction: row;
@@ -143,4 +148,31 @@ meter {
   .mat-tab-body-wrapper{
     flex: 1 1 auto;
   }
+}
+
+//overwriting owl carousel
+.c-carousel .owl-next, .c-carousel .owl-prev {
+  height: 40px;
+  width: 40px;
+  border: 1px solid $color-primary-400;
+  border-radius: 32px !important;
+  background-color: $color-white !important;
+  color: $color-primary-400 !important;
+  align-items: center;
+  justify-items: center;
+  position: absolute;
+  top: 45%;
+}
+.c-carousel .owl-next img, .c-carousel .owl-prev img{
+  align-self: center;
+  margin: 3px 0;
+  svg{
+    fill: $color-primary-400;
+  }
+}
+.c-carousel .owl-next{
+  right: -25px;
+}
+.c-carousel .owl-prev {
+  left: -25px;
 }

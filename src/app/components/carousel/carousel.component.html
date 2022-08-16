@@ -1,0 +1,9 @@
+<div class="c-carousel">
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let listing of listings">
+        <ng-template carouselSlide [id]="listing.id">
+            <app-card class="c-cards__card" [listing]="listing"></app-card>
+        </ng-template>
+    </ng-container>  
+  </owl-carousel-o>
+</div>
