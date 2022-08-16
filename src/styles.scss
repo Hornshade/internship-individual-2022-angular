@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./styles/variables.scss";
 
-html, body { height: 100%;font-family: $primary_font_family;  }
+html, body { height: 100%;font-family: $primary_font_family; font-family: $primary_font_family;  }
 body { margin: 0; 
+  
   font-family: $primary_font_family; 
+
 }
 
 // added from the default css file of the project
