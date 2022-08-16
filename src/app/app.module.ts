@@ -15,6 +15,7 @@ import { DeleteModalComponent } from './components/modal/delete-modal/delete-mod
 import { FiltersComponent } from './components/filters/filters.component';
 import { ListComponent } from './components/list/list.component';
 import { GaleryModalComponent } from './components/modal/galery-modal/galery-modal.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { GaleryModalComponent } from './components/modal/galery-modal/galery-mod
     FiltersComponent,
     ListComponent,
     GaleryModalComponent,
+    TabsComponent,
   ],
   imports: [
     BrowserModule,

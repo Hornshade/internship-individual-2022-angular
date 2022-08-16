@@ -9,6 +9,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 @NgModule({
     imports: [MatButtonModule,
@@ -20,7 +23,9 @@ import {MatRadioModule} from '@angular/material/radio';
         MatMenuModule,
         MatCardModule,
         MatDialogModule,
-        MatRadioModule
+        MatRadioModule,
+        MatTabsModule,
+        MatDividerModule
     ],
     exports: [MatButtonModule,
         MatIconModule,
@@ -31,7 +36,9 @@ import {MatRadioModule} from '@angular/material/radio';
         MatMenuModule,
         MatCardModule,
         MatDialogModule,
-        MatRadioModule
+        MatRadioModule,
+        MatTabsModule,
+        MatDividerModule
     ]
 })
 

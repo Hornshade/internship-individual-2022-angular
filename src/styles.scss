@@ -125,3 +125,20 @@ meter {
      }
   padding-bottom: 7px;
 }
+
+.mat-tab-group {
+  display: flex;
+  flex-direction: row;
+  .mat-tab-labels{
+    flex-direction: column;
+  }
+  .mat-tab-header {
+    border-bottom: none;
+  }
+  .mat-ink-bar {
+    display: none;
+  }
+  .mat-tab-body-wrapper{
+    flex: 1 1 auto;
+  }
+}
