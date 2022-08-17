@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 import { Listing } from '../../interfaces/listing';
-import { LISTINGS } from '../../mock-listings';
+// import { LISTINGS } from '../../mock-listings';
 
 @Component({
   selector: 'app-carousel',
@@ -10,7 +10,7 @@ import { LISTINGS } from '../../mock-listings';
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
-  listings: Listing[] = LISTINGS;
+  listings!: Listing[];
   
   customOptions: OwlOptions = {
     loop: true,

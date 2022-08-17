@@ -18,6 +18,7 @@ import { ListComponent } from './components/list/list.component';
 import { GaleryModalComponent } from './components/modal/galery-modal/galery-modal.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { ListingService } from './services/listings/listing.service';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     HttpClientModule,
     CarouselModule
   ],
-  providers: [],
+  providers: [ListingService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+ }

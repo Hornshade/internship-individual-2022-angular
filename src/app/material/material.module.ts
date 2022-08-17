@@ -11,6 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {MatDividerModule} from '@angular/material/divider';
         MatDialogModule,
         MatRadioModule,
         MatTabsModule,
-        MatDividerModule
+        MatDividerModule,
+        MatPaginatorModule
     ],
     exports: [MatButtonModule,
         MatIconModule,
@@ -38,7 +40,8 @@ import {MatDividerModule} from '@angular/material/divider';
         MatDialogModule,
         MatRadioModule,
         MatTabsModule,
-        MatDividerModule
+        MatDividerModule,
+        MatPaginatorModule
     ]
 })
 

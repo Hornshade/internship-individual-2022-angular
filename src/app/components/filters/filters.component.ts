@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class FiltersComponent implements OnInit {
   @Input() gridView:boolean = true;
   @Output() gridViewChange = new EventEmitter<boolean>();
+  orderSelectedChange:string = '';
 
   constructor() { }
 

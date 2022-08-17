@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'internship-individual-2022-angular';
+
+  getListing() {
+    
+  }
 }
