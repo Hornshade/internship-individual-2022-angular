@@ -21,6 +21,5 @@ export class FiltersComponent implements OnInit {
   setListView() {
     this.gridView = false;
     this.gridViewChange.emit(this.gridView);
-
   }
 }
