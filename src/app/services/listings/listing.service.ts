@@ -16,7 +16,7 @@ export class ListingService {
   private listingSource = new BehaviorSubject<Listing[]>([]);
   currentListing = this.listingSource.asObservable();
   //dropdown options to communicate between any components
-  private categorySource= new BehaviorSubject<string>("");
+  private categorySource= new BehaviorSubject<string | null>("");
   private locationSource= new BehaviorSubject<string[]>([]);
   private priceSource= new BehaviorSubject<string>("");
   private orderSource= new BehaviorSubject<string>("Popular");
@@ -47,7 +47,7 @@ export class ListingService {
   }
 
   //dropdown options change functions to update the values
-  changeCategory(selectedCategory: string) {
+  changeCategory(selectedCategory: string | null) {
     this.categorySource.next(selectedCategory)
   }
   changeLocation(selectedLocation: string[]) {
@@ -69,9 +69,14 @@ export class ListingService {
   }
 
   // endpoint to get the listings sorted from the backend
-  getListingsSort(category:string,location:string[],price:string,order:string): Observable<Listing[]> {
+  getListingsSort(category:string | null,location:string[],price:string,order:string): Observable<Listing[]> {
     let params = new HttpParams();
-    params = params.append('SortOrder',order);
+    if(order.length > 0 && !params.has('SortOrder')){
+     params = params.append('SortOrder',order);
+    } else if (order.length == 0 && params.has('SortOrder')){
+      params = params.delete('SortOrder', price);
+    }
+
     if(location.length != 0){
       location.map(loc => params = params.append('LocationFilter',loc));
     }
@@ -80,7 +85,7 @@ export class ListingService {
       params = params.append('PriceRange',price);
     }
     else if (params.has('PriceRange')){
-      params = params.delete('PriceRange', price)
+      params = params.delete('PriceRange', price);
     }
 
     if(category && !params.has('Category')){

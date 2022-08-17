@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ListingService } from 'src/app/services/listings/listing.service';
 
 import { Listing } from '../../interfaces/listing';
-// import { LISTINGS } from '../../mock-listings';
+
 
 @Component({
   selector: 'app-carousel',
@@ -10,6 +11,7 @@ import { Listing } from '../../interfaces/listing';
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
+  @Input() category: string = '';
   listings!: Listing[];
   
   customOptions: OwlOptions = {
@@ -38,9 +40,11 @@ export class CarouselComponent implements OnInit {
     nav: true
   }
 
-  constructor() { }
+  constructor(private listingsServices: ListingService) { }
 
   ngOnInit(): void {
+    this.listingsServices.getListingsSort(this.category,[],'','')
+      .subscribe(data => this.listings=data);
   }
 
 }

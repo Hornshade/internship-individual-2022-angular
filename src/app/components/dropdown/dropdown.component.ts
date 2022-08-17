@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ListingService } from '../../services/listings/listing.service';
 import {Options} from "../../interfaces/options";
 import { Listing } from '../../interfaces/listing';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dropdown',
@@ -11,7 +12,7 @@ import { Listing } from '../../interfaces/listing';
 export class DropdownComponent implements OnInit {
   @Input() options:string ="categories";
 
-  selectedCategory!:string;
+  selectedCategory!:string | null;
   selectedLocation!:string[];
   selectedPrice!:string;
   selectedOrder!:string;
@@ -51,10 +52,13 @@ export class DropdownComponent implements OnInit {
   // Set default option of Order By to most popular
   @Input() orderSelected = "";
 
+  urlCategory:string | null = "";
   
-  constructor(private listingsService: ListingService) { }
+  constructor(private listingsService: ListingService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.urlCategory = this.route.snapshot.paramMap.get('categ');
+    this.listingsService.changeCategory(this.urlCategory);
     this.listingsService.currentCategory.subscribe(selectedCategory => this.selectedCategory=selectedCategory)
     this.listingsService.currentLocation.subscribe(selectedLocation => this.selectedLocation=selectedLocation)
     this.listingsService.currentPrice.subscribe(selectedPrice => this.selectedPrice=selectedPrice)
