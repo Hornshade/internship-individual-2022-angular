@@ -20,6 +20,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ListingService } from './services/listings/listing.service';
 import { HomeComponent } from './pages/home/home.component';
+import { SingleComponent } from './pages/single/single.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { HomeComponent } from './pages/home/home.component';
     TabsComponent,
     CarouselComponent,
     HomeComponent,
+    SingleComponent,
   ],
   imports: [
     BrowserModule,

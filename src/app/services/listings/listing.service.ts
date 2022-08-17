@@ -96,4 +96,18 @@ export class ListingService {
           catchError(this.handleError)
         );
   }
+
+  // endpoint to get listings by id 
+  getListingById(id:string | null): Observable<Listing[]>  {
+    let param = new HttpParams();
+    if(id && !param.has(id)){
+      param = param.append('/',id)
+    }
+
+    return this.http.get<Listing[]>(this.ROOT_URL+'/api/Listing' + param, {headers:this.header})
+        .pipe(
+          catchError(this.handleError)
+        )
+  }
+
 }

@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component,  Input, OnInit } from '@angular/core';
 import { ListingService } from '../../services/listings/listing.service';
-import {Options} from "../../interfaces/options";
+import { Options } from "../../interfaces/options";
 import { Listing } from '../../interfaces/listing';
 import { ActivatedRoute } from '@angular/router';
 
@@ -54,22 +54,23 @@ export class DropdownComponent implements OnInit {
 
   urlCategory:string | null = "";
   
-  constructor(private listingsService: ListingService, private route: ActivatedRoute) { }
+  constructor(private listingsService: ListingService, private route: ActivatedRoute, private cdRef : ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.urlCategory = this.route.snapshot.paramMap.get('categ');
-    this.listingsService.changeCategory(this.urlCategory);
+    // this.listingsService.changeCategory(this.urlCategory);
     this.listingsService.currentCategory.subscribe(selectedCategory => this.selectedCategory=selectedCategory)
     this.listingsService.currentLocation.subscribe(selectedLocation => this.selectedLocation=selectedLocation)
     this.listingsService.currentPrice.subscribe(selectedPrice => this.selectedPrice=selectedPrice)
     this.listingsService.currentOrder.subscribe(selectedOrder => this.selectedOrder=selectedOrder)
     this.listingsService.currentListing.subscribe(listing => this.listing=listing)
-    this.listingsService.getListingsSort(this.selectedCategory,this.selectedLocation,this.selectedPrice,this.selectedOrder)
+    this.listingsService.getListingsSort(this.urlCategory,this.selectedLocation,this.selectedPrice,this.selectedOrder)
       .subscribe(data => {
         this.listing= data
         this.listingsService.changeListing(data);
       })
   }
+
 
   onCategoryChange(value: string) {
     this.listingsService.changeCategory(value);
