@@ -21,6 +21,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { ListingService } from './services/listings/listing.service';
 import { HomeComponent } from './pages/home/home.component';
 import { SingleComponent } from './pages/single/single.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SingleComponent } from './pages/single/single.component';
     CarouselComponent,
     HomeComponent,
     SingleComponent,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,
