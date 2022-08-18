@@ -23,7 +23,6 @@ export class SingleComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.urlId = this.route.snapshot.paramMap.get('id');
-		console.log(this.urlId);
 		this.listingsService
 			.getListingById(this.urlId)
 			.subscribe((data) => (this.listing = data));

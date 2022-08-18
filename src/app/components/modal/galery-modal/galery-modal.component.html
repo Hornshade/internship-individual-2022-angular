@@ -1,22 +1,22 @@
 <div class="c-modal">
-  <div class="c-modal__header">
-    <mat-icon class="c-modal__header--left" mat-dialog-close
-      >chevron_left</mat-icon
-    >
-    <div class="c-modal__header--right">
-      <div class="c-modal__header--right--share">
-        <mat-icon>share</mat-icon>
-        <p>Share</p>
-      </div>
-      <div class="c-modal__header--right--save">
-        <mat-icon>favorite_border</mat-icon>
-        <p>Save</p>
-      </div>
-    </div>
-  </div>
-  <div class="c-modal__content">
-    <div class="c-modal__content--images">
-      <img *ngFor="let image of images" src="{{ image }}" alt="Galery" />
-    </div>
-  </div>
+	<div class="c-modal__header">
+		<mat-icon class="c-modal__header--left" mat-dialog-close
+			>chevron_left</mat-icon
+		>
+		<div class="c-modal__header--right">
+			<div class="c-modal__header--right--share">
+				<mat-icon>share</mat-icon>
+				<p>Share</p>
+			</div>
+			<div class="c-modal__header--right--save">
+				<mat-icon>favorite_border</mat-icon>
+				<p>Save</p>
+			</div>
+		</div>
+	</div>
+	<div class="c-modal__content">
+		<div class="c-modal__content--images">
+			<img *ngFor="let image of images" src="{{ image }}" alt="Galery" />
+		</div>
+	</div>
 </div>

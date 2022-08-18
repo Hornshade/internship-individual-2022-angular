@@ -7,181 +7,176 @@
 
 html,
 body {
-  height: 100%;
-  font-family: $primary_font_family;
-  font-family: $primary_font_family;
-}
-body {
-  margin: 0;
-
-  font-family: $primary_font_family;
+	height: 100%;
+	font-family: $primary_font_family;
+	margin: 0;
 }
 
 // added from the default css file of the project
 
 *:where(:not(iframe, canvas, img, svg, video, input):not(svg *, symbol *)) {
-  all: unset;
-  display: revert;
+	all: unset;
+	display: revert;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  font-family: $primary_font_family;
+	box-sizing: border-box;
+	font-family: $primary_font_family;
 }
 
 a,
 button {
-  cursor: revert;
-  pointer-events: revert;
+	cursor: revert;
+	pointer-events: revert;
 }
 
 ol,
 ul,
 menu {
-  list-style: none;
+	list-style: none;
 }
 
 img {
-  max-width: 100%;
+	max-width: 100%;
 }
 
 table {
-  border-collapse: collapse;
+	border-collapse: collapse;
 }
 
 textarea {
-  white-space: revert;
+	white-space: revert;
 }
 
 meter {
-  -webkit-appearance: revert;
-  appearance: revert;
+	-webkit-appearance: revert;
+	appearance: revert;
 }
 
 ::placeholder {
-  color: unset;
+	color: unset;
 }
 
 :where([hidden]) {
-  display: none;
+	display: none;
 }
 
 :where([contenteditable]) {
-  -moz-user-modify: read-write;
-  -webkit-user-modify: read-write;
-  -webkit-linebreak: after-white-space;
-  overflow-wrap: break-word;
+	-moz-user-modify: read-write;
+	-webkit-user-modify: read-write;
+	-webkit-linebreak: after-white-space;
+	overflow-wrap: break-word;
 }
 
 :where([draggable='true']) {
-  -webkit-user-drag: element;
+	-webkit-user-drag: element;
 }
 
 //scroll design change
 ::-webkit-scrollbar {
-  width: 10px;
-  &-track {
-    background: $color-gray-50;
-    border-radius: 10px;
-  }
-  &-thumb {
-    background: #888;
-    border-radius: 10px;
-    &:hover {
-      background: #555;
-    }
-  }
+	width: 10px;
+	&-track {
+		background: $color-gray-50;
+		border-radius: 10px;
+	}
+	&-thumb {
+		background: #888;
+		border-radius: 10px;
+		&:hover {
+			background: #555;
+		}
+	}
 }
 
 // material overwrite css
 
 .myPanelClass {
-  margin-top: 35px;
+	margin-top: 35px;
 }
 
 .c-select__category {
-  color: $color-primary-500;
-  position: relative;
-  min-width: 130px;
-  max-width: 130px;
-  max-height: 15px;
-  min-height: 15px;
-  .mat-select-placeholder,
-  .mat-select-placeholder:focus {
-    color: $color-primary-500;
-  }
-  .mat-select-arrow {
-    margin-top: 5px;
-  }
+	color: $color-primary-500;
+	position: relative;
+	min-width: 130px;
+	max-width: 130px;
+	max-height: 15px;
+	min-height: 15px;
+	.mat-select-placeholder,
+	.mat-select-placeholder:focus {
+		color: $color-primary-500;
+	}
+	.mat-select-arrow {
+		margin-top: 5px;
+	}
 }
 .c-select__filter {
-  color: $color-black;
-  position: relative;
-  .mat-select-placeholder {
-    color: $color-black;
-  }
-  .mat-select-arrow {
-    margin-top: 5px;
-  }
+	color: $color-black;
+	position: relative;
+	.mat-select-placeholder {
+		color: $color-black;
+	}
+	.mat-select-arrow {
+		margin-top: 5px;
+	}
 }
 
 // removes the outline of the mat-form-field from the filters
 .c-filters__right--order,
 .c-filters__left--price,
 .c-filters__left--locations {
-  .mat-form-field-appearance-outline .mat-form-field-outline {
-    display: none;
-    outline: none;
-    opacity: 0;
-  }
-  padding-bottom: 7px;
+	.mat-form-field-appearance-outline .mat-form-field-outline {
+		display: none;
+		outline: none;
+		opacity: 0;
+	}
+	padding-bottom: 7px;
 }
 
 //overwriting the Material tabs to have a vertical alignment
 .mat-tab-group {
-  display: flex;
-  flex-direction: row;
-  .mat-tab-labels {
-    flex-direction: column;
-  }
-  .mat-tab-header {
-    border-bottom: none;
-  }
-  .mat-ink-bar {
-    display: none;
-  }
-  .mat-tab-body-wrapper {
-    flex: 1 1 auto;
-  }
+	display: flex;
+	flex-direction: row;
+	.mat-tab-labels {
+		flex-direction: column;
+	}
+	.mat-tab-header {
+		border-bottom: none;
+	}
+	.mat-ink-bar {
+		display: none;
+	}
+	.mat-tab-body-wrapper {
+		flex: 1 1 auto;
+	}
 }
 
 //overwriting owl carousel
 .c-carousel .owl-next,
 .c-carousel .owl-prev {
-  height: 40px;
-  width: 40px;
-  border: 1px solid $color-primary-400;
-  border-radius: 32px !important;
-  background-color: $color-white !important;
-  color: $color-primary-400 !important;
-  align-items: center;
-  justify-items: center;
-  position: absolute;
-  top: 45%;
+	height: 40px;
+	width: 40px;
+	border: 1px solid $color-primary-400;
+	border-radius: 32px !important;
+	background-color: $color-white !important;
+	color: $color-primary-400 !important;
+	align-items: center;
+	justify-items: center;
+	position: absolute;
+	top: 45%;
 }
 .c-carousel .owl-next img,
 .c-carousel .owl-prev img {
-  align-self: center;
-  margin: 3px 0;
-  svg {
-    fill: $color-primary-400;
-  }
+	align-self: center;
+	margin: 3px 0;
+	svg {
+		fill: $color-primary-400;
+	}
 }
 .c-carousel .owl-next {
-  right: -15px;
+	right: -15px;
 }
 .c-carousel .owl-prev {
-  left: -15px;
+	left: -15px;
 }
