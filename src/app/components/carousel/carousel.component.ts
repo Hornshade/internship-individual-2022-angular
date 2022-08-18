@@ -7,40 +7,41 @@ import { Listing } from '../../interfaces/listing';
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+  styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit {
   listings!: Listing[];
-  
+
   customOptions: OwlOptions = {
     loop: true,
-    autoWidth:true,
+    autoWidth: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['<img src="../../../assets/icons/chevron-left.svg" alt="left">', '<img src="../../../assets/icons/chevron-right.svg" alt="right">'],
+    navText: [
+      '<img src="../../../assets/icons/chevron-left.svg" alt="left">',
+      '<img src="../../../assets/icons/chevron-right.svg" alt="right">',
+    ],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 2
+        items: 2,
       },
       740: {
-        items: 3
+        items: 3,
       },
       940: {
-        items: 4
-      }
+        items: 4,
+      },
     },
-    nav: true
-  }
+    nav: true,
+  };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

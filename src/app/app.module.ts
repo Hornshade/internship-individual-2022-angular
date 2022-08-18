@@ -6,6 +6,7 @@ import { MaterialModule } from './material/material.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { HeaderComponent } from './components/header/header.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
@@ -19,7 +20,6 @@ import { GaleryModalComponent } from './components/modal/galery-modal/galery-mod
 import { TabsComponent } from './components/tabs/tabs.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ListingService } from './services/listings/listing.service';
-
 
 @NgModule({
   declarations: [
@@ -35,6 +35,9 @@ import { ListingService } from './services/listings/listing.service';
     GaleryModalComponent,
     TabsComponent,
     CarouselComponent,
+    GaleryModalComponent,
+    TabsComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,10 +45,10 @@ import { ListingService } from './services/listings/listing.service';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    CarouselModule
+    CarouselModule,
+    CarouselModule,
   ],
   providers: [ListingService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
- }
+export class AppModule {}
