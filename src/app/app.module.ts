@@ -19,6 +19,7 @@ import { GaleryModalComponent } from './components/modal/galery-modal/galery-mod
 import { TabsComponent } from './components/tabs/tabs.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ListingService } from './services/listings/listing.service';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -34,9 +35,7 @@ import { ListingService } from './services/listings/listing.service';
     GaleryModalComponent,
     TabsComponent,
     CarouselComponent,
-    GaleryModalComponent,
-    TabsComponent,
-    CarouselComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

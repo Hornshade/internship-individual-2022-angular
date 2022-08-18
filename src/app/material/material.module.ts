@@ -28,6 +28,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTabsModule,
     MatDividerModule,
     MatPaginatorModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatButtonModule,
@@ -42,6 +45,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatRadioModule,
     MatTabsModule,
     MatDividerModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatPaginatorModule,
     MatPaginatorModule,
   ],
 })
