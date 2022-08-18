@@ -6,7 +6,6 @@ import { MaterialModule } from './material/material.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { HeaderComponent } from './components/header/header.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
@@ -45,7 +44,6 @@ import { ListingService } from './services/listings/listing.service';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    CarouselModule,
     CarouselModule,
   ],
   providers: [ListingService],
