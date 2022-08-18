@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ListingService } from '../../services/listings/listing.service';
 import {Options} from "../../interfaces/options";
+import { Listing } from '../../interfaces/listing';
 
 @Component({
   selector: 'app-dropdown',
@@ -7,7 +9,13 @@ import {Options} from "../../interfaces/options";
   styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent implements OnInit {
-  @Input() options:string ="categories"
+  @Input() options:string ="categories";
+
+  selectedCategory!:string;
+  selectedLocation!:string[];
+  selectedPrice!:string;
+  selectedOrder!:string;
+  listing!:Listing[];
   
   // Categories options for filtering the header dropdown
   categories: Options[] = [
@@ -19,10 +27,13 @@ export class DropdownComponent implements OnInit {
   locations: Options[] = [
     {value: "suceava", viewValue: "Suceava"},
     {value: "iasi", viewValue: "Iasi"},
-    {value: "cluj", viewValue: "Cluj"}
+    {value: "cluj", viewValue: "Cluj"},
+    {value: "sydney", viewValue: "Sydney"},
+    {value: "timișoara", viewValue: "Timisoara"},
   ]
   // prices options for filtering the category page 
   prices: Options[] = [
+    {value: "", viewValue: "All"},
     {value: "0 - 10000", viewValue: "0 - 10.000"},
     {value: "10000 - 50000", viewValue: "10.000 - 50.000"},
     {value: "50000 - 100000", viewValue: "50.000 - 100.000"},
@@ -38,13 +49,55 @@ export class DropdownComponent implements OnInit {
     {value: "Featured", viewValue: "Featured"},
   ]
   // Set default option of Order By to most popular
-  selectedOrder :string = this.orders[0].value;
+  @Input() orderSelected = "";
 
   
-  constructor() { }
+  constructor(private listingsService: ListingService) { }
 
   ngOnInit(): void {
-    
+    this.listingsService.currentCategory.subscribe(selectedCategory => this.selectedCategory=selectedCategory)
+    this.listingsService.currentLocation.subscribe(selectedLocation => this.selectedLocation=selectedLocation)
+    this.listingsService.currentPrice.subscribe(selectedPrice => this.selectedPrice=selectedPrice)
+    this.listingsService.currentOrder.subscribe(selectedOrder => this.selectedOrder=selectedOrder)
+    this.listingsService.currentListing.subscribe(listing => this.listing=listing)
+    this.listingsService.getListingsSort(this.selectedCategory,this.selectedLocation,this.selectedPrice,this.selectedOrder)
+      .subscribe(data => {
+        this.listing= data
+        this.listingsService.changeListing(data);
+      })
   }
 
+  onCategoryChange(value: string) {
+    this.listingsService.changeCategory(value);
+    this.listingsService.getListingsSort(value,this.selectedLocation,this.selectedPrice,this.selectedOrder)
+      .subscribe(data => {
+        this.listing= data
+        this.listingsService.changeListing(data);
+      });
+  }
+  onLocationChange(value:any) {
+    this.listingsService.changeLocation(value)
+    this.listingsService.getListingsSort(this.selectedCategory,value,this.selectedPrice,this.selectedOrder)
+      .subscribe(data => {
+        this.listing= data
+        this.listingsService.changeListing(data);
+      });
+  }
+  onPriceChange(value:any) {
+    this.listingsService.changePrice(value)
+    this.listingsService.getListingsSort(this.selectedCategory,this.selectedLocation,value,this.selectedOrder)
+      .subscribe(data => {
+        this.listing= data
+        this.listingsService.changeListing(data);
+      });
+
+  }
+  onOrderChange(value:any) {
+    this.listingsService.changeOrder(value)
+    this.listingsService.getListingsSort(this.selectedCategory,this.selectedLocation,this.selectedPrice,value)
+    .subscribe(data => {
+      this.listing= data
+      this.listingsService.changeListing(data);
+    });
+  }
 }

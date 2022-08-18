@@ -18,7 +18,7 @@ import { ListComponent } from './components/list/list.component';
 import { GaleryModalComponent } from './components/modal/galery-modal/galery-modal.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-
+import { ListingService } from './services/listings/listing.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +34,9 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     GaleryModalComponent,
     TabsComponent,
     CarouselComponent,
+    GaleryModalComponent,
+    TabsComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,9 +44,9 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    CarouselModule
+    CarouselModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ListingService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
