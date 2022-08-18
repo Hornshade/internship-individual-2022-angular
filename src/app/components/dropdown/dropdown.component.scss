@@ -1,17 +1,16 @@
-@import "../../../styles/variables.scss";
+@import '../../../styles/variables.scss';
 
 mat-form-field {
-    display: flex;
-    text-align: center;
-    color: $color-primary-500;
-    font-size: $font-button;
-    font-weight: $font-semibold;
-    
+  display: flex;
+  text-align: center;
+  color: $color-primary-500;
+  font-size: $font-button;
+  font-weight: $font-semibold;
 }
 
-.c-select{
-    .mat-select-placeholder{
-        color: $color-primary-500 ;
-    }
-    color: $color-primary-500 ;
+.c-select {
+  .mat-select-placeholder {
+    color: $color-primary-500;
+  }
+  color: $color-primary-500;
 }

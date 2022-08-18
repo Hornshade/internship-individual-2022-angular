@@ -3,17 +3,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.scss']
+  styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
-  @Input() gridView:boolean = true;
+  @Input() gridView: boolean = true;
   @Output() gridViewChange = new EventEmitter<boolean>();
-  orderSelectedChange:string = '';
+  orderSelectedChange: string = '';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   setGridView() {
     this.gridView = true;

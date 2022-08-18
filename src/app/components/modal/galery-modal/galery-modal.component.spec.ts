@@ -8,9 +8,8 @@ describe('GaleryModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GaleryModalComponent ]
-    })
-    .compileComponents();
+      declarations: [GaleryModalComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GaleryModalComponent);
     component = fixture.componentInstance;

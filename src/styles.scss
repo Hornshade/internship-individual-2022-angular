@@ -1,15 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./styles/variables.scss";
+@import './styles/variables.scss';
 
 //owl carousel imports
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
-html, body { height: 100%;font-family: $primary_font_family; font-family: $primary_font_family;  }
-body { margin: 0; 
-  
-  font-family: $primary_font_family; 
+html,
+body {
+  height: 100%;
+  font-family: $primary_font_family;
+  font-family: $primary_font_family;
+}
+body {
+  margin: 0;
 
+  font-family: $primary_font_family;
 }
 
 // added from the default css file of the project
@@ -70,7 +75,7 @@ meter {
   overflow-wrap: break-word;
 }
 
-:where([draggable="true"]) {
+:where([draggable='true']) {
   -webkit-user-drag: element;
 }
 
@@ -92,43 +97,45 @@ meter {
 
 // material overwrite css
 
-.myPanelClass{
+.myPanelClass {
   margin-top: 35px;
 }
 
-.c-select__category{
+.c-select__category {
   color: $color-primary-500;
   position: relative;
   min-width: 130px;
   max-width: 130px;
   max-height: 15px;
   min-height: 15px;
-  .mat-select-placeholder, .mat-select-placeholder:focus{
+  .mat-select-placeholder,
+  .mat-select-placeholder:focus {
     color: $color-primary-500;
   }
   .mat-select-arrow {
     margin-top: 5px;
   }
 }
-.c-select__filter{
+.c-select__filter {
   color: $color-black;
   position: relative;
-  .mat-select-placeholder{
+  .mat-select-placeholder {
     color: $color-black;
   }
   .mat-select-arrow {
     margin-top: 5px;
   }
-
 }
 
-// removes the outline of the mat-form-field from the filters 
-.c-filters__right--order, .c-filters__left--price, .c-filters__left--locations{
-  .mat-form-field-appearance-outline .mat-form-field-outline{
-       display: none;
-       outline: none;
-       opacity: 0;
-     }
+// removes the outline of the mat-form-field from the filters
+.c-filters__right--order,
+.c-filters__left--price,
+.c-filters__left--locations {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    display: none;
+    outline: none;
+    opacity: 0;
+  }
   padding-bottom: 7px;
 }
 
@@ -136,7 +143,7 @@ meter {
 .mat-tab-group {
   display: flex;
   flex-direction: row;
-  .mat-tab-labels{
+  .mat-tab-labels {
     flex-direction: column;
   }
   .mat-tab-header {
@@ -145,13 +152,14 @@ meter {
   .mat-ink-bar {
     display: none;
   }
-  .mat-tab-body-wrapper{
+  .mat-tab-body-wrapper {
     flex: 1 1 auto;
   }
 }
 
 //overwriting owl carousel
-.c-carousel .owl-next, .c-carousel .owl-prev {
+.c-carousel .owl-next,
+.c-carousel .owl-prev {
   height: 40px;
   width: 40px;
   border: 1px solid $color-primary-400;
@@ -163,14 +171,15 @@ meter {
   position: absolute;
   top: 45%;
 }
-.c-carousel .owl-next img, .c-carousel .owl-prev img{
+.c-carousel .owl-next img,
+.c-carousel .owl-prev img {
   align-self: center;
   margin: 3px 0;
-  svg{
+  svg {
     fill: $color-primary-400;
   }
 }
-.c-carousel .owl-next{
+.c-carousel .owl-next {
   right: -15px;
 }
 .c-carousel .owl-prev {

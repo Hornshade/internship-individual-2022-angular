@@ -22,7 +22,6 @@ import { ListingService } from './services/listings/listing.service';
 import { HomeComponent } from './pages/home/home.component';
 import { SingleComponent } from './pages/single/single.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,10 +45,9 @@ import { SingleComponent } from './pages/single/single.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    CarouselModule
+    CarouselModule,
   ],
   providers: [ListingService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
- }
+export class AppModule {}

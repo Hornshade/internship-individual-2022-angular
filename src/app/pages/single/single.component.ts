@@ -6,18 +6,21 @@ import { ListingService } from 'src/app/services/listings/listing.service';
 @Component({
   selector: 'app-single',
   templateUrl: './single.component.html',
-  styleUrls: ['./single.component.scss']
+  styleUrls: ['./single.component.scss'],
 })
 export class SingleComponent implements OnInit {
   listing!: Listing[];
-  urlId!:string | null
+  urlId!: string | null;
 
-  constructor(private route: ActivatedRoute, private listingsService: ListingService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private listingsService: ListingService
+  ) {}
 
   ngOnInit(): void {
-    this.urlId=this.route.snapshot.paramMap.get('id')
-    this.listingsService.getListingById(this.urlId)
-      .subscribe(data => this.listing = data)
+    this.urlId = this.route.snapshot.paramMap.get('id');
+    this.listingsService
+      .getListingById(this.urlId)
+      .subscribe((data) => (this.listing = data));
   }
-
 }
