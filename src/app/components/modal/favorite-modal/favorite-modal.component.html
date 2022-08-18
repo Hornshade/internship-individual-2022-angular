@@ -1,15 +1,24 @@
 <div class="c-modal">
-  <div class="c-modal__image">
-    <img src="../../../../assets/images/idea.png" alt="Modal photo" />
-  </div>
-  <div class="c-modal__description">
-    <h3 class="c-modal__description--title">Log in to view your favourites</h3>
-    <h5 class="c-modal__description--text">
-      You can add, view, or edit your favourites once you’ve logged in.
-    </h5>
-  </div>
-  <div class="c-modal__buttons">
-    <button mat-flat-button color="primary">Log in</button>
-    <button mat-stroked-button color="primary">Home</button>
-  </div>
+	<div class="c-modal__image">
+		<img src="../../../../assets/images/idea.png" alt="Modal photo" />
+	</div>
+	<div class="c-modal__description">
+		<h3 class="c-modal__description--title">Log in to view your favourites</h3>
+		<h5 class="c-modal__description--text">
+			You can add, view, or edit your favourites once you’ve logged in.
+		</h5>
+	</div>
+	<div class="c-modal__buttons">
+		<button
+			mat-flat-button
+			color="primary"
+			routerLink="/login"
+			mat-dialog-close
+		>
+			Log in
+		</button>
+		<button mat-stroked-button color="primary" routerLink="" mat-dialog-close>
+			Home
+		</button>
+	</div>
 </div>

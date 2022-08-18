@@ -20,32 +20,34 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ListingService } from './services/listings/listing.service';
 import { HomeComponent } from './pages/home/home.component';
+import { SingleComponent } from './pages/single/single.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    DropdownComponent,
-    CardComponent,
-    CardsComponent,
-    FavoriteModalComponent,
-    DeleteModalComponent,
-    FiltersComponent,
-    ListComponent,
-    GaleryModalComponent,
-    TabsComponent,
-    CarouselComponent,
-    HomeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    HttpClientModule,
-    CarouselModule,
-  ],
-  providers: [ListingService],
-  bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		DropdownComponent,
+		CardComponent,
+		CardsComponent,
+		FavoriteModalComponent,
+		DeleteModalComponent,
+		FiltersComponent,
+		ListComponent,
+		GaleryModalComponent,
+		TabsComponent,
+		CarouselComponent,
+		HomeComponent,
+		SingleComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		MaterialModule,
+		HttpClientModule,
+		CarouselModule,
+	],
+	providers: [ListingService],
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

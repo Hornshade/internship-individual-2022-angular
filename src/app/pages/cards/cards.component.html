@@ -1,21 +1,26 @@
-
 <!-- category page title  -->
-<h1 class="c-title">{{category}}</h1>
+<h1 class="c-title">{{ category }}</h1>
 <!-- filters  -->
 <div class="c-filters">
-    <app-filters [(gridView)]="gridView"></app-filters>
+	<app-filters [(gridView)]="gridView"></app-filters>
 </div>
 <!-- cards view  -->
 <div class="c-cards" *ngIf="gridView">
-<app-card class="c-cards__card" *ngFor="let listing of pageSlice" [listing]="listing"></app-card>
+	<app-card
+		class="c-cards__card"
+		*ngFor="let listing of pageSlice"
+		[listing]="listing"
+	></app-card>
 </div>
 <!-- list view  -->
 <div class="c-list" *ngIf="!gridView">
-    <app-list *ngFor="let listing of pageSlice " [listing]="listing"></app-list>
+	<app-list *ngFor="let listing of pageSlice" [listing]="listing"></app-list>
 </div>
 <!-- pagination of 12 by default but i don't have 12 items in backend so i use 4 for now -->
-<mat-paginator [length]="listings.length"
-              [pageSize]="4"
-              aria-label="Select page"
-              (page)="onPageChange($event)">
+<mat-paginator
+	[length]="listings.length"
+	[pageSize]="4"
+	aria-label="Select page"
+	(page)="onPageChange($event)"
+>
 </mat-paginator>
