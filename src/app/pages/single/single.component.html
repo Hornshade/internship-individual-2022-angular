@@ -1,4 +1,46 @@
 
 <div class="c-single">
-    
+    <div class="c-single__images">
+
+    </div>
+    <div class="c-single__title">
+        <div class="c-single__title--top">
+            <div class="c-single__title--top--left">
+                <h3>{{listing[0].title}}</h3>
+            </div>
+            <div class="c-single__title--top--right">
+                <a href=""> <mat-icon>share</mat-icon> Share </a>
+            </div>
+        </div>
+        <div class="c-single__title--bottom">
+            <h2>{{listing[0].price}}</h2>
+        </div>
+    </div>
+    <div class="c-class__description">
+        <div class="c-class__description--left">
+            <h5>Description</h5>
+            <p>{{listing[0].description}}</p>
+            <mat-divider></mat-divider>
+            <h5>Location</h5>
+            <h6>{{listing[0].location[2] + listing[0].location[5]}}</h6>
+            <div class="c-class__description--left--google"></div>
+            <mat-divider></mat-divider>
+            <h5>Message the seller</h5>
+            <mat-form-field appearance="outline">
+                <mat-label>Placeholder</mat-label>
+                <textarea matInput></textarea>
+            </mat-form-field>
+        </div>
+        <div class="c-class__description--right">
+            <div class="c-class__description--right--photo">
+                <img src={{listing[0].author.photo}} alt="Author">
+            </div>
+            <div class="c-class__description--right--text">
+                <h3>{{listing[0].author.fullName}}</h3>
+                <p>Joined in {{listing[0].author.createdAt}}</p>
+                <p>Response rate: 97%</p>
+                <p>Response time: within an hour</p>
+            </div>
+        </div>
+    </div>
 </div>
