@@ -1,5 +1,10 @@
 <mat-card class="c-card">
-	<img class="c-card__image" src="{{ listing.images[0] }}" alt="Card photo" />
+	<img
+		class="c-card__image"
+		src="{{ listing.images[0] }}"
+		alt="Card photo"
+		routerLink="/listing/{{ listing.id }}"
+	/>
 	<mat-card-content class="c-card__content">
 		<h1 class="c-card__content--title">{{ listing.title }}</h1>
 		<h4 class="c-card__content--location">

@@ -25,6 +25,7 @@ export class CarouselComponent implements OnInit {
 			'<img src="../../../assets/icons/chevron-left.svg" alt="left">',
 			'<img src="../../../assets/icons/chevron-right.svg" alt="right">',
 		],
+
 		responsive: {
 			0: {
 				items: 1,

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Listing } from '../../interfaces/listing';
 import { PageEvent } from '@angular/material/paginator';
 import { ListingService } from '../../services/listings/listing.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-cards',
@@ -13,14 +14,18 @@ export class CardsComponent implements OnInit {
 	gridView: boolean = true;
 	category: string | null = 'Category';
 	@Input() categorySelected = '';
-	pageSlice = this.listings.slice(0, 4);
+	pageSlice = this.listings.slice(0.4);
 	selectedCategory!: string | null;
 	selectedLocation!: string[];
 	selectedPrice!: string;
 	selectedOrder!: string;
+	urlCategory!: string;
 
 	//have to change route later to /category
-	constructor(private listingsService: ListingService) {}
+	constructor(
+		private listingsService: ListingService,
+		private route: ActivatedRoute
+	) {}
 
 	ngOnInit(): void {
 		this.listingsService.currentCategory.subscribe((selectedCategory) => {
