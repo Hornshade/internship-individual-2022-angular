@@ -47,4 +47,30 @@ export class FavoriteService {
 			})
 			.pipe(catchError(this.handleError));
 	}
+
+	addToFavorites(userId: string | null, listingId: string) {
+		return this.http
+			.post(
+				this.ROOT_URL + '/api/Favorite/addToFavorites',
+				{
+					userId: userId,
+					listingId: listingId,
+				},
+				{
+					headers: new HttpHeaders({
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					}),
+				}
+			)
+			.pipe(catchError(this.handleError));
+	}
+
+	deleteFavorite(userId: string | null, listingId: string) {
+		return this.http
+			.delete(this.ROOT_URL + '/api/Favorite/' + userId + '/' + listingId, {
+				headers: new HttpHeaders({ Accept: '*/*' }),
+			})
+			.pipe(catchError(this.handleError));
+	}
 }
