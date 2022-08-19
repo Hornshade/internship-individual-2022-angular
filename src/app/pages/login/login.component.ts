@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 	loginForm: FormGroup | any;
-	title = 'material-login';
+
 	constructor(private router: Router, private loginService: LoginService) {
 		this.loginForm = new FormGroup({
 			email: new FormControl('', [

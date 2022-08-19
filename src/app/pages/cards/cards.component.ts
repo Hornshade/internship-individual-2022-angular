@@ -54,7 +54,6 @@ export class CardsComponent implements OnInit {
 	}
 
 	onPageChange(event: PageEvent) {
-		console.log(event);
 		const startIndex = event.pageIndex * event.pageSize;
 		let endIndex = startIndex + event.pageSize;
 		if (endIndex > this.listings.length) {

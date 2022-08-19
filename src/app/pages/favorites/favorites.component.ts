@@ -29,9 +29,6 @@ export class FavoritesComponent implements OnInit {
 				this.checkEmpty = false;
 				this.listings = data;
 				this.pageSlice = data.slice(0, 4);
-				console.log(data);
-				console.log(this.listings, 'listing');
-				console.log(this.pageSlice, 'pageslice');
 			} else {
 				this.checkEmpty = true;
 			}
@@ -45,7 +42,6 @@ export class FavoritesComponent implements OnInit {
 	}
 
 	onPageChange(event: PageEvent) {
-		console.log(event);
 		const startIndex = event.pageIndex * event.pageSize;
 		let endIndex = startIndex + event.pageSize;
 		if (endIndex > this.listings.length) {

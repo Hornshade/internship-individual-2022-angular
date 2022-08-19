@@ -15,7 +15,6 @@ export class LoginService {
 	readonly header = new HttpHeaders({
 		'Content-Type': 'application/json',
 		Accept: '*/*',
-		Authorization: 'token',
 	});
 
 	private isLoggedInSource = new BehaviorSubject<boolean>(false);
@@ -47,7 +46,7 @@ export class LoginService {
 	authenticateUser(email: string, password: string): Observable<User> {
 		return this.http
 			.post<User>(
-				this.ROOT_URL + '/api/User/Authenticate',
+				this.ROOT_URL + '/api/user/authenticate',
 				{
 					email: email,
 					password: password,
