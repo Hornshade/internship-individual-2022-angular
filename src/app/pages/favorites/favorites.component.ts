@@ -29,6 +29,9 @@ export class FavoritesComponent implements OnInit {
 				this.checkEmpty = false;
 				this.listings = data;
 				this.pageSlice = data.slice(0, 4);
+				console.log(data);
+				console.log(this.listings, 'listing');
+				console.log(this.pageSlice, 'pageslice');
 			} else {
 				this.checkEmpty = true;
 			}

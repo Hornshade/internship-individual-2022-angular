@@ -12,6 +12,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
 	imports: [
@@ -28,6 +29,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 		MatTabsModule,
 		MatDividerModule,
 		MatPaginatorModule,
+		MatCheckboxModule,
 	],
 	exports: [
 		MatButtonModule,
@@ -43,6 +45,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 		MatTabsModule,
 		MatDividerModule,
 		MatPaginatorModule,
+		MatCheckboxModule,
 	],
 })
 export class MaterialModule {}
