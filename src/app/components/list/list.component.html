@@ -1,22 +1,22 @@
 <mat-card class="c-list">
-  <img class="c-list__image" src="{{ listing.images[0] }}" alt="Card photo" />
-  <div class="c-list__content">
-    <div class="c-list__content--header">
-      <h1 class="c-list__content--header--title">{{ listing.title }}</h1>
-      <h4 class="c-list__content--header--location">{{ listing.location }}</h4>
-    </div>
-    <h3 class="c-list__content--description">{{ listing.description }}</h3>
-    <h2 class="c-list__content--price">{{ listing.price }} lei</h2>
-  </div>
-  <div class="c-list__actions">
-    <button
-      mat-icon-button
-      class="c-list__actions--button"
-      (click)="setFavorite()"
-    >
-      <mat-icon [ngStyle]="{ color: favorite ? 'red' : '#98A2B3' }">
-        {{ favorite ? 'favorite ' : 'favorite_border' }}
-      </mat-icon>
-    </button>
-  </div>
+	<img class="c-list__image" src="{{ listing.images[0] }}" alt="Card photo" />
+	<div class="c-list__content">
+		<div class="c-list__content--header">
+			<h1 class="c-list__content--header--title">{{ listing.title }}</h1>
+			<h4 class="c-list__content--header--location">{{ listing.location }}</h4>
+		</div>
+		<h3 class="c-list__content--description">{{ listing.description }}</h3>
+		<h2 class="c-list__content--price">{{ listing.price }} lei</h2>
+	</div>
+	<div class="c-list__actions">
+		<button
+			mat-icon-button
+			class="c-list__actions--button"
+			(click)="setFavorite()"
+		>
+			<mat-icon [ngStyle]="{ color: favorite ? 'red' : '#98A2B3' }">
+				{{ favorite ? 'favorite ' : 'favorite_border' }}
+			</mat-icon>
+		</button>
+	</div>
 </mat-card>
