@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 	styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-	user!: User;
+	user!: User | null;
 	gridView: boolean = false;
 	selectedCategory!: string | null;
 	selectedLocation!: string[];
@@ -39,12 +39,12 @@ export class HomeComponent implements OnInit {
 	}
 
 	isUser() {
-		if (this.user.role === 0) {
+		if (this.user?.role === 0) {
 			return true;
 		} else return false;
 	}
 	isAdmin() {
-		if (this.user.role === 1) {
+		if (this.user?.role === 1) {
 			return true;
 		} else return false;
 	}

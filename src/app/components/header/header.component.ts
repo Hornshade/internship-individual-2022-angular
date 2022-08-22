@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-	user!: User;
+	user!: User | null;
 
 	isLogged: boolean = false;
 	userId: string | null = '';

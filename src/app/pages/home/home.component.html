@@ -3,7 +3,7 @@
 	<div *ngIf="!isLogged" class="c-home__title">What are you interested in?</div>
 	<!-- user welcome test  -->
 	<div *ngIf="isLogged" class="c-home__logged">
-		<div class="c-home__logged--title">Welcome back, {{ user.fullName }}</div>
+		<div class="c-home__logged--title">Welcome back, {{ user?.fullName }}</div>
 		<button *ngIf="isUser()" mat-flat-button routerLink="add">Add new</button>
 	</div>
 
@@ -60,7 +60,7 @@
 			<div class="c-cards" *ngIf="gridView">
 				<app-card
 					class="c-cards__card"
-					*ngFor="let listing of user.listings"
+					*ngFor="let listing of user?.listings"
 					[listing]="listing"
 					[role]="0"
 				></app-card>
@@ -68,7 +68,7 @@
 			<!-- list view  -->
 			<div class="c-list" *ngIf="!gridView">
 				<app-list
-					*ngFor="let listing of user.listings"
+					*ngFor="let listing of user?.listings"
 					[listing]="listing"
 					[role]="0"
 				></app-list>
