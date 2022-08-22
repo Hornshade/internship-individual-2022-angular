@@ -10,7 +10,7 @@
 	<mat-tab-group *ngIf="isLogged" animationDuration="0ms" class="c-home__tabs">
 		<mat-tab label="All listings">
 			<!-- latest carousel  -->
-			<div class="c-home__carousel">
+			<div *ngIf="isUser()" class="c-home__carousel">
 				<div class="c-home__carousel--top">
 					<h3 class="c-home__carousel--top--text">Latest</h3>
 					<div class="c-home__carousel--top--button">
@@ -24,7 +24,7 @@
 				</div>
 			</div>
 			<!-- big houses carousel  -->
-			<div class="c-home__carousel">
+			<div *ngIf="isUser()" class="c-home__carousel">
 				<div class="c-home__carousel--top">
 					<h3 class="c-home__carousel--top--text">Big Houses</h3>
 					<div class="c-home__carousel--top--button">
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 			<!-- small houses carousel  -->
-			<div class="c-home__carousel">
+			<div *ngIf="isUser()" class="c-home__carousel">
 				<div class="c-home__carousel--top">
 					<h3 class="c-home__carousel--top--text">Small houses</h3>
 					<div class="c-home__carousel--top--button">
@@ -49,8 +49,23 @@
 				</div>
 				<div class="c-home__carousel--slider">
 					<app-carousel category="small"></app-carousel>
-				</div></div
-		></mat-tab>
+				</div>
+			</div>
+			<!-- admin all listings  -->
+			<!-- filters  -->
+			<div *ngIf="isAdmin()" class="c-filters">
+				<app-filters [(gridView)]="gridView"></app-filters>
+			</div>
+			<!-- list view  -->
+			<div *ngIf="isAdmin()" class="c-list">
+				<app-list
+					*ngFor="let listing of user?.listings"
+					[listing]="listing"
+					[role]="1"
+					[showButtons]="true"
+				></app-list>
+			</div>
+		</mat-tab>
 		<mat-tab *ngIf="isUser()" label="My listings  {{ myListings }}">
 			<!-- filters  -->
 			<div class="c-filters">
