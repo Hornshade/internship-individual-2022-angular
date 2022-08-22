@@ -1,0 +1,44 @@
+<div class="c-title">Favourites</div>
+
+<div class="c-favorites" *ngIf="!checkEmpty">
+	<div class="c-favorites__icons">
+		<div class="c-favorites__icons--grid" (click)="setGridView()">
+			<mat-icon [ngStyle]="{ color: gridView ? '#5592FD' : '#98A2B3' }"
+				>grid_view</mat-icon
+			>
+		</div>
+		<div class="c-favorites__icons--list" (click)="setListView()">
+			<mat-icon [ngStyle]="{ color: gridView ? '#98A2B3' : '#5592FD' }"
+				>menu</mat-icon
+			>
+		</div>
+	</div>
+	<!-- cards view  -->
+	<div class="c-favorites__cards" *ngIf="gridView">
+		<app-card
+			class="c-favorites__cards--card"
+			*ngFor="let listing of pageSlice"
+			[listing]="listing"
+			[favorite]="true"
+		></app-card>
+	</div>
+	<!-- list view  -->
+	<div class="c-favorites__list" *ngIf="!gridView">
+		<app-list
+			*ngFor="let listing of pageSlice"
+			[listing]="listing"
+			[favorite]="true"
+		></app-list>
+	</div>
+	<!-- pagination of 12 by default but i don't have 12 items in backend so i use 4 for now -->
+	<mat-paginator
+		[length]="listings.length"
+		[pageSize]="4"
+		aria-label="Select page"
+		(page)="onPageChange($event)"
+	>
+	</mat-paginator>
+</div>
+<div class="c-empty" *ngIf="checkEmpty">
+	<app-favorite-modal></app-favorite-modal>
+</div>

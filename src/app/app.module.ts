@@ -6,6 +6,7 @@ import { MaterialModule } from './material/material.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './components/header/header.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
@@ -18,32 +19,42 @@ import { ListComponent } from './components/list/list.component';
 import { GaleryModalComponent } from './components/modal/galery-modal/galery-modal.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-
+import { ListingService } from './services/listings/listing.service';
+import { HomeComponent } from './pages/home/home.component';
+import { SingleComponent } from './pages/single/single.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    DropdownComponent,
-    CardComponent,
-    CardsComponent,
-    FavoriteModalComponent,
-    DeleteModalComponent,
-    FiltersComponent,
-    ListComponent,
-    GaleryModalComponent,
-    TabsComponent,
-    CarouselComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    HttpClientModule,
-    CarouselModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		DropdownComponent,
+		CardComponent,
+		CardsComponent,
+		FavoriteModalComponent,
+		DeleteModalComponent,
+		FiltersComponent,
+		ListComponent,
+		GaleryModalComponent,
+		TabsComponent,
+		CarouselComponent,
+		HomeComponent,
+		SingleComponent,
+		FavoritesComponent,
+		LoginComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		MaterialModule,
+		HttpClientModule,
+		CarouselModule,
+		FormsModule,
+		ReactiveFormsModule,
+	],
+	providers: [ListingService],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,34 +1,31 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Listing} from "../../interfaces/listing";
-import {MatDialog} from '@angular/material/dialog';
+import { Listing } from '../../interfaces/listing';
+import { MatDialog } from '@angular/material/dialog';
 import { FavoriteModalComponent } from '../modal/favorite-modal/favorite-modal.component';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+	selector: 'app-card',
+	templateUrl: './card.component.html',
+	styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+	@Input() listing!: Listing;
+	@Input() favorite: boolean = false;
 
-  @Input() listing!: Listing ;
-  @Input() favorite:boolean = false;
+	constructor(public dialog: MatDialog) {}
 
-  constructor(public dialog: MatDialog) { }
+	ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
+	openDialog() {
+		const dialogRef = this.dialog.open(FavoriteModalComponent);
 
-  openDialog() {
-    const dialogRef = this.dialog.open(FavoriteModalComponent);
+		dialogRef.afterClosed().subscribe((result) => {
+			console.log(`Dialog result: ${result}`);
+		});
+	}
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-  setFavorite() {
-    // if no user this.openDialog() 
-    this.favorite=!this.favorite;
-  }
-
+	setFavorite() {
+		// if no user this.openDialog()
+		this.favorite = !this.favorite;
+	}
 }

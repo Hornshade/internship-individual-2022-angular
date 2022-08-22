@@ -1,0 +1,38 @@
+@import '../../../styles/variables.scss';
+
+.c-title {
+	color: $color-black;
+	font-size: $font-h3;
+	font-weight: $font-bold;
+	margin-bottom: 30px;
+}
+
+.c-favorites {
+	&__icons {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 10px;
+	}
+	&__cards {
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+		flex-wrap: wrap;
+		gap: 30px;
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: auto;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+}
+
+.c-empty {
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+	width: 60%;
+	margin: 5px auto;
+}

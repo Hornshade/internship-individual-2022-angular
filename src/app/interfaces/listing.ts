@@ -1,11 +1,20 @@
 export interface Listing {
-    id: string,
-    title: string,
-    description: string,
-    location:string,
-    price: number,
-    status: 1,
-    images: string[],
-    category:string
+	id: string;
+	title: string;
+	description: string;
+	shortDescription: string;
+	location: string[];
+	price: number;
+	status: number;
+	images: string[];
+	category: string;
+	author: {
+		id: string;
+		photo: string;
+		fullName: string;
+		createdAt: string;
+	};
+	viewCouter: number;
+	createdAt: string;
+	updatedAt: string;
 }
-//for mock data, needs changes for backend call
