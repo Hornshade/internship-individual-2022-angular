@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
 	ngOnInit(): void {
 		this.userId = localStorage.getItem('userId');
-		console.log(this.userId);
 		if (this.userId !== null) {
 			this.loginService.getUserById(this.userId).subscribe((data) => {
 				this.user = data;

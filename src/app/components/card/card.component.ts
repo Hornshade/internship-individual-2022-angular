@@ -65,15 +65,11 @@ export class CardComponent implements OnInit, AfterViewInit {
 					.deleteFavorite(localStorage.getItem('userId'), this.listing.id)
 					.subscribe();
 				this.favorite = false;
-				console.log('deletefav');
 			} else if (this.favorite === false) {
 				this.favoriteService
 					.addToFavorites(localStorage.getItem('userId'), this.listing.id)
 					.subscribe();
 				this.favorite = true;
-				console.log('addfav');
-				console.log(this.listing.id);
-				console.log(localStorage.getItem('userId'));
 			}
 		} else {
 			this.openDialog;

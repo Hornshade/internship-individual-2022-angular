@@ -21,7 +21,7 @@
 	</div>
 </mat-card> -->
 
-<div class="c-list">
+<div class="c-list" [ngStyle]="{ height: showButtons ? '220px' : '160px' }">
 	<div class="c-list__top">
 		<div class="c-list__top--image">
 			<img src="{{ listing.images[0] }}" alt="Card photo" />
@@ -50,9 +50,9 @@
 			</button>
 		</div>
 	</div>
-	<mat-divider *ngIf="role === 0 || role === 1"></mat-divider>
-	<div *ngIf="role === 0 || role === 1" class="c-list__bottom">
-		<button mat-button color="warn">Delete</button>
+	<mat-divider *ngIf="(role === 0 || role === 1) && showButtons"></mat-divider>
+	<div *ngIf="(role === 0 || role === 1) && showButtons" class="c-list__bottom">
+		<button mat-button color="warn" (click)="openDeleteDialog()">Delete</button>
 		<button mat-button color="primary">Edit</button>
 		<button *ngIf="role === 1" mat-flat-button class="c-list__bottom-approve">
 			Approve
