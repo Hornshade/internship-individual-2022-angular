@@ -19,6 +19,8 @@ export class LoginService {
 
 	private isLoggedInSource = new BehaviorSubject<boolean>(false);
 	isLoggedIn = this.isLoggedInSource.asObservable();
+	private userSource = new BehaviorSubject<User | null>(null);
+	currentUser = this.userSource.asObservable();
 
 	private handleError(error: HttpErrorResponse) {
 		if (error.status === 0) {
@@ -42,6 +44,9 @@ export class LoginService {
 		const token = localStorage.getItem('userToken');
 		this.isLoggedInSource.next(!!token);
 	}
+	changeUser(user: User) {
+		this.userSource.next(user);
+	}
 
 	authenticateUser(email: string, password: string): Observable<User> {
 		return this.http
@@ -58,6 +63,7 @@ export class LoginService {
 					this.isLoggedInSource.next(true);
 					localStorage.setItem('userToken', response.token);
 					localStorage.setItem('userId', response.id);
+					this.changeUser(response);
 				}),
 				catchError(this.handleError)
 			);

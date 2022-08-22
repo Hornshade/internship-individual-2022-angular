@@ -1,4 +1,4 @@
-<mat-card class="c-list">
+<!-- <mat-card class="c-list">
 	<img class="c-list__image" src="{{ listing.images[0] }}" alt="Card photo" />
 	<div class="c-list__content">
 		<div class="c-list__content--header">
@@ -19,4 +19,43 @@
 			</mat-icon>
 		</button>
 	</div>
-</mat-card>
+</mat-card> -->
+
+<div class="c-list">
+	<div class="c-list__top">
+		<div class="c-list__top--image">
+			<img src="{{ listing.images[0] }}" alt="Card photo" />
+		</div>
+		<div class="c-list__top--content">
+			<div class="c-list__top--content--header">
+				<h1 class="c-list__top--content--header--title">{{ listing.title }}</h1>
+				<h4 class="c-list__top--content--header--location">
+					{{ listing.location[2] }},{{ listing.location[5] }}
+				</h4>
+			</div>
+			<h3 class="c-list__top--content--description">
+				{{ listing.description }}
+			</h3>
+			<h2 class="c-list__top--content--price">{{ listing.price }} lei</h2>
+		</div>
+		<div class="c-list__top--actions">
+			<button
+				mat-icon-button
+				class="c-list__top--actions--button"
+				(click)="setFavorite()"
+			>
+				<mat-icon [ngStyle]="{ color: favorite ? 'red' : '#98A2B3' }">
+					{{ favorite ? 'favorite ' : 'favorite_border' }}
+				</mat-icon>
+			</button>
+		</div>
+	</div>
+	<mat-divider *ngIf="role === 0 || role === 1"></mat-divider>
+	<div *ngIf="role === 0 || role === 1" class="c-list__bottom">
+		<button mat-button color="warn">Delete</button>
+		<button mat-button color="primary">Edit</button>
+		<button *ngIf="role === 1" mat-flat-button class="c-list__bottom-approve">
+			Approve
+		</button>
+	</div>
+</div>

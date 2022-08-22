@@ -4,12 +4,12 @@
 	<!-- user welcome test  -->
 	<div *ngIf="isLogged" class="c-home__logged">
 		<div class="c-home__logged--title">Welcome back, {{ user.fullName }}</div>
-		<button mat-flat-button routerLink="add">Add new</button>
+		<button *ngIf="isUser()" mat-flat-button routerLink="add">Add new</button>
 	</div>
 
 	<mat-tab-group *ngIf="isLogged" animationDuration="0ms" class="c-home__tabs">
-		<mat-tab label="All listings"
-			><!-- latest carousel  -->
+		<mat-tab label="All listings">
+			<!-- latest carousel  -->
 			<div class="c-home__carousel">
 				<div class="c-home__carousel--top">
 					<h3 class="c-home__carousel--top--text">Latest</h3>
@@ -51,7 +51,7 @@
 					<app-carousel category="small"></app-carousel>
 				</div></div
 		></mat-tab>
-		<mat-tab label="My listings">
+		<mat-tab *ngIf="isUser()" label="My listings">
 			<!-- filters  -->
 			<div class="c-filters">
 				<app-filters [(gridView)]="gridView"></app-filters>
@@ -62,6 +62,7 @@
 					class="c-cards__card"
 					*ngFor="let listing of user.listings"
 					[listing]="listing"
+					[role]="0"
 				></app-card>
 			</div>
 			<!-- list view  -->
@@ -69,8 +70,54 @@
 				<app-list
 					*ngFor="let listing of user.listings"
 					[listing]="listing"
+					[role]="0"
 				></app-list>
 			</div>
 		</mat-tab>
+		<mat-tab *ngIf="isAdmin()" label="Pending approval"></mat-tab>
 	</mat-tab-group>
+	<div *ngIf="!isLogged">
+		<!-- latest carousel  -->
+		<div class="c-home__carousel">
+			<div class="c-home__carousel--top">
+				<h3 class="c-home__carousel--top--text">Latest</h3>
+				<div class="c-home__carousel--top--button">
+					<a mat-flat-button routerLink="category/latest"
+						>See everything <mat-icon>arrow_forward</mat-icon>
+					</a>
+				</div>
+			</div>
+			<div class="c-home__carousel--slider">
+				<app-carousel></app-carousel>
+			</div>
+		</div>
+		<!-- big houses carousel  -->
+		<div class="c-home__carousel">
+			<div class="c-home__carousel--top">
+				<h3 class="c-home__carousel--top--text">Big Houses</h3>
+				<div class="c-home__carousel--top--button">
+					<a mat-flat-button routerLink="category/big"
+						>See everything <mat-icon>arrow_forward</mat-icon>
+					</a>
+				</div>
+			</div>
+			<div class="c-home__carousel--slider">
+				<app-carousel category="big"></app-carousel>
+			</div>
+		</div>
+		<!-- small houses carousel  -->
+		<div class="c-home__carousel">
+			<div class="c-home__carousel--top">
+				<h3 class="c-home__carousel--top--text">Small houses</h3>
+				<div class="c-home__carousel--top--button">
+					<a mat-flat-button routerLink="category/small"
+						>See everything <mat-icon>arrow_forward</mat-icon>
+					</a>
+				</div>
+			</div>
+			<div class="c-home__carousel--slider">
+				<app-carousel category="small"></app-carousel>
+			</div>
+		</div>
+	</div>
 </div>

@@ -11,6 +11,7 @@ import { FavoriteModalComponent } from '../modal/favorite-modal/favorite-modal.c
 export class CardComponent implements OnInit {
 	@Input() listing!: Listing;
 	@Input() favorite: boolean = false;
+	@Input() role: number = 0;
 
 	constructor(public dialog: MatDialog) {}
 

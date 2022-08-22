@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class HomeComponent implements OnInit {
 	user!: User;
-	gridView: boolean = true;
+	gridView: boolean = false;
 	selectedCategory!: string | null;
 	selectedLocation!: string[];
 	selectedPrice!: string;
@@ -20,15 +20,27 @@ export class HomeComponent implements OnInit {
 	constructor(private loginService: LoginService) {}
 
 	ngOnInit(): void {
-		//my listings
-
-		//user
 		this.userId = localStorage.getItem('userId');
 		this.loginService.isLoggedIn.subscribe(
 			(logged) => (this.isLogged = logged)
 		);
-		this.loginService.getUserById(this.userId).subscribe((data) => {
-			this.user = data;
+		if (this.userId !== null)
+			this.loginService.getUserById(this.userId).subscribe((data) => {
+				this.user = data;
+			});
+		this.loginService.currentUser.subscribe((data) => {
+			if (data !== null) this.user = data;
 		});
+	}
+
+	isUser() {
+		if (this.user.role === 0) {
+			return true;
+		} else return false;
+	}
+	isAdmin() {
+		if (this.user.role === 1) {
+			return true;
+		} else return false;
 	}
 }
