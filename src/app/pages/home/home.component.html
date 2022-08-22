@@ -51,7 +51,7 @@
 					<app-carousel category="small"></app-carousel>
 				</div></div
 		></mat-tab>
-		<mat-tab *ngIf="isUser()" label="My listings">
+		<mat-tab *ngIf="isUser()" label="My listings  {{ myListings }}">
 			<!-- filters  -->
 			<div class="c-filters">
 				<app-filters [(gridView)]="gridView"></app-filters>

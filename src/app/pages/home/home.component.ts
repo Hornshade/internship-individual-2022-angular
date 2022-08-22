@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 	selectedLocation!: string[];
 	selectedPrice!: string;
 	selectedOrder!: string;
+	myListings = 0;
 
 	isLogged: boolean = false;
 	userId!: string | null;
@@ -27,9 +28,13 @@ export class HomeComponent implements OnInit {
 		if (this.userId !== null)
 			this.loginService.getUserById(this.userId).subscribe((data) => {
 				this.user = data;
+				if (data !== null) this.myListings = data.listings?.length;
 			});
 		this.loginService.currentUser.subscribe((data) => {
-			if (data !== null) this.user = data;
+			if (data !== null) {
+				this.user = data;
+				this.myListings = data.listings.length;
+			}
 		});
 	}
 
