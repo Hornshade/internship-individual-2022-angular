@@ -57,8 +57,17 @@ export class LoginService {
 				tap((response) => {
 					this.isLoggedInSource.next(true);
 					localStorage.setItem('userToken', response.token);
+					localStorage.setItem('userId', response.id);
 				}),
 				catchError(this.handleError)
 			);
+	}
+
+	getUserById(id: string | null): Observable<User> {
+		return this.http
+			.get<User>(this.ROOT_URL + '/api/user/' + id, {
+				headers: this.header,
+			})
+			.pipe(catchError(this.handleError));
 	}
 }

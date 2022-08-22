@@ -25,35 +25,68 @@
 		<div class="c-header__right">
 			<!-- favorites button  -->
 			<div class="c-header__right--favourites">
-				<a mat-flat-button href="/favourites" target="_blank"
+				<a mat-flat-button routerLink="favorite/{{ userId }}"
 					><mat-icon>favorite_border</mat-icon> Favourites</a
 				>
 			</div>
 			<!-- my profile menu  -->
 			<div class="c-header__right--profile">
-				<a mat-flat-button [matMenuTriggerFor]="menu"
-					><mat-icon style="margin-right: 5px">perm_identity</mat-icon>My
-					Account <mat-icon>expand_more</mat-icon></a
-				>
+				<a *ngIf="!isLogged" mat-flat-button [matMenuTriggerFor]="menu">
+					<mat-icon style="margin-right: 5px">perm_identity</mat-icon>
+					My Account
+					<mat-icon>expand_more</mat-icon>
+				</a>
+				<a *ngIf="isLogged" mat-flat-button [matMenuTriggerFor]="menuLogged">
+					<img src="{{ user.photo }}" alt="" />
+					{{ user.fullName }}
+					<mat-icon>expand_more</mat-icon>
+				</a>
+
 				<mat-menu #menu="matMenu">
 					<!-- trebuie adaugat routerLink pe menu items -->
-					<button mat-menu-item>
+					<button mat-menu-item routerLink="login">
 						<mat-icon class="c-header__right--profile--icon"
 							>perm_identity</mat-icon
 						>Sign in
 					</button>
-					<button mat-menu-item>
+					<button mat-menu-item routerLink="login">
 						<mat-icon class="c-header__right--profile--icon">security</mat-icon
 						>Login & security
 					</button>
-					<button mat-menu-item>
+					<button mat-menu-item routerLink="login">
 						<mat-icon class="c-header__right--profile--icon"
 							>notifications</mat-icon
 						>Notifications
 					</button>
-					<button mat-menu-item>
+					<button mat-menu-item routerLink="login">
 						<mat-icon class="c-header__right--profile--icon">chat</mat-icon
 						>Messages
+					</button>
+				</mat-menu>
+				<mat-menu #menuLogged="matMenu">
+					<!-- trebuie adaugat routerLink pe menu items -->
+					<button mat-menu-item routerLink="login">
+						<mat-icon class="c-header__right--profile--icon"
+							>perm_identity</mat-icon
+						>Profile
+					</button>
+					<button mat-menu-item routerLink="login">
+						<mat-icon class="c-header__right--profile--icon">security</mat-icon
+						>Login & security
+					</button>
+					<button mat-menu-item routerLink="login">
+						<mat-icon class="c-header__right--profile--icon"
+							>notifications</mat-icon
+						>Notifications
+					</button>
+					<button mat-menu-item routerLink="login">
+						<mat-icon class="c-header__right--profile--icon">chat</mat-icon
+						>Messages
+					</button>
+					<mat-divider></mat-divider>
+					<button mat-menu-item (click)="logout()">
+						<mat-icon class="c-header__right--profile--icon">logout</mat-icon
+						>Logout
 					</button>
 				</mat-menu>
 			</div>
