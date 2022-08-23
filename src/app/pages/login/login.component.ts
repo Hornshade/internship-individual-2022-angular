@@ -26,8 +26,6 @@ export class LoginComponent implements OnInit {
 	}
 	ngOnInit(): void {}
 	onSubmit() {
-		console.log(this.loginForm.get('email')?.value, 'email');
-		console.log(this.loginForm.get('password')?.value, 'password');
 		if (this.loginForm.valid) {
 			this.loginService
 				.authenticateUser(
@@ -35,11 +33,14 @@ export class LoginComponent implements OnInit {
 					this.loginForm.get('password')?.value
 				)
 				.subscribe((data) => {
-					console.log(data);
+					this.loginService.changeUser(data);
+					this.loginService.changeUserId(data.id);
 				});
-			//this.router.navigate(['']);
+			// this.router.navigate(['']);
 		} else {
 			console.error('Failed to authenticate');
 		}
+		if (this.loginService.isLoggedIn) this.router.navigate(['']);
+		console.log(this.loginService.isLoggedIn);
 	}
 }
