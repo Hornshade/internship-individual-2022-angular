@@ -13,6 +13,7 @@ import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 export class CardComponent implements OnInit, AfterViewInit {
 	@Input() listing!: Listing | null;
 	@Input() favorite: boolean = false;
+	@Input() role: number = 0;
 
 	isLogged: boolean = false;
 	userId!: string | null;

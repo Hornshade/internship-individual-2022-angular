@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 				.subscribe((data) => {
 					this.loginService.changeUser(data);
 				});
-			// this.router.navigate(['']);
+			//  this.router.navigate(['']);
 		} else {
 			console.error('Failed to authenticate');
 		}
