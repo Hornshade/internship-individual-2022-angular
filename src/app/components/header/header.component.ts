@@ -40,8 +40,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 	}
 
 	logout() {
-		localStorage.removeItem('userToken');
-		localStorage.removeItem('userId');
+		localStorage.clear();
 
 		this.router.navigate(['']);
 		location.reload();
