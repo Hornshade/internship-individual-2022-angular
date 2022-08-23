@@ -25,14 +25,12 @@ export class CardComponent implements OnInit, AfterViewInit {
 	) {
 		if (localStorage.getItem('userId') !== null)
 			this.userId = localStorage.getItem('userId');
-		// console.log(localStorage.getItem('userId'), 'localstrg');
 	}
 
 	ngOnInit(): void {
 		this.loginService.isLoggedIn.subscribe((data) => (this.isLogged = data));
 	}
 	ngAfterViewInit(): void {
-		// console.log(this.userId, ' init usrid');
 		if (this.isLogged) {
 			if (this.userId !== null)
 				this.favoriteService.getFavorite(this.userId).subscribe((data) => {
