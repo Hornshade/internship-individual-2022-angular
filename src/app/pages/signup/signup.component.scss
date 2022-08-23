@@ -7,9 +7,8 @@
 	flex-direction: row;
 	&__left {
 		width: 50%;
-		height: 100%;
 		min-width: 480px;
-
+		height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -39,10 +38,11 @@
 				display: flex;
 				flex-direction: column;
 				gap: 10px;
-				label {
+				&--label {
 					color: $color-gray-600;
 					font-size: $font-body-small;
-					font-weight: $font-medium;
+					font-weight: $font-semibold;
+					font-family: $primary_font_family;
 				}
 				&--submit {
 					color: $color-white;
@@ -72,22 +72,26 @@
 						color: #0356e8;
 					}
 				}
-				&--options {
+				mat-hint {
+					color: $color-gray-500;
+					font-size: $font-body-tiny;
+					font-weight: $font-regular;
+				}
+				&--divider {
+					width: 100%;
 					display: flex;
 					flex-direction: row;
-					justify-content: space-between;
-					text-align: center;
-					mat-checkbox {
-						color: $color-gray-500;
-						font-size: $font-body-small;
-						font-weight: $font-medium;
+					justify-content: center;
+					align-items: center;
+					&--line {
+						flex: 1;
 					}
-					p {
-						cursor: pointer;
-						color: #0356e8;
-						font-size: $font-body-small;
+					&--text {
+						padding-left: 10px;
+						padding-right: 10px;
+						color: #6c6c6c;
+						font-size: $font-body-tiny;
 						font-weight: $font-semibold;
-						padding-top: 2px;
 					}
 				}
 			}

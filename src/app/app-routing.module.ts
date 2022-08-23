@@ -4,6 +4,7 @@ import { CardsComponent } from './pages/cards/cards.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 import { SingleComponent } from './pages/single/single.component';
 
 const routes: Routes = [
@@ -16,6 +17,8 @@ const routes: Routes = [
 		title: 'Favorites page',
 	},
 	{ path: 'login', component: LoginComponent, title: 'Login Page' },
+	{ path: 'signup', component: SignupComponent, title: 'Signup Page' },
+	{ path: '', redirectTo: '', pathMatch: 'full', component: HomeComponent },
 	{ path: '**', redirectTo: '' },
 ];
 

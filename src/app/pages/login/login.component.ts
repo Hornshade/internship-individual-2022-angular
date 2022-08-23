@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
 				)
 				.subscribe((data) => {
 					this.loginService.changeUser(data);
-					this.loginService.changeUserId(data.id);
 				});
 			// this.router.navigate(['']);
 		} else {
 			console.error('Failed to authenticate');
 		}
 		if (this.loginService.isLoggedIn) this.router.navigate(['']);
-		console.log(this.loginService.isLoggedIn);
+		// console.log(this.loginService.isLoggedIn);
+		console.log(this.loginService.currentUserId, 'login userid');
 	}
 }

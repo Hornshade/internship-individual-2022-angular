@@ -2,6 +2,7 @@ import {
 	HttpClient,
 	HttpErrorResponse,
 	HttpHeaders,
+	HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
@@ -21,6 +22,7 @@ export class LoginService {
 	isLoggedIn = this.isLoggedInSource.asObservable();
 	private userSource = new BehaviorSubject<User | null>(null);
 	currentUser = this.userSource.asObservable();
+
 	private userIdSource = new BehaviorSubject<string>('');
 	currentUserId = this.userIdSource.asObservable();
 
@@ -69,7 +71,8 @@ export class LoginService {
 					localStorage.setItem('userToken', response.token);
 					localStorage.setItem('userId', response.id);
 					this.changeUser(response);
-					this.changeUserId(response.id);
+					// this.changeUserId(response.id);
+					this.userIdSource.next(response.id);
 				}),
 				catchError(this.handleError)
 			);
@@ -80,6 +83,20 @@ export class LoginService {
 			.get<User>(this.ROOT_URL + '/api/user/' + id, {
 				headers: this.header,
 			})
+			.pipe(catchError(this.handleError));
+	}
+
+	signupUser(email: string, password: string) {
+		let params = new HttpParams();
+		if (email) params = params.append('email', email);
+		if (password) params = params.append('password', password);
+
+		return this.http
+			.post(
+				this.ROOT_URL + '/api/user/register?' + params,
+				{},
+				{ headers: this.header }
+			)
 			.pipe(catchError(this.handleError));
 	}
 }
