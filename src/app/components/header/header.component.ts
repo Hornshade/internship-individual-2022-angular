@@ -14,29 +14,21 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 	isLogged!: boolean;
 	userId: string | null = '';
 
-	constructor(private loginService: LoginService, private router: Router) {}
+	constructor(private loginService: LoginService, private router: Router) {
+		this.userId = localStorage.getItem('userId');
+	}
 
 	ngOnInit(): void {
 		this.loginService.isLoggedIn.subscribe(
 			(logged) => (this.isLogged = logged)
 		);
-		this.userId = localStorage.getItem('userId');
+	}
+	ngAfterViewInit(): void {
 		if (this.userId !== null) {
 			this.loginService.getUserById(this.userId).subscribe((data) => {
 				this.user = data;
 			});
 		}
-	}
-	ngAfterViewInit(): void {
-		this.loginService.isLoggedIn.subscribe(
-			(logged) => (this.isLogged = logged)
-		);
-		// this.loginService.getUserById(this.userId).subscribe((data) => {
-		// 	this.user = data;
-		// });
-		this.loginService.currentUser.subscribe((data) => {
-			if (data !== null) this.user = data;
-		});
 	}
 
 	logout() {

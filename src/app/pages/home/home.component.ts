@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
 import { LoginService } from 'src/app/services/login/login.service';
 
@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 	user!: User | null;
 	gridView: boolean = false;
 	selectedCategory!: string | null;
@@ -18,25 +18,24 @@ export class HomeComponent implements OnInit {
 
 	isLogged: boolean = false;
 	userId!: string | null;
-	constructor(private loginService: LoginService) {}
+	constructor(private loginService: LoginService) {
+		this.userId = localStorage.getItem('userId');
+	}
 
 	ngOnInit(): void {
-		this.userId = localStorage.getItem('userId');
 		this.loginService.isLoggedIn.subscribe(
 			(logged) => (this.isLogged = logged)
 		);
-		if (this.userId !== null)
-			this.loginService.getUserById(this.userId).subscribe((data) => {
-				this.user = data;
-				if (data !== null) this.myListings = data.listings?.length;
-			});
-		this.loginService.currentUser.subscribe((data) => {
-			if (data !== null) {
-				this.user = data;
-				if (data.listings != null) this.myListings = data.listings.length;
-				else this.myListings = 0;
+	}
+	ngAfterViewInit(): void {
+		if (this.isLogged) {
+			if (this.userId !== null) {
+				this.loginService.getUserById(this.userId).subscribe((data) => {
+					this.user = data;
+					this.myListings = data.listings?.length;
+				});
 			}
-		});
+		}
 	}
 
 	isUser() {

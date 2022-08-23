@@ -37,7 +37,10 @@
 					<mat-icon>expand_more</mat-icon>
 				</a>
 				<a *ngIf="isLogged" mat-flat-button [matMenuTriggerFor]="menuLogged">
-					<img src="{{ user?.photo }}" alt="" />
+					<img
+						src="{{ user ? user.photo : '../../../../../assets/images/splash.png }}"
+						alt=""
+					/>
 					{{ user?.fullName }}
 					<mat-icon>expand_more</mat-icon>
 				</a>

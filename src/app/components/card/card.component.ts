@@ -22,60 +22,28 @@ export class CardComponent implements OnInit, AfterViewInit {
 		public dialog: MatDialog,
 		private loginService: LoginService,
 		private favoriteService: FavoriteService
-	) {}
+	) {
+		if (localStorage.getItem('userId') !== null)
+			this.userId = localStorage.getItem('userId');
+		// console.log(localStorage.getItem('userId'), 'localstrg');
+	}
 
 	ngOnInit(): void {
-		this.loginService.isLoggedIn.subscribe(
-			(logged) => (this.isLogged = logged)
-		);
-
-		// this.userId = localStorage.getItem('userId');
-		this.loginService.currentUserId.subscribe((currentUserId) => {
-			this.userId = currentUserId;
-			// console.log(currentUserId, 'data');
-		});
-		if (this.isLogged) {
-			console.log('a intrat in islogged');
-
-			if (this.userId) {
-				console.log('a intrat in userid');
-
-				this.favoriteService.getFavorite(this.userId).subscribe((data) => {
-					data.map((fav) => {
-						if (fav !== null)
-							if (fav.id === this.listing?.id) {
-								this.favorite = true;
-							}
-					});
-				});
-			} else if (localStorage.getItem('userId')) {
-				console.log('a intrat in localstorage');
-
-				this.userId = localStorage.getItem('userId');
-				this.favoriteService.getFavorite(this.userId).subscribe((data) => {
-					data.map((fav) => {
-						if (fav !== null)
-							if (fav.id === this.listing?.id) {
-								this.favorite = true;
-							}
-					});
-				});
-			}
-		}
+		this.loginService.isLoggedIn.subscribe((data) => (this.isLogged = data));
 	}
 	ngAfterViewInit(): void {
-		//aici ruleaza de foarte multe ori, nu stiu cum sa-l fac mai eficient
-		// if (this.isLogged)
-		// 	this.favoriteService
-		// 		.getFavorite(localStorage.getItem('userId'))
-		// 		.subscribe((data) => {
-		// 			data.map((fav) => {
-		// 				if (fav !== null)
-		// 					if (fav.id === this.listing?.id) {
-		// 						this.favorite = true;
-		// 					}
-		// 			});
-		// 		});
+		// console.log(this.userId, ' init usrid');
+		if (this.isLogged) {
+			if (this.userId !== null)
+				this.favoriteService.getFavorite(this.userId).subscribe((data) => {
+					if (data !== null) {
+						data.map((fav) => {
+							if (this.listing !== null)
+								if (fav.id === this.listing?.id) this.favorite = true;
+						});
+					}
+				});
+		}
 	}
 
 	openDialog() {

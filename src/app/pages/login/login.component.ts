@@ -32,15 +32,16 @@ export class LoginComponent implements OnInit {
 					this.loginForm.get('email')?.value,
 					this.loginForm.get('password')?.value
 				)
-				.subscribe((data) => {
-					this.loginService.changeUser(data);
-				});
-			//  this.router.navigate(['']);
+				.subscribe(
+					(data) => {
+						this.loginService.changeUser(data);
+						localStorage.setItem('userId', data.id);
+					},
+					(error) => console.log(error),
+					() => this.router.navigate([''])
+				);
 		} else {
 			console.error('Failed to authenticate');
 		}
-		if (this.loginService.isLoggedIn) this.router.navigate(['']);
-		// console.log(this.loginService.isLoggedIn);
-		console.log(this.loginService.currentUserId, 'login userid');
 	}
 }
