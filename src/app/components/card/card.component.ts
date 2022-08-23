@@ -16,6 +16,7 @@ export class CardComponent implements OnInit, AfterViewInit {
 	@Input() role: number = 0;
 
 	isLogged: boolean = false;
+	userId!: string | null;
 
 	constructor(
 		public dialog: MatDialog,
@@ -27,10 +28,23 @@ export class CardComponent implements OnInit, AfterViewInit {
 		this.loginService.isLoggedIn.subscribe(
 			(logged) => (this.isLogged = logged)
 		);
+
+		this.userId = localStorage.getItem('userId');
+		// this.loginService.currentUserId.subscribe((data) => (this.userId = data));
+	}
+	ngAfterViewInit(): void {
 		//aici ruleaza de foarte multe ori, nu stiu cum sa-l fac mai eficient
-		this.favoriteService
-			.getFavorite(localStorage.getItem('userId'))
-			.subscribe((data) => {
+		// if (this.isLogged)
+		// 	this.favoriteService.getFavorite(this.userId).subscribe((data) => {
+		// 		data.map((fav) => {
+		// 			if (fav !== null)
+		// 				if (fav.id === this.listing.id) {
+		// 					this.favorite = true;
+		// 				}
+		// 		});
+		// 	});
+		if (this.isLogged)
+			this.favoriteService.getFavorite(this.userId).subscribe((data) => {
 				data.map((fav) => {
 					if (fav !== null)
 						if (fav.id === this.listing.id) {
@@ -38,16 +52,6 @@ export class CardComponent implements OnInit, AfterViewInit {
 						}
 				});
 			});
-	}
-	ngAfterViewInit(): void {
-		// this.favoriteService
-		// 	.getFavorite(localStorage.getItem('userId'))
-		// 	.subscribe((data) => {
-		// 		data.map((fav) => {
-		// 			if (fav.id === this.listing.id) this.favorite === true;
-		// 		});
-		// 	});
-		// if(this.favorites !== null)
 	}
 
 	openDialog() {

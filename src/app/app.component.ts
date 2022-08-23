@@ -16,8 +16,6 @@ export class AppComponent implements OnInit {
 	}
 	checkPage() {
 		if (this.router.url === '/login') {
-			console.log('route');
-
 			return false;
 		} else {
 			return true;

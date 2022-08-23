@@ -33,7 +33,8 @@ export class HomeComponent implements OnInit {
 		this.loginService.currentUser.subscribe((data) => {
 			if (data !== null) {
 				this.user = data;
-				this.myListings = data.listings.length;
+				if (data.listings != null) this.myListings = data.listings.length;
+				else this.myListings = 0;
 			}
 		});
 	}

@@ -9,61 +9,66 @@
 
 	<mat-tab-group *ngIf="isLogged" animationDuration="0ms" class="c-home__tabs">
 		<mat-tab label="All listings">
-			<!-- latest carousel  -->
-			<div *ngIf="isUser()" class="c-home__carousel">
-				<div class="c-home__carousel--top">
-					<h3 class="c-home__carousel--top--text">Latest</h3>
-					<div class="c-home__carousel--top--button">
-						<a mat-flat-button routerLink="category/latest"
-							>See everything <mat-icon>arrow_forward</mat-icon>
-						</a>
+			<div *ngIf="isUser()">
+				<!-- latest carousel  -->
+				<div class="c-home__carousel">
+					<div class="c-home__carousel--top">
+						<h3 class="c-home__carousel--top--text">Latest</h3>
+						<div class="c-home__carousel--top--button">
+							<a mat-flat-button routerLink="category/latest"
+								>See everything <mat-icon>arrow_forward</mat-icon>
+							</a>
+						</div>
+					</div>
+					<div class="c-home__carousel--slider">
+						<app-carousel></app-carousel>
 					</div>
 				</div>
-				<div class="c-home__carousel--slider">
-					<app-carousel></app-carousel>
-				</div>
-			</div>
-			<!-- big houses carousel  -->
-			<div *ngIf="isUser()" class="c-home__carousel">
-				<div class="c-home__carousel--top">
-					<h3 class="c-home__carousel--top--text">Big Houses</h3>
-					<div class="c-home__carousel--top--button">
-						<a mat-flat-button routerLink="category/big"
-							>See everything <mat-icon>arrow_forward</mat-icon>
-						</a>
+				<!-- big houses carousel  -->
+				<div class="c-home__carousel">
+					<div class="c-home__carousel--top">
+						<h3 class="c-home__carousel--top--text">Big Houses</h3>
+						<div class="c-home__carousel--top--button">
+							<a mat-flat-button routerLink="category/big"
+								>See everything <mat-icon>arrow_forward</mat-icon>
+							</a>
+						</div>
+					</div>
+					<div class="c-home__carousel--slider">
+						<app-carousel category="big"></app-carousel>
 					</div>
 				</div>
-				<div class="c-home__carousel--slider">
-					<app-carousel category="big"></app-carousel>
-				</div>
-			</div>
-			<!-- small houses carousel  -->
-			<div *ngIf="isUser()" class="c-home__carousel">
-				<div class="c-home__carousel--top">
-					<h3 class="c-home__carousel--top--text">Small houses</h3>
-					<div class="c-home__carousel--top--button">
-						<a mat-flat-button routerLink="category/small"
-							>See everything <mat-icon>arrow_forward</mat-icon>
-						</a>
+				<!-- small houses carousel  -->
+				<div class="c-home__carousel">
+					<div class="c-home__carousel--top">
+						<h3 class="c-home__carousel--top--text">Small houses</h3>
+						<div class="c-home__carousel--top--button">
+							<a mat-flat-button routerLink="category/small"
+								>See everything <mat-icon>arrow_forward</mat-icon>
+							</a>
+						</div>
+					</div>
+					<div class="c-home__carousel--slider">
+						<app-carousel category="small"></app-carousel>
 					</div>
 				</div>
-				<div class="c-home__carousel--slider">
-					<app-carousel category="small"></app-carousel>
-				</div>
 			</div>
+
 			<!-- admin all listings  -->
-			<!-- filters  -->
-			<div *ngIf="isAdmin()" class="c-filters">
-				<app-filters [(gridView)]="gridView"></app-filters>
-			</div>
-			<!-- list view  -->
-			<div *ngIf="isAdmin()" class="c-list">
-				<app-list
-					*ngFor="let listing of user?.listings"
-					[listing]="listing"
-					[role]="1"
-					[showButtons]="true"
-				></app-list>
+			<div *ngIf="isAdmin()">
+				<!-- filters  -->
+				<div class="c-filters">
+					<app-filters [(gridView)]="gridView"></app-filters>
+				</div>
+				<!-- list view  -->
+				<div class="c-list">
+					<app-list
+						*ngFor="let listing of user?.listings"
+						[listing]="listing"
+						[role]="1"
+						[showButtons]="true"
+					></app-list>
+				</div>
 			</div>
 		</mat-tab>
 		<mat-tab *ngIf="isUser()" label="My listings  {{ myListings }}">

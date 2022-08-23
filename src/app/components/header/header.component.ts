@@ -11,12 +11,15 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class HeaderComponent implements OnInit, AfterViewInit {
 	user!: User | null;
 
-	isLogged: boolean = false;
+	isLogged!: boolean;
 	userId: string | null = '';
 
 	constructor(private loginService: LoginService, private router: Router) {}
 
 	ngOnInit(): void {
+		this.loginService.isLoggedIn.subscribe(
+			(logged) => (this.isLogged = logged)
+		);
 		this.userId = localStorage.getItem('userId');
 		if (this.userId !== null) {
 			this.loginService.getUserById(this.userId).subscribe((data) => {
@@ -39,7 +42,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 	logout() {
 		localStorage.removeItem('userToken');
 		localStorage.removeItem('userId');
-		console.log('logout');
 
 		this.router.navigate(['']);
 		location.reload();

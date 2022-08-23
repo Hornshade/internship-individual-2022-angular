@@ -21,6 +21,8 @@ export class LoginService {
 	isLoggedIn = this.isLoggedInSource.asObservable();
 	private userSource = new BehaviorSubject<User | null>(null);
 	currentUser = this.userSource.asObservable();
+	private userIdSource = new BehaviorSubject<string>('');
+	currentUserId = this.userIdSource.asObservable();
 
 	private handleError(error: HttpErrorResponse) {
 		if (error.status === 0) {
@@ -47,6 +49,9 @@ export class LoginService {
 	changeUser(user: User) {
 		this.userSource.next(user);
 	}
+	changeUserId(userId: string) {
+		this.userIdSource.next(userId);
+	}
 
 	authenticateUser(email: string, password: string): Observable<User> {
 		return this.http
@@ -64,6 +69,7 @@ export class LoginService {
 					localStorage.setItem('userToken', response.token);
 					localStorage.setItem('userId', response.id);
 					this.changeUser(response);
+					this.changeUserId(response.id);
 				}),
 				catchError(this.handleError)
 			);
