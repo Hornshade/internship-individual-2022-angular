@@ -11,7 +11,7 @@ import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 	styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit, AfterViewInit {
-	@Input() listing!: Listing;
+	@Input() listing!: Listing | null;
 	@Input() favorite: boolean = false;
 	@Input() role: number = 0;
 
@@ -22,36 +22,26 @@ export class CardComponent implements OnInit, AfterViewInit {
 		public dialog: MatDialog,
 		private loginService: LoginService,
 		private favoriteService: FavoriteService
-	) {}
+	) {
+		if (localStorage.getItem('userId') !== null)
+			this.userId = localStorage.getItem('userId');
+	}
 
 	ngOnInit(): void {
-		this.loginService.isLoggedIn.subscribe(
-			(logged) => (this.isLogged = logged)
-		);
-
-		this.userId = localStorage.getItem('userId');
-		// this.loginService.currentUserId.subscribe((data) => (this.userId = data));
+		this.loginService.isLoggedIn.subscribe((data) => (this.isLogged = data));
 	}
 	ngAfterViewInit(): void {
-		//aici ruleaza de foarte multe ori, nu stiu cum sa-l fac mai eficient
-		// if (this.isLogged)
-		// 	this.favoriteService.getFavorite(this.userId).subscribe((data) => {
-		// 		data.map((fav) => {
-		// 			if (fav !== null)
-		// 				if (fav.id === this.listing.id) {
-		// 					this.favorite = true;
-		// 				}
-		// 		});
-		// 	});
-		if (this.isLogged)
-			this.favoriteService.getFavorite(this.userId).subscribe((data) => {
-				data.map((fav) => {
-					if (fav !== null)
-						if (fav.id === this.listing.id) {
-							this.favorite = true;
-						}
+		if (this.isLogged) {
+			if (this.userId !== null)
+				this.favoriteService.getFavorite(this.userId).subscribe((data) => {
+					if (data !== null) {
+						data.map((fav) => {
+							if (this.listing !== null)
+								if (fav.id === this.listing?.id) this.favorite = true;
+						});
+					}
 				});
-			});
+		}
 	}
 
 	openDialog() {
@@ -66,12 +56,18 @@ export class CardComponent implements OnInit, AfterViewInit {
 		if (this.isLogged) {
 			if (this.favorite === true) {
 				this.favoriteService
-					.deleteFavorite(localStorage.getItem('userId'), this.listing.id)
+					.deleteFavorite(
+						localStorage.getItem('userId'),
+						String(this.listing?.id)
+					)
 					.subscribe();
 				this.favorite = false;
 			} else if (this.favorite === false) {
 				this.favoriteService
-					.addToFavorites(localStorage.getItem('userId'), this.listing.id)
+					.addToFavorites(
+						localStorage.getItem('userId'),
+						String(this.listing?.id)
+					)
 					.subscribe();
 				this.favorite = true;
 			}

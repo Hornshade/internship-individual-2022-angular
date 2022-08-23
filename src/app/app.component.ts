@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 		//this.checkPage();
 	}
 	checkPage() {
-		if (this.router.url === '/login') {
+		if (this.router.url === '/login' || this.router.url === '/signup') {
 			return false;
 		} else {
 			return true;

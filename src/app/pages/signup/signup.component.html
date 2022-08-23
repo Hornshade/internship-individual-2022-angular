@@ -1,0 +1,97 @@
+<div class="c-onboarding">
+	<div class="c-onboarding__left">
+		<div class="c-onboarding__left--form">
+			<img
+				class="c-onboarding__left--form--logo"
+				src="../../../assets/logo/logo-assist-tagline.png"
+				alt="Assist logo"
+			/>
+			<h1 class="c-onboarding__left--form--title">Create account</h1>
+			<h3 class="c-onboarding__left--form--subtitle">
+				Sign up for free and become a member.
+			</h3>
+
+			<form
+				class="c-onboarding__left--form--group"
+				[formGroup]="signupForm"
+				(ngSubmit)="onSubmit()"
+				novalidate
+			>
+				<button
+					mat-stroked-button
+					class="c-onboarding__left--form--group--google"
+				>
+					<img src="../../../assets/icons/google.svg" alt="google" />
+					Sign up with Google
+				</button>
+				<div class="c-onboarding__left--form--group--divider">
+					<div class="c-onboarding__left--form--group--divider--line">
+						<mat-divider></mat-divider>
+					</div>
+					<div class="c-onboarding__left--form--group--divider--text">OR</div>
+					<div class="c-onboarding__left--form--group--divider--line">
+						<mat-divider></mat-divider>
+					</div>
+				</div>
+
+				<label class="c-onboarding__left--form--group--label">Email</label>
+				<mat-form-field appearance="outline">
+					<input matInput placeholder="Placeholder" formControlName="email" />
+					<mat-error
+						*ngIf="
+							signupForm.get('email')?.invalid &&
+							(signupForm.get('email')?.dirty ||
+								signupForm.get('email')?.touched) &&
+							signupForm.get('email')?.errors?.required
+						"
+					>
+						Email is required
+					</mat-error>
+					<mat-error *ngIf="!signupForm.get('email')?.errors?.required">
+						Invalid email</mat-error
+					>
+				</mat-form-field>
+				<label class="c-onboarding__left--form--group--label">Password</label>
+				<mat-form-field appearance="outline">
+					<input
+						type="password"
+						matInput
+						placeholder="Your password"
+						formControlName="password"
+					/>
+
+					<mat-hint>At least 8 characters </mat-hint>
+					<mat-error *ngIf="!signupForm.get('password')?.errors?.required">
+						Password must have at least 8 characters
+					</mat-error>
+					<mat-error
+						*ngIf="
+							signupForm.get('password')?.invalid &&
+							(signupForm.get('password')?.dirty ||
+								signupForm.get('password')?.touched) &&
+							signupForm.get('password')?.errors?.required
+						"
+					>
+						Password is required
+					</mat-error>
+				</mat-form-field>
+				<button
+					mat-flat-button
+					class="c-onboarding__left--form--group--submit"
+					[disabled]="!signupForm.valid"
+					(click)="onSubmit()"
+				>
+					Sign up
+				</button>
+
+				<div class="c-onboarding__left--form--group--sign">
+					Already have an account?
+					<p routerLink="/login">Log in</p>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="c-onboarding__right">
+		<img src="../../../assets/images/splash.png" alt="Splash" />
+	</div>
+</div>
