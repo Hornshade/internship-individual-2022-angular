@@ -14,10 +14,10 @@
 			<form
 				class="c-onboarding__left--form--group"
 				[formGroup]="signupForm"
-				(ngSubmit)="onSubmit()"
 				novalidate
 			>
 				<button
+					type="button"
 					mat-stroked-button
 					class="c-onboarding__left--form--group--google"
 				>
@@ -54,12 +54,21 @@
 				<label class="c-onboarding__left--form--group--label">Password</label>
 				<mat-form-field appearance="outline">
 					<input
-						type="password"
+						[type]="hide ? 'password' : 'text'"
 						matInput
 						placeholder="Your password"
 						formControlName="password"
 					/>
-
+					<button
+						type="button"
+						mat-icon-button
+						matSuffix
+						(click)="hide = !hide"
+						[attr.aria-label]="'Hide password'"
+						[attr.aria-pressed]="hide"
+					>
+						<mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+					</button>
 					<mat-hint *ngIf="signupForm.get('password')?.value.length < 8"
 						>At least 8 characters
 					</mat-hint>
@@ -78,6 +87,7 @@
 					</mat-error>
 				</mat-form-field>
 				<button
+					type="submit"
 					mat-flat-button
 					class="c-onboarding__left--form--group--submit"
 					[disabled]="!signupForm.valid"

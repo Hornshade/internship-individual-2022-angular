@@ -11,15 +11,15 @@
 				Enter your account details below.
 			</h3>
 
-			<form
-				class="c-onboarding__left--form--group"
-				[formGroup]="loginForm"
-				(ngSubmit)="onSubmit()"
-				novalidate
-			>
+			<form class="c-onboarding__left--form--group" [formGroup]="loginForm">
 				<label>Email</label>
 				<mat-form-field appearance="outline">
-					<input matInput placeholder="Placeholder" formControlName="email" />
+					<input
+						matInput
+						placeholder="Placeholder"
+						formControlName="email"
+						novalidate
+					/>
 					<mat-error
 						*ngIf="
 							loginForm.get('email')?.invalid &&
@@ -37,12 +37,13 @@
 				<label>Password</label>
 				<mat-form-field appearance="outline">
 					<input
-						type="password"
+						[type]="hide ? 'password' : 'text'"
 						matInput
 						placeholder="Your password"
 						formControlName="password"
 					/>
-					<!-- <button
+					<button
+						type="button"
 						mat-icon-button
 						matSuffix
 						(click)="hide = !hide"
@@ -50,7 +51,7 @@
 						[attr.aria-pressed]="hide"
 					>
 						<mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-					</button> -->
+					</button>
 					<mat-error *ngIf="!loginForm.get('password')?.errors?.required">
 						Password must have at least 8 characters
 					</mat-error>
@@ -73,12 +74,15 @@
 					mat-flat-button
 					class="c-onboarding__left--form--group--submit"
 					[disabled]="!loginForm.valid"
+					(click)="onSubmit()"
 				>
 					Log in
 				</button>
 				<button
+					type="button"
 					mat-stroked-button
 					class="c-onboarding__left--form--group--google"
+					(click)="googleSubmit()"
 				>
 					<img src="../../../assets/icons/google.svg" alt="google" />
 					Log in with Google

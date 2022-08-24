@@ -14,7 +14,6 @@
 			<form
 				class="c-onboarding__left--form--group"
 				[formGroup]="resetForm"
-				(ngSubmit)="onSubmit()"
 				novalidate
 			>
 				<label class="c-onboarding__left--form--group--label"
@@ -77,6 +76,7 @@
 					>
 				</mat-form-field>
 				<button
+					type="submit"
 					mat-flat-button
 					class="c-onboarding__left--form--group--submit"
 					[disabled]="!resetForm.valid"

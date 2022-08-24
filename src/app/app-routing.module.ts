@@ -23,7 +23,7 @@ const routes: Routes = [
 	{ path: 'forgot', component: ForgotComponent, title: 'Forgot page' },
 	{ path: 'reset', component: ResetComponent, title: 'Reset page' },
 	{ path: '', redirectTo: '', pathMatch: 'full', component: HomeComponent },
-	{ path: '**', redirectTo: '' },
+	// { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

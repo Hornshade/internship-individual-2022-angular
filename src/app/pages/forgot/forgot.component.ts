@@ -27,11 +27,16 @@ export class ForgotComponent implements OnInit {
 		if (this.forgotForm.valid) {
 			this.loginservice
 				.searchUserByEmail(this.forgotForm.get('email')?.value)
-				.subscribe();
+				.subscribe((data) => {
+					this.loginservice.changeEmailId(data.id);
+					localStorage.setItem('emailId', data.id);
+				});
 			this.loginservice
 				.forgotPassword(this.forgotForm.get('email')?.value)
 				.subscribe();
-			this.router.navigate(['/reset']);
+			setTimeout(() => {
+				this.router.navigate([`/reset`]);
+			}, 1000);
 		}
 	}
 }

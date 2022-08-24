@@ -58,6 +58,9 @@ export class LoginService {
 	changeUserId(userId: string) {
 		this.userIdSource.next(userId);
 	}
+	changeEmailId(id: string) {
+		this.emailIdSource.next(id);
+	}
 
 	authenticateUser(email: string, password: string): Observable<User> {
 		return this.http
@@ -115,14 +118,17 @@ export class LoginService {
 			.pipe(catchError(this.handleError));
 	}
 
-	resetPassword(id: string, oldPassword: string, newPassword: string) {
+	resetPassword(id: string | null, oldPassword: string, newPassword: string) {
 		return this.http
 			.put(
 				this.ROOT_URL + '/api/user/update/password/' + id,
 				{ oldPassword: oldPassword, newPassword: newPassword },
 				{ headers: this.header }
 			)
-			.pipe(catchError(this.handleError));
+			.pipe(
+				tap(() => localStorage.removeItem('emailId')),
+				catchError(this.handleError)
+			);
 	}
 
 	searchUserByEmail(email: string): Observable<User> {
@@ -133,6 +139,8 @@ export class LoginService {
 			.pipe(
 				tap((response) => {
 					this.emailIdSource.next(response.id);
+					localStorage.setItem('emailId', response.id);
+					this.changeEmailId(response.id);
 				}),
 				catchError(this.handleError)
 			);

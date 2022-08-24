@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class SignupComponent implements OnInit {
 	signupForm: FormGroup | any;
-
+	hide: boolean = true;
 	constructor(private loginService: LoginService, private router: Router) {
 		this.signupForm = new FormGroup({
 			email: new FormControl('', [
@@ -37,14 +37,6 @@ export class SignupComponent implements OnInit {
 				.subscribe();
 
 			this.router.navigate(['login']);
-
-			// this.loginService
-			// 	.authenticateUser(
-			// 		this.signupForm.get('email')?.value,
-			// 		this.signupForm.get('password')?.value
-			// 	)
-			// 	.subscribe((data) => this.loginService.changeUser(data));
-			// this.router.navigate([' ']);
 		} else console.error('Failed to sign up');
 	}
 }
