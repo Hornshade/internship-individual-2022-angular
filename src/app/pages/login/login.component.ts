@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 	loginForm: FormGroup | any;
-
+	hide: boolean = true;
 	constructor(private router: Router, private loginService: LoginService) {
 		this.loginForm = new FormGroup({
 			email: new FormControl('', [
@@ -26,20 +26,25 @@ export class LoginComponent implements OnInit {
 	}
 	ngOnInit(): void {}
 	onSubmit() {
-		console.log(this.loginForm.get('email')?.value, 'email');
-		console.log(this.loginForm.get('password')?.value, 'password');
 		if (this.loginForm.valid) {
 			this.loginService
 				.authenticateUser(
 					this.loginForm.get('email')?.value,
 					this.loginForm.get('password')?.value
 				)
-				.subscribe((data) => {
-					console.log(data);
-				});
-			//this.router.navigate(['']);
+				.subscribe(
+					(data) => {
+						this.loginService.changeUser(data);
+						localStorage.setItem('userId', data.id);
+					},
+					(error) => console.log(error),
+					() => this.router.navigate([''])
+				);
 		} else {
 			console.error('Failed to authenticate');
 		}
+	}
+	googleSubmit() {
+		console.log('google');
 	}
 }

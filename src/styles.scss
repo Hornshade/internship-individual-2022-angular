@@ -135,20 +135,40 @@ meter {
 }
 
 //overwriting the Material tabs to have a vertical alignment
+.c-tabs {
+	.mat-tab-group {
+		display: flex;
+		flex-direction: row;
+		.mat-tab-labels {
+			flex-direction: column;
+		}
+		.mat-tab-header {
+			border-bottom: none;
+		}
+		.mat-ink-bar {
+			display: none;
+		}
+		.mat-tab-body-wrapper {
+			flex: 1 1 auto;
+		}
+	}
+}
+
+.c-home__tabs {
+	.mat-tab-label {
+		font-size: $font-body-normal;
+		font-weight: $font-semibold;
+		color: $color-gray-300;
+	}
+	.mat-tab-label-active {
+		color: $color-primary-500;
+	}
+}
+
+//hide scrollbar inside tab content
 .mat-tab-group {
-	display: flex;
-	flex-direction: row;
-	.mat-tab-labels {
-		flex-direction: column;
-	}
-	.mat-tab-header {
-		border-bottom: none;
-	}
-	.mat-ink-bar {
-		display: none;
-	}
-	.mat-tab-body-wrapper {
-		flex: 1 1 auto;
+	.mat-tab-body-content {
+		overflow: hidden;
 	}
 }
 
@@ -175,8 +195,8 @@ meter {
 	}
 }
 .c-carousel .owl-next {
-	right: -15px;
+	right: -5px;
 }
 .c-carousel .owl-prev {
-	left: -15px;
+	left: -5px;
 }

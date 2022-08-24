@@ -1,35 +1,35 @@
 <div class="c-filters">
-  <!-- left side filters  -->
-  <div class="c-filters__left">
-    <h3 class="c-filters__left--text">Filter by:</h3>
-    <!-- location dropdown  -->
-    <div class="c-filters__left--locations">
-      <app-dropdown options="locations"></app-dropdown>
-    </div>
-    <!-- price dropdown  -->
-    <div class="c-filters__left--price">
-      <app-dropdown options="prices"></app-dropdown>
-    </div>
-  </div>
-  <!-- right side filters  -->
-  <div class="c-filters__right">
-    <h3 class="c-filters__right--text">Order by:</h3>
-    <!-- order by dropdown  -->
-    <div class="c-filters__right--order">
-      <app-dropdown options="orders"></app-dropdown>
-    </div>
-    <!-- grid and list view icons  -->
-    <div class="c-filters__right--icons">
-      <div class="c-filters__right--icons--grid" (click)="setGridView()">
-        <mat-icon [ngStyle]="{ color: gridView ? '#5592FD' : '#98A2B3' }"
-          >grid_view</mat-icon
-        >
-      </div>
-      <div class="c-filters__right--icons--list" (click)="setListView()">
-        <mat-icon [ngStyle]="{ color: gridView ? '#98A2B3' : '#5592FD' }"
-          >menu</mat-icon
-        >
-      </div>
-    </div>
-  </div>
+	<!-- left side filters  -->
+	<div class="c-filters__left">
+		<h3 class="c-filters__left--text">Filter by:</h3>
+		<!-- location dropdown  -->
+		<div class="c-filters__left--locations">
+			<app-dropdown options="locations"></app-dropdown>
+		</div>
+		<!-- price dropdown  -->
+		<div class="c-filters__left--price">
+			<app-dropdown options="prices"></app-dropdown>
+		</div>
+	</div>
+	<!-- right side filters  -->
+	<div class="c-filters__right">
+		<h3 class="c-filters__right--text">Order by:</h3>
+		<!-- order by dropdown  -->
+		<div class="c-filters__right--order">
+			<app-dropdown options="orders"></app-dropdown>
+		</div>
+		<!-- grid and list view icons  -->
+		<div *ngIf="!isAdmin()" class="c-filters__right--icons">
+			<div class="c-filters__right--icons--grid" (click)="setGridView()">
+				<mat-icon [ngStyle]="{ color: gridView ? '#5592FD' : '#98A2B3' }"
+					>grid_view</mat-icon
+				>
+			</div>
+			<div class="c-filters__right--icons--list" (click)="setListView()">
+				<mat-icon [ngStyle]="{ color: gridView ? '#98A2B3' : '#5592FD' }"
+					>menu</mat-icon
+				>
+			</div>
+		</div>
+	</div>
 </div>

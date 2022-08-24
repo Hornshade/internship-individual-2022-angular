@@ -6,6 +6,27 @@
 		font-size: $font-h3;
 		font-weight: $font-bold;
 	}
+	&__logged {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 30px;
+		&--title {
+			color: $color-black;
+			font-size: $font-h3;
+			font-weight: $font-bold;
+		}
+		button {
+			width: 20%;
+			background-color: $color-primary-400;
+			color: $color-white;
+			font-size: $font-button;
+			font-weight: $font-semibold;
+			border-radius: 8px;
+		}
+	}
 	&__carousel {
 		margin-top: 26px;
 		margin-bottom: 26px;
@@ -27,4 +48,18 @@
 			}
 		}
 	}
+}
+
+.c-cards {
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	flex-wrap: wrap;
+	gap: 30px;
+}
+
+.c-list {
+	display: grid;
+	grid-template-columns: auto;
+	flex-wrap: wrap;
+	gap: 20px;
 }
