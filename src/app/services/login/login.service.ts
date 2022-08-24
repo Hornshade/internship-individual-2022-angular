@@ -25,6 +25,8 @@ export class LoginService {
 
 	private userIdSource = new BehaviorSubject<string>('');
 	currentUserId = this.userIdSource.asObservable();
+	private emailIdSource = new BehaviorSubject<string>('');
+	currentEmailId = this.emailIdSource.asObservable();
 
 	private handleError(error: HttpErrorResponse) {
 		if (error.status === 400)
@@ -56,6 +58,9 @@ export class LoginService {
 	changeUserId(userId: string) {
 		this.userIdSource.next(userId);
 	}
+	changeEmailId(id: string) {
+		this.emailIdSource.next(id);
+	}
 
 	authenticateUser(email: string, password: string): Observable<User> {
 		return this.http
@@ -73,7 +78,6 @@ export class LoginService {
 					localStorage.setItem('userToken', response.token);
 					localStorage.setItem('userId', response.id);
 					this.changeUser(response);
-					// this.changeUserId(response.id);
 					this.userIdSource.next(response.id);
 				}),
 				catchError(this.handleError)
@@ -100,5 +104,45 @@ export class LoginService {
 				{ headers: this.header }
 			)
 			.pipe(catchError(this.handleError));
+	}
+
+	forgotPassword(email: string) {
+		let params = new HttpParams();
+		if (email) params = params.append('email', email);
+		return this.http
+			.post(
+				this.ROOT_URL + '/api/user/reset/password?' + params,
+				{},
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+
+	resetPassword(id: string | null, oldPassword: string, newPassword: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/update/password/' + id,
+				{ oldPassword: oldPassword, newPassword: newPassword },
+				{ headers: this.header }
+			)
+			.pipe(
+				tap(() => localStorage.removeItem('emailId')),
+				catchError(this.handleError)
+			);
+	}
+
+	searchUserByEmail(email: string): Observable<User> {
+		return this.http
+			.get<User>(this.ROOT_URL + '/api/user/search/' + email, {
+				headers: this.header,
+			})
+			.pipe(
+				tap((response) => {
+					this.emailIdSource.next(response.id);
+					localStorage.setItem('emailId', response.id);
+					this.changeEmailId(response.id);
+				}),
+				catchError(this.handleError)
+			);
 	}
 }

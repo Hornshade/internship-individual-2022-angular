@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 	loginForm: FormGroup | any;
-
+	hide: boolean = true;
 	constructor(private router: Router, private loginService: LoginService) {
 		this.loginForm = new FormGroup({
 			email: new FormControl('', [
@@ -43,5 +43,8 @@ export class LoginComponent implements OnInit {
 		} else {
 			console.error('Failed to authenticate');
 		}
+	}
+	googleSubmit() {
+		console.log('google');
 	}
 }

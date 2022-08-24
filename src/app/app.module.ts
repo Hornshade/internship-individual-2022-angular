@@ -25,6 +25,8 @@ import { SingleComponent } from './pages/single/single.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { ForgotComponent } from './pages/forgot/forgot.component';
+import { ResetComponent } from './pages/reset/reset.component';
 
 @NgModule({
 	declarations: [
@@ -44,7 +46,9 @@ import { SignupComponent } from './pages/signup/signup.component';
 		SingleComponent,
 		FavoritesComponent,
 		LoginComponent,
-  SignupComponent,
+		SignupComponent,
+		ForgotComponent,
+		ResetComponent,
 	],
 	imports: [
 		BrowserModule,
