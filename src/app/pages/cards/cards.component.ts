@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Listing } from '../../interfaces/listing';
 import { PageEvent } from '@angular/material/paginator';
 import { ListingService } from '../../services/listings/listing.service';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/services/login/login.service';
+import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 
 @Component({
 	selector: 'app-cards',
@@ -20,14 +22,25 @@ export class CardsComponent implements OnInit {
 	selectedPrice!: string;
 	selectedOrder!: string;
 	urlCategory!: string;
+	favorites: Listing[] = [];
+
+	isLogged: boolean = false;
+	userId!: string | null;
 
 	//have to change route later to /category
 	constructor(
 		private listingsService: ListingService,
-		private route: ActivatedRoute
-	) {}
+		private route: ActivatedRoute,
+		private loginService: LoginService,
+		private favoriteService: FavoriteService
+	) {
+		this.userId = localStorage.getItem('userId');
+	}
 
 	ngOnInit(): void {
+		this.loginService.isLoggedIn.subscribe(
+			(logged) => (this.isLogged = logged)
+		);
 		this.listingsService.currentCategory.subscribe((selectedCategory) => {
 			this.selectedCategory = selectedCategory;
 			if (selectedCategory === 'big') {
@@ -51,6 +64,12 @@ export class CardsComponent implements OnInit {
 			this.listings = listing;
 			this.pageSlice = this.listings.slice(0, 4);
 		});
+		if (this.isLogged) {
+			if (this.userId !== null)
+				this.favoriteService.getFavorite(this.userId).subscribe((data) => {
+					this.favorites = data;
+				});
+		}
 	}
 
 	onPageChange(event: PageEvent) {
@@ -60,5 +79,12 @@ export class CardsComponent implements OnInit {
 			endIndex = this.listings.length;
 		}
 		this.pageSlice = this.listings.slice(startIndex, endIndex);
+	}
+	getFavStatus(id: string) {
+		return this.favorites.findIndex((fav) => {
+			return fav.id === id;
+		}) !== -1
+			? true
+			: false;
 	}
 }

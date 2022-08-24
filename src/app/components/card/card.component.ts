@@ -30,19 +30,7 @@ export class CardComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {
 		this.loginService.isLoggedIn.subscribe((data) => (this.isLogged = data));
 	}
-	ngAfterViewInit(): void {
-		if (this.isLogged) {
-			if (this.userId !== null)
-				this.favoriteService.getFavorite(this.userId).subscribe((data) => {
-					if (data !== null) {
-						data.map((fav) => {
-							if (this.listing !== null)
-								if (fav.id === this.listing?.id) this.favorite = true;
-						});
-					}
-				});
-		}
-	}
+	ngAfterViewInit(): void {}
 
 	openDialog() {
 		const dialogRef = this.dialog.open(FavoriteModalComponent);

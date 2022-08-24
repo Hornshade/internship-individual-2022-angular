@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Listing } from 'src/app/interfaces/listing';
 import { User } from 'src/app/interfaces/user';
+import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -15,10 +17,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
 	selectedPrice!: string;
 	selectedOrder!: string;
 	myListings = 0;
+	favorites: Listing[] = [];
 
 	isLogged: boolean = false;
 	userId!: string | null;
-	constructor(private loginService: LoginService) {
+	constructor(
+		private loginService: LoginService,
+		private favoriteService: FavoriteService
+	) {
 		this.userId = localStorage.getItem('userId');
 	}
 
@@ -36,6 +42,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 				});
 			}
 		}
+		if (this.isLogged) {
+			if (this.userId !== null)
+				this.favoriteService.getFavorite(this.userId).subscribe((data) => {
+					this.favorites = data;
+				});
+		}
 	}
 
 	isUser() {
@@ -47,5 +59,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 		if (this.user?.role === 1) {
 			return true;
 		} else return false;
+	}
+	getFavStatus(id: string) {
+		return this.favorites.findIndex((fav) => {
+			return fav.id === id;
+		}) !== -1
+			? true
+			: false;
 	}
 }

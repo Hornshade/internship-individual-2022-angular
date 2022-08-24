@@ -3,7 +3,10 @@
 		<ng-container *ngFor="let listing of listings">
 			<ng-template carouselSlide [id]="listing.id">
 				<div class="c-carousel__cards">
-					<app-card [listing]="listing"></app-card>
+					<app-card
+						[listing]="listing"
+						[favorite]="getFavStatus(listing.id)"
+					></app-card>
 				</div>
 			</ng-template>
 		</ng-container>
