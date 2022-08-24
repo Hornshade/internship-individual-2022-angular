@@ -25,6 +25,8 @@ export class LoginService {
 
 	private userIdSource = new BehaviorSubject<string>('');
 	currentUserId = this.userIdSource.asObservable();
+	private emailIdSource = new BehaviorSubject<string>('');
+	currentEmailId = this.emailIdSource.asObservable();
 
 	private handleError(error: HttpErrorResponse) {
 		if (error.status === 400)
@@ -100,5 +102,40 @@ export class LoginService {
 				{ headers: this.header }
 			)
 			.pipe(catchError(this.handleError));
+	}
+
+	forgotPassword(email: string) {
+		let params = new HttpParams();
+		if (email) params = params.append('email', email);
+		return this.http
+			.post(
+				this.ROOT_URL + '/api/user/reset/password?' + params,
+				{},
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+
+	resetPassword(id: string, oldPassword: string, newPassword: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/update/password/' + id,
+				{ oldPassword: oldPassword, newPassword: newPassword },
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+
+	searchUserByEmail(email: string): Observable<User> {
+		return this.http
+			.get<User>(this.ROOT_URL + '/api/user/search/' + email, {
+				headers: this.header,
+			})
+			.pipe(
+				tap((response) => {
+					this.emailIdSource.next(response.id);
+				}),
+				catchError(this.handleError)
+			);
 	}
 }
