@@ -11,6 +11,7 @@ import { Listing } from '../../interfaces/listing';
 })
 export class CarouselComponent implements OnInit {
 	@Input() category: string = '';
+	@Input() favorites: Listing[] = [];
 	//if the listing is defined with [] the carousel shows an error about not having enough slides.
 	// listings: Listing[] = [
 	// 	{
@@ -90,6 +91,7 @@ export class CarouselComponent implements OnInit {
 	// 	},
 	// ];
 	listings: Listing[] = [];
+	favor: boolean = false;
 
 	customOptions: OwlOptions = {
 		loop: true,
@@ -127,5 +129,13 @@ export class CarouselComponent implements OnInit {
 		this.listingsServices
 			.getListingsSort(this.category, [], '', '')
 			.subscribe((data) => (this.listings = data));
+	}
+
+	getFavStatus(id: string) {
+		return this.favorites.findIndex((fav) => {
+			return fav.id === id;
+		}) !== -1
+			? true
+			: false;
 	}
 }

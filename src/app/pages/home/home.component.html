@@ -3,7 +3,9 @@
 	<div *ngIf="!isLogged" class="c-home__title">What are you interested in?</div>
 	<!-- user welcome test  -->
 	<div *ngIf="isLogged" class="c-home__logged">
-		<div class="c-home__logged--title">Welcome back, {{ user?.fullName }}</div>
+		<div class="c-home__logged--title">
+			Welcome back, {{ user?.fullName !== '' ? user?.fullName : ' new user' }}
+		</div>
 		<button *ngIf="isUser()" mat-flat-button routerLink="add">Add new</button>
 	</div>
 
@@ -21,7 +23,7 @@
 						</div>
 					</div>
 					<div class="c-home__carousel--slider">
-						<app-carousel></app-carousel>
+						<app-carousel [favorites]="favorites"></app-carousel>
 					</div>
 				</div>
 				<!-- big houses carousel  -->
@@ -35,7 +37,7 @@
 						</div>
 					</div>
 					<div class="c-home__carousel--slider">
-						<app-carousel category="big"></app-carousel>
+						<app-carousel category="big" [favorites]="favorites"></app-carousel>
 					</div>
 				</div>
 				<!-- small houses carousel  -->
@@ -49,7 +51,10 @@
 						</div>
 					</div>
 					<div class="c-home__carousel--slider">
-						<app-carousel category="small"></app-carousel>
+						<app-carousel
+							category="small"
+							[favorites]="favorites"
+						></app-carousel>
 					</div>
 				</div>
 			</div>
@@ -67,6 +72,7 @@
 						[listing]="listing"
 						[role]="1"
 						[showButtons]="true"
+						[favorite]="favorites.includes(listing) ? true : false"
 					></app-list>
 				</div>
 			</div>
@@ -82,6 +88,7 @@
 					class="c-cards__card"
 					*ngFor="let listing of user?.listings"
 					[listing]="listing"
+					[favorite]="favorites.includes(listing) ? true : false"
 				></app-card>
 			</div>
 			<!-- list view  -->
@@ -91,6 +98,7 @@
 					[listing]="listing"
 					[role]="0"
 					[showButtons]="true"
+					[favorite]="favorites.includes(listing) ? true : false"
 				></app-list>
 			</div>
 		</mat-tab>
