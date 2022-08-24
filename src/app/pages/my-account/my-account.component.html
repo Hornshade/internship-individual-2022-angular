@@ -1,0 +1,27 @@
+<div class="c-account">
+	<div class="c-account__tabs">
+		<div class="c-account__tabs--image">
+			<img src="" alt="" />
+			<button mat-mini-fab><mat-icon>edit</mat-icon></button>
+		</div>
+		<div class="c-account__tabs--options">
+			<button class="c-account__tabs--options--option">
+				<mat-icon>perm_identity</mat-icon> Profile
+			</button>
+			<button class="c-account__tabs--options--option">
+				<mat-icon>security</mat-icon> Login & security
+			</button>
+			<button class="c-account__tabs--options--option">
+				<mat-icon>notifications</mat-icon> Notifications
+			</button>
+			<button class="c-account__tabs--options--option">
+				<mat-icon>chat</mat-icon> Messages
+			</button>
+			<mat-divider></mat-divider>
+			<button class="c-account__tabs--options--option" (click)="logout()">
+				<mat-icon>logout</mat-icon> Logout
+			</button>
+		</div>
+	</div>
+	<div class="c-account__content"></div>
+</div>

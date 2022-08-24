@@ -137,13 +137,13 @@ meter {
 //overwriting the Material tabs to have a vertical alignment
 .c-tabs {
 	.mat-tab-group {
-		display: flex;
-		flex-direction: row;
+		display: flex !important;
+		flex-direction: row !important;
 		.mat-tab-labels {
-			flex-direction: column;
+			flex-direction: column !important;
 		}
 		.mat-tab-header {
-			border-bottom: none;
+			border-bottom: none !important;
 		}
 		.mat-ink-bar {
 			display: none;

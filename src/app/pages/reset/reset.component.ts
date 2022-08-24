@@ -28,9 +28,6 @@ export class ResetComponent implements OnInit, AfterViewInit {
 				Validators.minLength(8),
 			]),
 		});
-	}
-
-	ngOnInit(): void {
 		if (localStorage.getItem('emailId') !== null) {
 			this.loginService
 				.getUserById(localStorage.getItem('emailId'))
@@ -40,6 +37,9 @@ export class ResetComponent implements OnInit, AfterViewInit {
 					console.log(this.userPassword, 'var pass');
 				});
 		}
+	}
+
+	ngOnInit(): void {
 		console.log(this.userPassword, 'var pass outside if');
 	}
 	ngAfterViewInit(): void {

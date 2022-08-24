@@ -5,6 +5,7 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { ResetComponent } from './pages/reset/reset.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SingleComponent } from './pages/single/single.component';
@@ -22,8 +23,13 @@ const routes: Routes = [
 	{ path: 'signup', component: SignupComponent, title: 'Signup Page' },
 	{ path: 'forgot', component: ForgotComponent, title: 'Forgot page' },
 	{ path: 'reset', component: ResetComponent, title: 'Reset page' },
+	{
+		path: 'my-account',
+		component: MyAccountComponent,
+		title: 'My account page',
+	},
 	{ path: '', redirectTo: '', pathMatch: 'full', component: HomeComponent },
-	// { path: '**', redirectTo: '' },
+	{ path: '**', redirectTo: '' },
 ];
 
 @NgModule({
