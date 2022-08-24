@@ -75,7 +75,6 @@ export class LoginService {
 					localStorage.setItem('userToken', response.token);
 					localStorage.setItem('userId', response.id);
 					this.changeUser(response);
-					// this.changeUserId(response.id);
 					this.userIdSource.next(response.id);
 				}),
 				catchError(this.handleError)

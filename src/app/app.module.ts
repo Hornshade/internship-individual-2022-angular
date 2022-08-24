@@ -46,9 +46,9 @@ import { ResetComponent } from './pages/reset/reset.component';
 		SingleComponent,
 		FavoritesComponent,
 		LoginComponent,
-  SignupComponent,
-  ForgotComponent,
-  ResetComponent,
+		SignupComponent,
+		ForgotComponent,
+		ResetComponent,
 	],
 	imports: [
 		BrowserModule,
