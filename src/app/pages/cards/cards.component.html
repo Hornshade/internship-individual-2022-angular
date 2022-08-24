@@ -10,11 +10,16 @@
 		class="c-cards__card"
 		*ngFor="let listing of pageSlice"
 		[listing]="listing"
+		[favorite]="getFavStatus(listing.id)"
 	></app-card>
 </div>
 <!-- list view  -->
 <div class="c-list" *ngIf="!gridView">
-	<app-list *ngFor="let listing of pageSlice" [listing]="listing"></app-list>
+	<app-list
+		*ngFor="let listing of pageSlice"
+		[listing]="listing"
+		[favorite]="getFavStatus(listing.id)"
+	></app-list>
 </div>
 <!-- pagination of 12 by default but i don't have 12 items in backend so i use 4 for now -->
 <mat-paginator

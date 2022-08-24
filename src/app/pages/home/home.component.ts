@@ -60,4 +60,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
 			return true;
 		} else return false;
 	}
+	getFavStatus(id: string) {
+		return this.favorites.findIndex((fav) => {
+			return fav.id === id;
+		}) !== -1
+			? true
+			: false;
+	}
 }

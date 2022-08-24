@@ -72,7 +72,7 @@
 						[listing]="listing"
 						[role]="1"
 						[showButtons]="true"
-						[favorite]="favorites.includes(listing) ? true : false"
+						[favorite]="getFavStatus(listing.id)"
 					></app-list>
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 					class="c-cards__card"
 					*ngFor="let listing of user?.listings"
 					[listing]="listing"
-					[favorite]="favorites.includes(listing) ? true : false"
+					[favorite]="getFavStatus(listing.id)"
 				></app-card>
 			</div>
 			<!-- list view  -->
@@ -98,7 +98,7 @@
 					[listing]="listing"
 					[role]="0"
 					[showButtons]="true"
-					[favorite]="favorites.includes(listing) ? true : false"
+					[favorite]="getFavStatus(listing.id)"
 				></app-list>
 			</div>
 		</mat-tab>
