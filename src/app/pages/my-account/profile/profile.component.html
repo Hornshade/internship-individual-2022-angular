@@ -10,7 +10,10 @@
 				</button>
 			</div>
 			<p *ngIf="!showName" class="c-profile__content--item--bottom">
-				placeholder name
+				{{
+					fullNameForm.get('firstName')?.value +
+						fullNameForm.get('firstName')?.value || 'None'
+				}}
 			</p>
 			<div *ngIf="showName" class="c-profile__content--item--form">
 				<form [formGroup]="fullNameForm">
@@ -132,7 +135,7 @@
 				</button>
 			</div>
 			<p *ngIf="!showBirth" class="c-profile__content--item--bottom">
-				placeholder date
+				{{ birthDateForm.value.valueOf() || 'None' }}
 			</p>
 			<div *ngIf="showBirth" class="c-profile__content--item--form">
 				<form [formGroup]="birthDateForm">
@@ -173,7 +176,7 @@
 				</button>
 			</div>
 			<p *ngIf="!showEmail" class="c-profile__content--item--bottom">
-				placeholder email
+				{{ emailForm.get('email')?.value }}
 			</p>
 			<div *ngIf="showEmail" class="c-profile__content--item--form">
 				<form [formGroup]="emailForm">
@@ -224,7 +227,7 @@
 				</button>
 			</div>
 			<p *ngIf="!showPhone" class="c-profile__content--item--bottom">
-				1234567890
+				{{ phoneForm.get('phone')?.value || 'None' }}
 			</p>
 			<div *ngIf="showPhone" class="c-profile__content--item--form">
 				<form [formGroup]="phoneForm">
@@ -275,7 +278,7 @@
 				</button>
 			</div>
 			<p *ngIf="!showAddress" class="c-profile__content--item--bottom">
-				Not provided
+				{{ addressForm.get('address')?.value || 'Not provided' }}
 			</p>
 			<div *ngIf="showAddress" class="c-profile__content--item--form">
 				<form [formGroup]="addressForm">

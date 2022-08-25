@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
 	phoneForm: FormGroup | any;
 	addressForm: FormGroup | any;
 	selectedGender!: string;
+	photo!: string;
 	constructor(private loginService: LoginService) {
 		this.fullNameForm = new FormGroup({
 			firstName: new FormControl('', [
@@ -47,7 +48,7 @@ export class ProfileComponent implements OnInit {
 			]),
 		});
 		this.birthDateForm = new FormGroup({
-			birthDate: new FormControl(new Date()),
+			birthDate: new FormControl(moment('', 'MM/DD/YYYY')),
 		});
 		this.phoneForm = new FormGroup({
 			phone: new FormControl('', [Validators.pattern('^[0-9]*$')]),
@@ -59,23 +60,29 @@ export class ProfileComponent implements OnInit {
 		console.log(localStorage.getItem('userId'));
 		this.loginService
 			.getUserById(localStorage.getItem('userId'))
-			.subscribe((data) => {});
+			.subscribe((data) => {
+				let split = data.fullName.split(' ');
+				this.fullNameForm.setValue({
+					firstName: split[0] || '',
+					lastName: split[1] || '',
+				});
+				this.emailForm.setValue({ email: data.email });
+				this.birthDateForm.setValue({ birthDate: data.dateOfBirth });
+				this.phoneForm.setValue({ phone: data.phone });
+				this.addressForm.setValue({ address: data.address });
+				if (data.gender === 0) this.selectedGender = '';
+				else if (data.gender === 1) this.selectedGender = 'male';
+				else if (data.gender === 2) this.selectedGender = 'female';
+				this.photo = data.photo;
+				console.log(data);
+			});
 	}
 
 	ngOnInit(): void {}
 
 	onSubmit() {
 		console.log(this.birthDateForm);
-		console.log(
-			this.birthDateForm.value.birthDate._i.month +
-				1 +
-				'/' +
-				this.birthDateForm.value.birthDate._i.date +
-				'/' +
-				this.birthDateForm.value.birthDate._i.year
-		);
+		console.log(this.birthDateForm.getDate);
 	}
-	onSubmitGender() {
-		console.log(this.selectedGender);
-	}
+	onSubmitGender() {}
 }

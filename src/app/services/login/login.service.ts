@@ -145,4 +145,33 @@ export class LoginService {
 				catchError(this.handleError)
 			);
 	}
+
+	updateUser(
+		id: string | null,
+		fullName: string,
+		email: string,
+		gender: string,
+		phone: string,
+		birthDate: string,
+		address: string,
+		photo: string,
+		isActive: boolean
+	) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/User/' + id,
+				{
+					fullName: fullName,
+					email: email,
+					gender: gender,
+					phone: phone,
+					dateOfBirth: birthDate,
+					address: address,
+					photo: photo,
+					isActive: isActive,
+				},
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
 }
