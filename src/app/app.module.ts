@@ -30,6 +30,7 @@ import { ResetComponent } from './pages/reset/reset.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { ProfileComponent } from './pages/my-account/profile/profile.component';
 import { MessagesComponent } from './pages/my-account/messages/messages.component';
+import { NotificationsComponent } from './pages/my-account/notifications/notifications.component';
 
 @NgModule({
 	declarations: [
@@ -54,6 +55,7 @@ import { MessagesComponent } from './pages/my-account/messages/messages.componen
 		MyAccountComponent,
   ProfileComponent,
   MessagesComponent,
+  NotificationsComponent,
 	],
 	imports: [
 		BrowserModule,
