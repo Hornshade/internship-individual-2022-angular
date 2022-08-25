@@ -30,6 +30,7 @@ import { ResetComponent } from './pages/reset/reset.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { ProfileComponent } from './pages/my-account/profile/profile.component';
 
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -51,7 +52,8 @@ import { ProfileComponent } from './pages/my-account/profile/profile.component';
 		ForgotComponent,
 		ResetComponent,
 		MyAccountComponent,
-  ProfileComponent,
+    ProfileComponent,
+
 	],
 	imports: [
 		BrowserModule,
