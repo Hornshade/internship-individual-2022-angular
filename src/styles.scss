@@ -137,13 +137,13 @@ meter {
 //overwriting the Material tabs to have a vertical alignment
 .c-tabs {
 	.mat-tab-group {
-		display: flex !important;
-		flex-direction: row !important;
+		display: flex;
+		flex-direction: row;
 		.mat-tab-labels {
-			flex-direction: column !important;
+			flex-direction: column;
 		}
 		.mat-tab-header {
-			border-bottom: none !important;
+			border-bottom: none;
 		}
 		.mat-ink-bar {
 			display: none;
@@ -166,9 +166,11 @@ meter {
 }
 
 //hide scrollbar inside tab content
-.mat-tab-group {
-	.mat-tab-body-content {
-		overflow: hidden;
+.c-home__tabs {
+	.mat-tab-group {
+		.mat-tab-body-content {
+			overflow: hidden;
+		}
 	}
 }
 
