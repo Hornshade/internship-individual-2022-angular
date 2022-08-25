@@ -12,7 +12,8 @@
 			<p *ngIf="!showName" class="c-profile__content--item--bottom">
 				{{
 					fullNameForm.get('firstName')?.value +
-						fullNameForm.get('firstName')?.value || 'None'
+						' ' +
+						fullNameForm.get('lastName')?.value || 'None'
 				}}
 			</p>
 			<div *ngIf="showName" class="c-profile__content--item--form">

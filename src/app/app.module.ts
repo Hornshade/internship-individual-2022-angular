@@ -29,6 +29,7 @@ import { ForgotComponent } from './pages/forgot/forgot.component';
 import { ResetComponent } from './pages/reset/reset.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { ProfileComponent } from './pages/my-account/profile/profile.component';
+import { MessagesComponent } from './pages/my-account/messages/messages.component';
 
 @NgModule({
 	declarations: [
@@ -52,6 +53,7 @@ import { ProfileComponent } from './pages/my-account/profile/profile.component';
 		ResetComponent,
 		MyAccountComponent,
   ProfileComponent,
+  MessagesComponent,
 	],
 	imports: [
 		BrowserModule,

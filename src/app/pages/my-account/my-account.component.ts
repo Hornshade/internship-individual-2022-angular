@@ -36,7 +36,7 @@ export class MyAccountComponent implements OnInit {
 				this.notifications = false;
 				this.chat = false;
 				break;
-			case 'notification':
+			case 'notifications':
 				this.profile = false;
 				this.security = false;
 				this.notifications = true;
