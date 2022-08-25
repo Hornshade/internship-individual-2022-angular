@@ -81,8 +81,22 @@ export class ProfileComponent implements OnInit {
 	ngOnInit(): void {}
 
 	onSubmit() {
-		console.log(this.birthDateForm);
-		console.log(this.birthDateForm.getDate);
+		let fullName =
+			this.fullNameForm.get('firstName')?.value +
+				' ' +
+				this.fullNameForm.get('lastName')?.value || '';
+		this.loginService
+			.updateUser(
+				localStorage.getItem('userId'),
+				fullName,
+				this.emailForm.get('email')?.value,
+				this.selectedGender,
+				this.phoneForm.get('phone')?.value,
+				this.birthDateForm.get('birthDate')?.value,
+				this.addressForm.get('address')?.value,
+				this.photo,
+				true
+			)
+			.subscribe();
 	}
-	onSubmitGender() {}
 }

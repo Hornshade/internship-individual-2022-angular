@@ -119,7 +119,7 @@
 				<button
 					mat-flat-button
 					class="c-profile__content--item--form--button"
-					(click)="onSubmitGender()"
+					(click)="onSubmit()"
 				>
 					Save
 				</button>
@@ -135,7 +135,7 @@
 				</button>
 			</div>
 			<p *ngIf="!showBirth" class="c-profile__content--item--bottom">
-				{{ birthDateForm.value.valueOf() || 'None' }}
+				{{ this.birthDateForm.get('birthDate')?.value || 'None' }}
 			</p>
 			<div *ngIf="showBirth" class="c-profile__content--item--form">
 				<form [formGroup]="birthDateForm">
