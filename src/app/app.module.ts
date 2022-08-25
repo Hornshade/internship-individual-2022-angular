@@ -17,7 +17,7 @@ import { DeleteModalComponent } from './components/modal/delete-modal/delete-mod
 import { FiltersComponent } from './components/filters/filters.component';
 import { ListComponent } from './components/list/list.component';
 import { GaleryModalComponent } from './components/modal/galery-modal/galery-modal.component';
-import { TabsComponent } from './components/tabs/tabs.component';
+
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ListingService } from './services/listings/listing.service';
 import { HomeComponent } from './pages/home/home.component';
@@ -27,6 +27,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { ResetComponent } from './pages/reset/reset.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
 
 @NgModule({
 	declarations: [
@@ -40,7 +41,6 @@ import { ResetComponent } from './pages/reset/reset.component';
 		FiltersComponent,
 		ListComponent,
 		GaleryModalComponent,
-		TabsComponent,
 		CarouselComponent,
 		HomeComponent,
 		SingleComponent,
@@ -49,6 +49,7 @@ import { ResetComponent } from './pages/reset/reset.component';
 		SignupComponent,
 		ForgotComponent,
 		ResetComponent,
+		MyAccountComponent,
 	],
 	imports: [
 		BrowserModule,

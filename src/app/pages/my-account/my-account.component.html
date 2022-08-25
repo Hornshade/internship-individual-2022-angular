@@ -1,0 +1,48 @@
+<div class="c-account">
+	<div class="c-account__tabs">
+		<div class="c-account__tabs--image">
+			<img src="" alt="" />
+			<button mat-mini-fab><mat-icon>edit</mat-icon></button>
+		</div>
+		<div class="c-account__tabs--options">
+			<button
+				class="c-account__tabs--options--option"
+				(click)="toggle('profile')"
+				[ngStyle]="{ color: profile ? '#0356e8' : '' }"
+			>
+				<mat-icon>perm_identity</mat-icon> Profile
+			</button>
+			<button
+				class="c-account__tabs--options--option"
+				(click)="toggle('security')"
+				[ngStyle]="{ color: security ? '#0356e8' : '' }"
+			>
+				<mat-icon>security</mat-icon> Login & security
+			</button>
+			<button
+				class="c-account__tabs--options--option"
+				(click)="toggle('notifications')"
+				[ngStyle]="{ color: notifications ? '#0356e8' : '' }"
+			>
+				<mat-icon>notifications</mat-icon> Notifications
+			</button>
+			<button
+				class="c-account__tabs--options--option"
+				(click)="toggle('chat')"
+				[ngStyle]="{ color: chat ? '#0356e8' : '' }"
+			>
+				<mat-icon>chat</mat-icon> Messages
+			</button>
+			<mat-divider></mat-divider>
+			<button class="c-account__tabs--options--option" (click)="logout()">
+				<mat-icon>logout</mat-icon> Logout
+			</button>
+		</div>
+	</div>
+	<div class="c-account__content">
+		<div *ngIf="profile">profile</div>
+		<div *ngIf="security">security</div>
+		<div *ngIf="notifications">notif</div>
+		<div *ngIf="chat">chat</div>
+	</div>
+</div>

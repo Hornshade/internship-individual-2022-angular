@@ -166,9 +166,11 @@ meter {
 }
 
 //hide scrollbar inside tab content
-.mat-tab-group {
-	.mat-tab-body-content {
-		overflow: hidden;
+.c-home__tabs {
+	.mat-tab-group {
+		.mat-tab-body-content {
+			overflow: hidden;
+		}
 	}
 }
 
