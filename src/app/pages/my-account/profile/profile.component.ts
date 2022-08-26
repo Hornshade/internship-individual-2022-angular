@@ -18,6 +18,8 @@ export class ProfileComponent implements OnInit {
 	showPhone: boolean = false;
 	showAddress: boolean = false;
 
+	//datepicker variables
+	startDate = new Date(1990, 0, 1);
 	// user variables
 	user!: User;
 	fullNameForm: FormGroup | any;
