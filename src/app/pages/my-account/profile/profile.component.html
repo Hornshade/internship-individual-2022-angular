@@ -136,7 +136,7 @@
 				</button>
 			</div>
 			<p *ngIf="!showBirth" class="c-profile__content--item--bottom">
-				{{ this.birthDateForm.get('birthDate')?.value || 'None' }}
+				{{ dateOfBirth | date: 'shortDate' }}
 			</p>
 			<div *ngIf="showBirth" class="c-profile__content--item--form">
 				<form [formGroup]="birthDateForm">

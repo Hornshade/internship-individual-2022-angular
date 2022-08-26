@@ -5,9 +5,11 @@
 		<div class="c-notifications__content--item">
 			<div class="c-notifications__content--item--top">
 				<h3 class="c-notifications__content--item--top--text">News</h3>
-				<button mat-button (click)="showNews = !showNews">Edit</button>
+				<button mat-button (click)="openDialog('News')">Edit</button>
 			</div>
-			<div class="c-notifications__content--item--bottom">Off</div>
+			<div class="c-notifications__content--item--bottom">
+				{{ newsDescription }}
+			</div>
 		</div>
 		<mat-divider></mat-divider>
 		<!-- Discounts  -->
@@ -16,36 +18,46 @@
 				<h3 class="c-notifications__content--item--top--text">
 					Discounts & promotions
 				</h3>
-				<button mat-button (click)="showNews = !showNews">Edit</button>
+				<button mat-button (click)="openDialog('Discounts & promotions')">
+					Edit
+				</button>
 			</div>
-			<div class="c-notifications__content--item--bottom">Off</div>
+			<div class="c-notifications__content--item--bottom">
+				{{ discountDescription }}
+			</div>
 		</div>
 		<mat-divider></mat-divider>
 		<!-- Messages  -->
 		<div class="c-notifications__content--item">
 			<div class="c-notifications__content--item--top">
 				<h3 class="c-notifications__content--item--top--text">Messages</h3>
-				<button mat-button (click)="showNews = !showNews">Edit</button>
+				<button mat-button (click)="openDialog('Messages')">Edit</button>
 			</div>
-			<div class="c-notifications__content--item--bottom">Off</div>
+			<div class="c-notifications__content--item--bottom">
+				{{ messagesDescription }}
+			</div>
 		</div>
 		<mat-divider></mat-divider>
 		<!-- New listings  -->
 		<div class="c-notifications__content--item">
 			<div class="c-notifications__content--item--top">
 				<h3 class="c-notifications__content--item--top--text">New listings</h3>
-				<button mat-button (click)="showNews = !showNews">Edit</button>
+				<button mat-button (click)="openDialog('New listings')">Edit</button>
 			</div>
-			<div class="c-notifications__content--item--bottom">Off</div>
+			<div class="c-notifications__content--item--bottom">
+				{{ listingsDescription }}
+			</div>
 		</div>
 		<mat-divider></mat-divider>
 		<!-- Price change  -->
 		<div class="c-notifications__content--item">
 			<div class="c-notifications__content--item--top">
 				<h3 class="c-notifications__content--item--top--text">Price change</h3>
-				<button mat-button (click)="showNews = !showNews">Edit</button>
+				<button mat-button (click)="openDialog('Price change')">Edit</button>
 			</div>
-			<div class="c-notifications__content--item--bottom">Off</div>
+			<div class="c-notifications__content--item--bottom">
+				{{ pricesDescription }}
+			</div>
 		</div>
 		<mat-divider></mat-divider>
 	</div>

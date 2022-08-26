@@ -16,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
 	imports: [
@@ -38,6 +39,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 		MatDatepickerModule,
 		MatNativeDateModule,
 		MatMomentDateModule,
+		MatSlideToggleModule,
 	],
 	exports: [
 		MatButtonModule,
@@ -59,6 +61,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 		MatDatepickerModule,
 		MatNativeDateModule,
 		MatMomentDateModule,
+		MatSlideToggleModule,
 	],
 })
 export class MaterialModule {}

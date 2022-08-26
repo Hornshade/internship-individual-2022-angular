@@ -31,6 +31,7 @@ import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { ProfileComponent } from './pages/my-account/profile/profile.component';
 import { MessagesComponent } from './pages/my-account/messages/messages.component';
 import { NotificationsComponent } from './pages/my-account/notifications/notifications.component';
+import { NotificationModalComponent } from './components/modal/notification-modal/notification-modal.component';
 
 @NgModule({
 	declarations: [
@@ -56,6 +57,7 @@ import { NotificationsComponent } from './pages/my-account/notifications/notific
   ProfileComponent,
   MessagesComponent,
   NotificationsComponent,
+  NotificationModalComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
 	phoneForm: FormGroup | any;
 	addressForm: FormGroup | any;
 	selectedGender!: string;
+	dateOfBirth!: Date;
 	photo!: string;
 	constructor(private loginService: LoginService) {
 		this.fullNameForm = new FormGroup({
@@ -48,7 +49,7 @@ export class ProfileComponent implements OnInit {
 			]),
 		});
 		this.birthDateForm = new FormGroup({
-			birthDate: new FormControl(moment('', 'MM/DD/YYYY')),
+			birthDate: new FormControl(new Date()),
 		});
 		this.phoneForm = new FormGroup({
 			phone: new FormControl('', [Validators.pattern('^[0-9]*$')]),
@@ -74,6 +75,8 @@ export class ProfileComponent implements OnInit {
 				else if (data.gender === 1) this.selectedGender = 'male';
 				else if (data.gender === 2) this.selectedGender = 'female';
 				this.photo = data.photo;
+				this.dateOfBirth = this.birthDateForm.get('birthDate')?.value;
+
 				console.log(data);
 			});
 	}
@@ -81,6 +84,7 @@ export class ProfileComponent implements OnInit {
 	ngOnInit(): void {}
 
 	onSubmit() {
+		this.dateOfBirth = this.birthDateForm.get('birthDate')?.value;
 		let fullName =
 			this.fullNameForm.get('firstName')?.value +
 				' ' +
