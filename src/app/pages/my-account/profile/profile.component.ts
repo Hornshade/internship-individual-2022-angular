@@ -58,7 +58,6 @@ export class ProfileComponent implements OnInit {
 			address: new FormControl(''),
 		});
 
-		console.log(localStorage.getItem('userId'));
 		this.loginService
 			.getUserById(localStorage.getItem('userId'))
 			.subscribe((data) => {
@@ -76,8 +75,6 @@ export class ProfileComponent implements OnInit {
 				else if (data.gender === 2) this.selectedGender = 'female';
 				this.photo = data.photo;
 				this.dateOfBirth = this.birthDateForm.get('birthDate')?.value;
-
-				console.log(data);
 			});
 	}
 
