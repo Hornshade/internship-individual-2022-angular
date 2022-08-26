@@ -83,7 +83,7 @@
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!fullNameForm.valid"
-						(click)="onSubmit()"
+						(click)="submitFullName()"
 					>
 						Save
 					</button>
@@ -120,7 +120,7 @@
 				<button
 					mat-flat-button
 					class="c-profile__content--item--form--button"
-					(click)="onSubmit()"
+					(click)="submitGender()"
 				>
 					Save
 				</button>
@@ -160,7 +160,7 @@
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!birthDateForm.valid"
-						(click)="onSubmit()"
+						(click)="submitDateOfBirth()"
 					>
 						Save
 					</button>
@@ -211,7 +211,7 @@
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!emailForm.valid"
-						(click)="onSubmit()"
+						(click)="submitEmail()"
 					>
 						Save
 					</button>
@@ -262,7 +262,7 @@
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!phoneForm.valid"
-						(click)="onSubmit()"
+						(click)="submitPhone()"
 					>
 						Save
 					</button>
@@ -315,7 +315,7 @@
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!addressForm.valid"
-						(click)="onSubmit()"
+						(click)="submitAddress()"
 					>
 						Save
 					</button>

@@ -83,24 +83,63 @@ export class ProfileComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	onSubmit() {
-		this.dateOfBirth = this.birthDateForm.get('birthDate')?.value;
+	// onSubmit() {
+	// 	this.dateOfBirth = this.birthDateForm.get('birthDate')?.value;
+	// 	let fullName =
+	// 		this.fullNameForm.get('firstName')?.value +
+	// 			' ' +
+	// 			this.fullNameForm.get('lastName')?.value || '';
+	// 	this.loginService
+	// 		.updateUser(
+	// 			localStorage.getItem('userId'),
+	// 			fullName,
+	// 			this.emailForm.get('email')?.value,
+	// 			this.selectedGender,
+	// 			this.phoneForm.get('phone')?.value,
+	// 			this.birthDateForm.get('birthDate')?.value,
+	// 			this.addressForm.get('address')?.value,
+	// 			this.photo,
+	// 			true
+	// 		)
+	// 		.subscribe();
+	// }
+	submitFullName() {
 		let fullName =
 			this.fullNameForm.get('firstName')?.value +
 				' ' +
 				this.fullNameForm.get('lastName')?.value || '';
 		this.loginService
-			.updateUser(
-				localStorage.getItem('userId'),
-				fullName,
-				this.emailForm.get('email')?.value,
-				this.selectedGender,
-				this.phoneForm.get('phone')?.value,
-				this.birthDateForm.get('birthDate')?.value,
-				this.addressForm.get('address')?.value,
-				this.photo,
-				true
-			)
+			.updateFullName(localStorage.getItem('userId'), fullName)
 			.subscribe();
+	}
+	submitGender() {
+		this.loginService
+			.updateGender(localStorage.getItem('userId'), this.selectedGender)
+			.subscribe();
+	}
+	submitDateOfBirth() {
+		this.dateOfBirth = this.birthDateForm.get('birthDate')?.value;
+		this.loginService.updateBirthDate(
+			localStorage.getItem('userId'),
+			this.birthDateForm.get('birthDate')?.value
+		);
+	}
+	submitEmail() {
+		this.loginService.updateEmail(
+			localStorage.getItem('userId'),
+			this.emailForm.get('email')?.value
+		);
+	}
+	submitPhone() {
+		this.loginService.updatePhone(
+			localStorage.getItem('userId'),
+			this.phoneForm.get('phone')?.value
+		);
+	}
+	submitAddress() {
+		this.loginService.updateAddress(
+			localStorage.getItem('userId'),
+			this.addressForm.get('address')?.value
+		);
 	}
 }
