@@ -5,12 +5,62 @@
 		<div class="c-security__content--item">
 			<div class="c-security__content--item--top">
 				<h3 class="c-security__content--item--top--text">Password</h3>
-				<button mat-button class="c-security__content--item--top--button">
-					Update
+				<button
+					mat-button
+					class="c-security__content--item--top--button"
+					(click)="showForm = !showForm"
+				>
+					{{ showForm ? 'Cancel' : 'Update' }}
 				</button>
 			</div>
-			<div class="c-security__content--item--bottom">
+			<div *ngIf="!showForm" class="c-security__content--item--bottom">
 				Last updated 3 weeks ago
+			</div>
+			<!-- Password form  -->
+			<div *ngIf="showForm" class="c-security__content--item--form">
+				<form [formGroup]="passwordForm" novalidate>
+					<div class="c-security__content--item--form--inputs">
+						<div class="c-security__content--item--form--inputs--input">
+							<label>New Password</label>
+							<mat-form-field appearance="outline">
+								<input
+									type="password"
+									matInput
+									placeholder="Placeholder"
+									formControlName="newPassword"
+								/>
+								<mat-error
+									*ngIf="
+										passwordForm.get('newPassword')?.invalid &&
+										(passwordForm.get('newPassword')?.dirty ||
+											passwordForm.get('newPassword')?.touched) &&
+										passwordForm.get('newPassword')?.errors?.required
+									"
+								>
+									Password required
+								</mat-error>
+								<mat-error
+									*ngIf="!passwordForm.get('newPassword')?.errors?.required"
+								>
+									Invalid password</mat-error
+								>
+								<mat-hint
+									*ngIf="passwordForm.get('newPassword')?.value.length < 8"
+									>At least 8 characters.</mat-hint
+								>
+							</mat-form-field>
+						</div>
+					</div>
+					<button
+						type="submit"
+						mat-flat-button
+						class="c-onboarding__left--form--group--submit"
+						[disabled]="!passwordForm.valid"
+						(click)="changePassword()"
+					>
+						Confirm password
+					</button>
+				</form>
 			</div>
 		</div>
 		<mat-divider></mat-divider>
@@ -96,6 +146,7 @@
 				mat-button
 				color="warn"
 				class="c-security__content--item--top--deactivate"
+				(click)="deactivate()"
 			>
 				Deactivate
 			</button>

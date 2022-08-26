@@ -46,6 +46,38 @@
 				font-family: $primary_font_family;
 				margin-bottom: 15px;
 			}
+			&--form {
+				margin: 20px 0;
+				&--inputs {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					&--input {
+						display: flex;
+						flex-direction: column;
+						justify-content: flex-start;
+						width: 45%;
+						label {
+							color: $color-gray-600;
+							font-size: $font-body-small;
+							font-weight: $font-medium;
+						}
+						input {
+							color: $color-black;
+							font-size: $font-body-normal;
+							font-weight: $font-medium;
+						}
+					}
+				}
+				&--button {
+					color: $color-white;
+					border-radius: 8px;
+					background-color: $color-primary-400;
+					width: 100px;
+					height: 45px;
+					margin-top: 10px;
+				}
+			}
 		}
 		&--option {
 			display: flex;

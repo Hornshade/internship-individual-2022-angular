@@ -174,4 +174,89 @@ export class LoginService {
 			)
 			.pipe(catchError(this.handleError));
 	}
+
+	deactivateUser(id: string | null, isActive: boolean) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/' + id,
+				{ isActive: isActive },
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+
+	updateFullName(id: string | null, fullName: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/' + id,
+				{ fullName: fullName },
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+	updateGender(id: string | null, gender: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/' + id,
+				{
+					gender: gender,
+				},
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+	updateBirthDate(id: string | null, dateOfBirth: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/' + id,
+				{ dateOfBirth: dateOfBirth },
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+	updateEmail(id: string | null, email: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/' + id,
+				{ email: email },
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+	updatePhone(id: string | null, phone: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/' + id,
+				{ phone: phone },
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+	updateAddress(id: string | null, address: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/' + id,
+				{ address: address },
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+	updatePhoto(id: string | null, photo: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/' + id,
+				{ photo: photo },
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
+	updatePassword(id: string | null, password: string) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/user/' + id,
+				{ password: password },
+				{ headers: this.header }
+			)
+			.pipe(catchError(this.handleError));
+	}
 }
