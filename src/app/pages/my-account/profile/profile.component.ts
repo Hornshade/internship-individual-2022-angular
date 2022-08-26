@@ -90,11 +90,13 @@ export class ProfileComponent implements OnInit {
 		this.loginService
 			.updateFullName(localStorage.getItem('userId'), fullName)
 			.subscribe();
+		this.showName = false;
 	}
 	submitGender() {
 		this.loginService
 			.updateGender(localStorage.getItem('userId'), this.selectedGender)
 			.subscribe();
+		this.showGender = false;
 	}
 	submitDateOfBirth() {
 		this.dateOfBirth = this.birthDateForm.get('birthDate')?.value;
@@ -102,23 +104,27 @@ export class ProfileComponent implements OnInit {
 			localStorage.getItem('userId'),
 			this.birthDateForm.get('birthDate')?.value
 		);
+		this.showBirth = false;
 	}
 	submitEmail() {
 		this.loginService.updateEmail(
 			localStorage.getItem('userId'),
 			this.emailForm.get('email')?.value
 		);
+		this.showEmail = false;
 	}
 	submitPhone() {
 		this.loginService.updatePhone(
 			localStorage.getItem('userId'),
 			this.phoneForm.get('phone')?.value
 		);
+		this.showPhone = false;
 	}
 	submitAddress() {
 		this.loginService.updateAddress(
 			localStorage.getItem('userId'),
 			this.addressForm.get('address')?.value
 		);
+		this.showAddress = false;
 	}
 }
