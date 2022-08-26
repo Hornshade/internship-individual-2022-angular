@@ -13,6 +13,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
 	imports: [
@@ -32,6 +36,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 		MatDividerModule,
 		MatPaginatorModule,
 		MatCheckboxModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
+		MatMomentDateModule,
+		MatSlideToggleModule,
 	],
 	exports: [
 		MatButtonModule,
@@ -50,6 +58,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 		MatDividerModule,
 		MatPaginatorModule,
 		MatCheckboxModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
+		MatMomentDateModule,
+		MatSlideToggleModule,
 	],
 })
 export class MaterialModule {}

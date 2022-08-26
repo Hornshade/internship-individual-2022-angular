@@ -1,0 +1,327 @@
+<div class="c-profile">
+	<div class="c-profile__title">Profile</div>
+	<div class="c-profile__content">
+		<!-- Full name  -->
+		<div class="c-profile__content--item">
+			<div class="c-profile__content--item--top">
+				<h3 class="c-profile__content--item--top--text">Full name</h3>
+				<button mat-button (click)="showName = !showName">
+					{{ showName ? 'Cancel' : 'Edit' }}
+				</button>
+			</div>
+			<p *ngIf="!showName" class="c-profile__content--item--bottom">
+				{{
+					fullNameForm.get('firstName')?.value +
+						' ' +
+						fullNameForm.get('lastName')?.value || 'None'
+				}}
+			</p>
+			<div *ngIf="showName" class="c-profile__content--item--form">
+				<form [formGroup]="fullNameForm">
+					<div class="c-profile__content--item--form--inputs">
+						<div class="c-profile__content--item--form--inputs--input">
+							<label>First name</label>
+							<mat-form-field appearance="outline">
+								<input
+									matInput
+									placeholder="Placeholder"
+									formControlName="firstName"
+									novalidate
+								/>
+								<mat-hint
+									*ngIf="fullNameForm.get('firstName')?.value.length < 3"
+									>At least 2 characters and no numbers
+								</mat-hint>
+								<mat-error
+									*ngIf="
+										fullNameForm.get('firstName')?.invalid &&
+										(fullNameForm.get('firstName')?.dirty ||
+											fullNameForm.get('firstName')?.touched) &&
+										fullNameForm.get('firstName')?.errors?.required
+									"
+								>
+									First name is required
+								</mat-error>
+								<mat-error
+									*ngIf="!fullNameForm.get('firstName')?.errors?.required"
+								>
+									Invalid first name</mat-error
+								>
+							</mat-form-field>
+						</div>
+						<div class="c-profile__content--item--form--inputs--input">
+							<label>Last name</label>
+							<mat-form-field appearance="outline">
+								<input
+									matInput
+									placeholder="Placeholder"
+									formControlName="lastName"
+									novalidate
+								/>
+								<mat-hint *ngIf="fullNameForm.get('lastName')?.value.length < 3"
+									>At least 2 characters and no numbers
+								</mat-hint>
+								<mat-error
+									*ngIf="
+										fullNameForm.get('lastName')?.invalid &&
+										(fullNameForm.get('lastName')?.dirty ||
+											fullNameForm.get('lastName')?.touched) &&
+										fullNameForm.get('lastName')?.errors?.required
+									"
+								>
+									Last name is required
+								</mat-error>
+								<mat-error
+									*ngIf="!fullNameForm.get('lastName')?.errors?.required"
+								>
+									Invalid last name</mat-error
+								>
+							</mat-form-field>
+						</div>
+					</div>
+					<button
+						mat-flat-button
+						class="c-profile__content--item--form--button"
+						[disabled]="!fullNameForm.valid"
+						(click)="submitFullName()"
+					>
+						Save
+					</button>
+				</form>
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+		<!-- Gender  -->
+		<div class="c-profile__content--item">
+			<div class="c-profile__content--item--top">
+				<h3 class="c-profile__content--item--top--text">Gender</h3>
+				<button mat-button (click)="showGender = !showGender">
+					{{ showGender ? 'Cancel' : 'Edit' }}
+				</button>
+			</div>
+			<p *ngIf="!showGender" class="c-profile__content--item--bottom">
+				{{
+					selectedGender
+						? selectedGender[0].toUpperCase() + selectedGender.substr(1)
+						: 'None'
+				}}
+			</p>
+			<div *ngIf="showGender" class="c-profile__content--item--form">
+				<div class="c-profile__content--item--form-inputs">
+					<mat-form-field appearance="outline">
+						<mat-label>Select an option</mat-label>
+						<mat-select [(value)]="selectedGender">
+							<mat-option>None</mat-option>
+							<mat-option value="male">Male</mat-option>
+							<mat-option value="female">Female</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<button
+					mat-flat-button
+					class="c-profile__content--item--form--button"
+					(click)="submitGender()"
+				>
+					Save
+				</button>
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+		<!-- Date of birth  -->
+		<div class="c-profile__content--item">
+			<div class="c-profile__content--item--top">
+				<h3 class="c-profile__content--item--top--text">Date of birth</h3>
+				<button mat-button (click)="showBirth = !showBirth">
+					{{ showBirth ? 'Cancel' : 'Edit' }}
+				</button>
+			</div>
+			<p *ngIf="!showBirth" class="c-profile__content--item--bottom">
+				{{ dateOfBirth | date: 'shortDate' }}
+			</p>
+			<div *ngIf="showBirth" class="c-profile__content--item--form">
+				<form [formGroup]="birthDateForm">
+					<div class="c-profile__content--item--form-inputs">
+						<mat-form-field appearance="outline">
+							<mat-label>Choose a date</mat-label>
+							<input
+								matInput
+								[matDatepicker]="picker"
+								formControlName="birthDate"
+							/>
+							<mat-hint>MM/DD/YYYY</mat-hint>
+							<mat-datepicker-toggle
+								matSuffix
+								[for]="picker"
+							></mat-datepicker-toggle>
+							<mat-datepicker #picker></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<button
+						mat-flat-button
+						class="c-profile__content--item--form--button"
+						[disabled]="!birthDateForm.valid"
+						(click)="submitDateOfBirth()"
+					>
+						Save
+					</button>
+				</form>
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+		<!-- Email address  -->
+		<div class="c-profile__content--item">
+			<div class="c-profile__content--item--top">
+				<h3 class="c-profile__content--item--top--text">Email address</h3>
+				<button mat-button (click)="showEmail = !showEmail">
+					{{ showEmail ? 'Cancel' : 'Edit' }}
+				</button>
+			</div>
+			<p *ngIf="!showEmail" class="c-profile__content--item--bottom">
+				{{ emailForm.get('email')?.value }}
+			</p>
+			<div *ngIf="showEmail" class="c-profile__content--item--form">
+				<form [formGroup]="emailForm">
+					<div class="c-profile__content--item--form--inputs">
+						<div class="c-profile__content--item--form--inputs--input">
+							<label>Email</label>
+							<mat-form-field appearance="outline">
+								<input
+									matInput
+									placeholder="Placeholder"
+									formControlName="email"
+									novalidate
+								/>
+								<mat-error
+									*ngIf="
+										emailForm.get('email')?.invalid &&
+										(emailForm.get('email')?.dirty ||
+											emailForm.get('email')?.touched) &&
+										emailForm.get('email')?.errors?.required
+									"
+								>
+									Email is required
+								</mat-error>
+								<mat-error *ngIf="!emailForm.get('email')?.errors?.required">
+									Invalid email</mat-error
+								>
+							</mat-form-field>
+						</div>
+					</div>
+					<button
+						mat-flat-button
+						class="c-profile__content--item--form--button"
+						[disabled]="!emailForm.valid"
+						(click)="submitEmail()"
+					>
+						Save
+					</button>
+				</form>
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+		<!-- Phone number  -->
+		<div class="c-profile__content--item">
+			<div class="c-profile__content--item--top">
+				<h3 class="c-profile__content--item--top--text">Phone number</h3>
+				<button mat-button (click)="showPhone = !showPhone">
+					{{ showPhone ? 'Cancel' : 'Edit' }}
+				</button>
+			</div>
+			<p *ngIf="!showPhone" class="c-profile__content--item--bottom">
+				{{ phoneForm.get('phone')?.value || 'None' }}
+			</p>
+			<div *ngIf="showPhone" class="c-profile__content--item--form">
+				<form [formGroup]="phoneForm">
+					<div class="c-profile__content--item--form--inputs">
+						<div class="c-profile__content--item--form--inputs--input">
+							<label>Phone</label>
+							<mat-form-field appearance="outline">
+								<input
+									matInput
+									placeholder="Placeholder"
+									formControlName="phone"
+									novalidate
+								/>
+								<mat-error
+									*ngIf="
+										phoneForm.get('phone')?.invalid &&
+										(phoneForm.get('phone')?.dirty ||
+											phoneForm.get('phone')?.touched) &&
+										phoneForm.get('phone')?.errors?.required
+									"
+								>
+									Phone is required
+								</mat-error>
+								<mat-error *ngIf="!phoneForm.get('phone')?.errors?.required">
+									Invalid phone</mat-error
+								>
+							</mat-form-field>
+						</div>
+					</div>
+					<button
+						mat-flat-button
+						class="c-profile__content--item--form--button"
+						[disabled]="!phoneForm.valid"
+						(click)="submitPhone()"
+					>
+						Save
+					</button>
+				</form>
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+		<!-- Address  -->
+		<div class="c-profile__content--item">
+			<div class="c-profile__content--item--top">
+				<h3 class="c-profile__content--item--top--text">Address</h3>
+				<button mat-button (click)="showAddress = !showAddress">
+					{{ showAddress ? 'Cancel' : 'Edit' }}
+				</button>
+			</div>
+			<p *ngIf="!showAddress" class="c-profile__content--item--bottom">
+				{{ addressForm.get('address')?.value || 'Not provided' }}
+			</p>
+			<div *ngIf="showAddress" class="c-profile__content--item--form">
+				<form [formGroup]="addressForm">
+					<div class="c-profile__content--item--form--inputs">
+						<div class="c-profile__content--item--form--inputs--input">
+							<label>Address</label>
+							<mat-form-field appearance="outline">
+								<input
+									matInput
+									placeholder="Placeholder"
+									formControlName="address"
+									novalidate
+								/>
+								<mat-error
+									*ngIf="
+										addressForm.get('address')?.invalid &&
+										(addressForm.get('address')?.dirty ||
+											addressForm.get('address')?.touched) &&
+										addressForm.get('address')?.errors?.required
+									"
+								>
+									Address is required
+								</mat-error>
+								<mat-error
+									*ngIf="!addressForm.get('address')?.errors?.required"
+								>
+									Invalid address</mat-error
+								>
+							</mat-form-field>
+						</div>
+					</div>
+					<button
+						mat-flat-button
+						class="c-profile__content--item--form--button"
+						[disabled]="!addressForm.valid"
+						(click)="submitAddress()"
+					>
+						Save
+					</button>
+				</form>
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+	</div>
+</div>

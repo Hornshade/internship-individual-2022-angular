@@ -40,9 +40,9 @@
 		</div>
 	</div>
 	<div class="c-account__content">
-		<div *ngIf="profile">profile</div>
-		<div *ngIf="security">security</div>
-		<div *ngIf="notifications">notif</div>
-		<div *ngIf="chat">chat</div>
+		<div *ngIf="profile"><app-profile></app-profile></div>
+		<div *ngIf="security"><app-security></app-security></div>
+		<div *ngIf="notifications"><app-notifications></app-notifications></div>
+		<div *ngIf="chat"><app-messages></app-messages></div>
 	</div>
 </div>

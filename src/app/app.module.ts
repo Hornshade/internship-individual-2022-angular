@@ -28,6 +28,11 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { ResetComponent } from './pages/reset/reset.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { ProfileComponent } from './pages/my-account/profile/profile.component';
+import { MessagesComponent } from './pages/my-account/messages/messages.component';
+import { NotificationsComponent } from './pages/my-account/notifications/notifications.component';
+import { NotificationModalComponent } from './components/modal/notification-modal/notification-modal.component';
+import { SecurityComponent } from './pages/my-account/security/security.component';
 
 @NgModule({
 	declarations: [
@@ -50,6 +55,11 @@ import { MyAccountComponent } from './pages/my-account/my-account.component';
 		ForgotComponent,
 		ResetComponent,
 		MyAccountComponent,
+		ProfileComponent,
+		MessagesComponent,
+		NotificationsComponent,
+		NotificationModalComponent,
+		SecurityComponent,
 	],
 	imports: [
 		BrowserModule,
