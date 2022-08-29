@@ -62,7 +62,6 @@ export class AddComponent implements OnInit {
 		});
 		observable.subscribe((data) => {
 			this.myImages[i] = data;
-			this.addForm.set('photos', this.addForm.get('photos').value.append(data));
 		});
 	}
 
