@@ -115,6 +115,10 @@
 						&:hover {
 							box-shadow: 0 6px 20px $color-gray-200;
 						}
+						img {
+							border-radius: 8px;
+							object-fit: cover;
+						}
 					}
 				}
 			}

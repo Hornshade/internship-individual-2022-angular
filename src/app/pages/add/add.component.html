@@ -81,12 +81,10 @@
 		</div>
 		<div class="c-add__photos--right">
 			<form class="c-add__photos--right--form" [formGroup]="addForm">
-				<div class="c-add__photos--right--form--image">
-					<img [src]="myImage" alt="" />
-				</div>
 				<div class="c-add__photos--right--form--input">
 					<label for="images">
-						<mat-icon>add</mat-icon>
+						<img *ngIf="myImage" [src]="myImage" alt="" />
+						<mat-icon *ngIf="!myImage">add</mat-icon>
 						<input
 							id="images"
 							type="file"
