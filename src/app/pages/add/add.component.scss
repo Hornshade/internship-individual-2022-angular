@@ -103,6 +103,7 @@
 						border-radius: 8px;
 						width: 160px;
 						height: 120px;
+						border: 1px solid red;
 						background-color: $color-gray-50;
 						color: $color-gray-400;
 						cursor: pointer;
@@ -116,6 +117,9 @@
 							box-shadow: 0 6px 20px $color-gray-200;
 						}
 						img {
+							height: 100%;
+							width: 160px;
+							border: 1px solid blue;
 							border-radius: 8px;
 							object-fit: cover;
 						}
