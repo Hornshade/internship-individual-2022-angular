@@ -11,7 +11,8 @@ import { ListingService } from 'src/app/services/listings/listing.service';
 export class AddComponent implements OnInit {
 	addForm: FormGroup | any;
 	myImage: any;
-
+	numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+	myImages!: any[];
 	constructor(private listingService: ListingService) {
 		this.addForm = new FormGroup({
 			title: new FormControl('', [
@@ -37,6 +38,7 @@ export class AddComponent implements OnInit {
 				Validators.pattern('^[0-9]*$'),
 			]),
 		});
+		this.myImages = ['', '', '', '', '', '', '', '', ''];
 	}
 
 	ngOnInit(): void {}
@@ -45,20 +47,22 @@ export class AddComponent implements OnInit {
 		console.log(this.addForm);
 	}
 
-	onChange($event: Event) {
-		const file = ($event.target as HTMLInputElement).files
-			? ($event.target as HTMLInputElement).files![0]
+	onChange(e: any, i: number) {
+		const file = (e.target as HTMLInputElement).files
+			? (e.target as HTMLInputElement).files![0]
 			: null;
-		this.convertToBase64(file);
+		console.log(file);
+
+		this.convertToBase64(file, i);
 	}
 
-	convertToBase64(file: File | null) {
+	convertToBase64(file: File | null, i: number) {
 		const observable = new Observable((subscriber: Subscriber<any>) => {
 			this.readFile(file, subscriber);
 		});
 		observable.subscribe((data) => {
-			console.log(data);
-			this.myImage = data;
+			this.myImages[i] = data;
+			this.addForm.set('photos', this.addForm.get('photos').value.append(data));
 		});
 	}
 

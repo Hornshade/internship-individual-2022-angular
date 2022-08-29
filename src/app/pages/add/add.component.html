@@ -81,7 +81,24 @@
 		</div>
 		<div class="c-add__photos--right">
 			<form class="c-add__photos--right--form" [formGroup]="addForm">
-				<div class="c-add__photos--right--form--input">
+				<div
+					*ngFor="let idx of numbers; let i = index"
+					class="c-add__photos--right--form--input"
+				>
+					<label for="{{ i }}">
+						<img *ngIf="myImages[i]" [src]="myImages[i]" alt="" />
+						<mat-icon *ngIf="!myImages[i]">add</mat-icon>
+						<input
+							id="{{ i }}"
+							type="file"
+							formControlName="photos"
+							(change)="onChange($event, i)"
+						/>
+					</label>
+				</div>
+
+				<!-- </div> -->
+				<!-- <div class="c-add__photos--right--form--input">
 					<label for="images">
 						<img *ngIf="myImage" [src]="myImage" alt="" />
 						<mat-icon *ngIf="!myImage">add</mat-icon>
@@ -92,7 +109,7 @@
 							(change)="onChange($event)"
 						/>
 					</label>
-				</div>
+				</div> -->
 			</form>
 		</div>
 	</div>

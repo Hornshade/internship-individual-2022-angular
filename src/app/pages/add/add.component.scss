@@ -88,6 +88,10 @@
 		&--right {
 			width: 55%;
 			&--form {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 30px;
 				&--input {
 					width: 160px;
 					height: 120px;
@@ -103,7 +107,6 @@
 						border-radius: 8px;
 						width: 160px;
 						height: 120px;
-						border: 1px solid red;
 						background-color: $color-gray-50;
 						color: $color-gray-400;
 						cursor: pointer;
