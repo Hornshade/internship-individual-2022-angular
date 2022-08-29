@@ -33,6 +33,7 @@ import { MessagesComponent } from './pages/my-account/messages/messages.componen
 import { NotificationsComponent } from './pages/my-account/notifications/notifications.component';
 import { NotificationModalComponent } from './components/modal/notification-modal/notification-modal.component';
 import { SecurityComponent } from './pages/my-account/security/security.component';
+import { AddComponent } from './pages/add/add.component';
 
 @NgModule({
 	declarations: [
@@ -60,6 +61,7 @@ import { SecurityComponent } from './pages/my-account/security/security.componen
 		NotificationsComponent,
 		NotificationModalComponent,
 		SecurityComponent,
+  AddComponent,
 	],
 	imports: [
 		BrowserModule,
