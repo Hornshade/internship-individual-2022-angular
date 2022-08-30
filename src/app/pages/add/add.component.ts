@@ -7,6 +7,7 @@ import {
 	Validators,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscriber } from 'rxjs';
 import { PreviewComponent } from 'src/app/components/modal/preview/preview.component';
 import { ListingService } from 'src/app/services/listings/listing.service';
@@ -21,6 +22,8 @@ export class AddComponent implements OnInit {
 	myImage: any;
 	numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 	myImages!: any[];
+	urlId!: string | null;
+	showEdit: boolean = false;
 
 	addForm = this.fb.group({
 		title: [
@@ -49,29 +52,66 @@ export class AddComponent implements OnInit {
 	}
 
 	constructor(
+		private route: ActivatedRoute,
 		private listingService: ListingService,
 		private fb: FormBuilder,
 		public dialog: MatDialog
 	) {
+		if (this.route.snapshot.paramMap.get('id') !== null) {
+			this.showEdit = true;
+			this.urlId = this.route.snapshot.paramMap.get('id');
+			this.listingService.getListingById(this.urlId).subscribe((result) => {
+				this.addForm.controls.title.setValue(result.title);
+				this.addForm.controls.category.setValue(result.category);
+				this.addForm.controls.price.setValue(result.price);
+				if (result.location.length > 2) {
+					this.addForm.controls.location.setValue(result.location[2]);
+				} else {
+					this.addForm.controls.location.setValue(result.location[0]);
+				}
+				this.addForm.controls.description.setValue(result.description);
+				if (result.images.length > 0) {
+					result.images.map((img) => {
+						this.photos.push(this.fb.control(img));
+					});
+					this.myImages = result.images.map((x) => x);
+				}
+			});
+		}
 		this.myImages = ['', '', '', '', '', '', '', '', ''];
 	}
 
 	ngOnInit(): void {}
 
 	onSubmit() {
+		console.log(this.showEdit);
+
 		if (this.addForm.valid)
-			this.listingService
-				.addListing(
-					this.addForm.controls.title.value!,
-					this.addForm.controls.description.value!,
-					this.addForm.controls.location.value!,
-					this.addForm.controls.price.value!,
-					this.addForm.controls.photos.value,
-					this.addForm.controls.category.value!,
-					localStorage.getItem('userId')
-				)
-				.subscribe();
-		console.log(this.addForm);
+			if (this.showEdit === false) {
+				this.listingService
+					.addListing(
+						this.addForm.controls.title.value!,
+						this.addForm.controls.description.value!,
+						this.addForm.controls.location.value!,
+						this.addForm.controls.price.value!,
+						this.addForm.controls.photos.value,
+						this.addForm.controls.category.value!,
+						localStorage.getItem('userId')
+					)
+					.subscribe();
+			} else if (this.showEdit === true) {
+				this.listingService
+					.editListing(
+						this.addForm.controls.title.value!,
+						this.addForm.controls.description.value!,
+						this.addForm.controls.location.value!,
+						this.addForm.controls.price.value!,
+						this.addForm.controls.photos.value,
+						this.addForm.controls.category.value!,
+						this.route.snapshot.paramMap.get('id')
+					)
+					.subscribe();
+			}
 	}
 
 	onChange(e: any, i: number) {
@@ -119,6 +159,7 @@ export class AddComponent implements OnInit {
 				location: this.addForm.controls.location.value,
 				images: this.addForm.controls.photos.value,
 				author: localStorage.getItem('userId'),
+				editShow: this.showEdit,
 			},
 		});
 

@@ -21,6 +21,7 @@ export class PreviewComponent implements OnInit {
 			images: string[];
 			location: string;
 			author: string;
+			editShow: boolean;
 		}
 	) {}
 

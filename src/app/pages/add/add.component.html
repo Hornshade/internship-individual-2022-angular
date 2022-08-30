@@ -169,7 +169,7 @@
 			[disabled]="!addForm.valid"
 			(click)="onSubmit()"
 		>
-			Publish
+			{{ showEdit ? 'Save changes' : 'Publish' }}
 		</button>
 	</div>
 </div>
