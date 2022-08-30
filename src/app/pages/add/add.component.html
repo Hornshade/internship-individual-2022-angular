@@ -22,10 +22,11 @@
 								addForm.get('title')?.invalid &&
 								(addForm.get('title')?.dirty ||
 									addForm.get('title')?.touched) &&
-								addForm.get('title')?.errors?.required
+								addForm.get('title')?.errors?.['required']
 							"
 							>Title is required</mat-error
 						>
+						<mat-hint>Minimum 2 characters</mat-hint>
 					</mat-form-field>
 				</div>
 				<!-- Details : category  -->
@@ -44,10 +45,11 @@
 								addForm.get('category')?.invalid &&
 								(addForm.get('category')?.dirty ||
 									addForm.get('category')?.touched) &&
-								addForm.get('category')?.errors?.required
+								addForm.get('category')?.errors?.['required']
 							"
 							>Category is required</mat-error
 						>
+						<mat-hint>Category is required</mat-hint>
 					</mat-form-field>
 				</div>
 
@@ -62,10 +64,11 @@
 									addForm.get('price')?.invalid &&
 									(addForm.get('price')?.dirty ||
 										addForm.get('price')?.touched) &&
-									addForm.get('price')?.errors?.required
+									addForm.get('price')?.errors?.['required']
 								"
 								>Price is required</mat-error
 							>
+							<mat-hint>Price is required</mat-hint>
 						</mat-form-field>
 						lei
 					</div>
@@ -91,11 +94,13 @@
 						<input
 							id="{{ i }}"
 							type="file"
-							formControlName="photos"
+							formArrayName="photos"
+							accept="image/jpeg,image/x-png,image/png"
 							(change)="onChange($event, i)"
 						/>
 					</label>
 				</div>
+				<mat-hint>Minimum 5 photos(PNG or JPEG)</mat-hint>
 			</form>
 		</div>
 	</div>
@@ -111,7 +116,7 @@
 				<mat-form-field appearance="outline">
 					<textarea rows="10" matInput formControlName="description"></textarea>
 					<mat-hint>{{
-						addForm.get('description')?.value.length +
+						addForm.get('description')?.value?.length +
 							'/ 100 mandatory characters'
 					}}</mat-hint>
 					<mat-error>Description required</mat-error>
@@ -132,6 +137,7 @@
 					<mat-form-field appearance="outline">
 						<input matInput type="text" formControlName="location" />
 						<mat-error>Location is required</mat-error>
+						<mat-hint>Location is required</mat-hint>
 					</mat-form-field>
 				</div>
 				<div class="c-add__contact--right--form--input">
@@ -140,6 +146,7 @@
 						<mat-form-field appearance="outline">
 							<input matInput type="number" formControlName="phone" />
 							<mat-error>Phone number is required</mat-error>
+							<mat-hint>Phone number is required</mat-hint>
 						</mat-form-field>
 					</div>
 				</div>

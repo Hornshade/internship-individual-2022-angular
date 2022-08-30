@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subscriber } from 'rxjs';
+import {
+	FormArray,
+	FormBuilder,
+	FormControl,
+	FormGroup,
+	Validators,
+} from '@angular/forms';
+import { elementAt, Observable, Subscriber } from 'rxjs';
 import { ListingService } from 'src/app/services/listings/listing.service';
 
 @Component({
@@ -9,41 +15,56 @@ import { ListingService } from 'src/app/services/listings/listing.service';
 	styleUrls: ['./add.component.scss'],
 })
 export class AddComponent implements OnInit {
-	addForm: FormGroup | any;
+	// addForm: FormGroup | any;
 	myImage: any;
 	numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 	myImages!: any[];
-	constructor(private listingService: ListingService) {
-		this.addForm = new FormGroup({
-			title: new FormControl('', [
-				Validators.required,
-				Validators.minLength(4),
-			]),
-			category: new FormControl('', [Validators.required]),
-			price: new FormControl('', [
-				Validators.required,
-				Validators.pattern('^[0-9]*$'),
-			]),
-			photos: new FormControl(['']),
-			description: new FormControl('', [
-				Validators.required,
-				Validators.minLength(100),
-			]),
-			location: new FormControl('', [
-				Validators.required,
-				Validators.minLength(2),
-			]),
-			phone: new FormControl('', [
-				Validators.required,
-				Validators.pattern('^[0-9]*$'),
-			]),
-		});
+
+	addForm = this.fb.group({
+		title: [
+			'',
+			[Validators.required, Validators.minLength(4), Validators.maxLength(50)],
+		],
+		category: ['', [Validators.required]],
+		price: [
+			0,
+			[Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)],
+		],
+		photos: this.fb.array<string>(
+			[],
+			[Validators.required, Validators.minLength(5)]
+		),
+		description: ['', [Validators.required, Validators.minLength(100)]],
+		location: [
+			'',
+			[Validators.required, Validators.minLength(2), Validators.maxLength(100)],
+		],
+		phone: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+	});
+
+	get photos() {
+		return this.addForm.controls['photos'] as FormArray;
+	}
+
+	constructor(private listingService: ListingService, private fb: FormBuilder) {
 		this.myImages = ['', '', '', '', '', '', '', '', ''];
 	}
 
 	ngOnInit(): void {}
 
 	onSubmit() {
+		if (this.addForm.valid)
+			this.listingService
+				.addListing(
+					this.addForm.controls.title.value!,
+					this.addForm.controls.description.value!,
+					this.addForm.controls.location.value!,
+					this.addForm.controls.price.value!,
+					this.addForm.controls.photos.value,
+					this.addForm.controls.category.value!,
+					localStorage.getItem('userId')
+				)
+				.subscribe();
 		console.log(this.addForm);
 	}
 
@@ -51,7 +72,6 @@ export class AddComponent implements OnInit {
 		const file = (e.target as HTMLInputElement).files
 			? (e.target as HTMLInputElement).files![0]
 			: null;
-		console.log(file);
 
 		this.convertToBase64(file, i);
 	}
@@ -62,6 +82,9 @@ export class AddComponent implements OnInit {
 		});
 		observable.subscribe((data) => {
 			this.myImages[i] = data;
+			this.photos.push(this.fb.control(data));
+			console.log(this.photos.value);
+			console.log(this.addForm.controls.title.value);
 		});
 	}
 
