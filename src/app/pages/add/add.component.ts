@@ -85,18 +85,30 @@ export class AddComponent implements OnInit {
 
 	onSubmit() {
 		if (this.addForm.valid)
-			this.listingService
-				.addListing(
-					this.addForm.controls.title.value!,
-					this.addForm.controls.description.value!,
-					this.addForm.controls.location.value!,
-					this.addForm.controls.price.value!,
-					this.addForm.controls.photos.value,
-					this.addForm.controls.category.value!,
-					localStorage.getItem('userId')
-				)
-				.subscribe();
-		console.log(this.addForm);
+			if (this.showEdit === false) {
+				this.listingService
+					.addListing(
+						this.addForm.controls.title.value!,
+						this.addForm.controls.description.value!,
+						this.addForm.controls.location.value!,
+						this.addForm.controls.price.value!,
+						this.addForm.controls.photos.value,
+						this.addForm.controls.category.value!,
+						localStorage.getItem('userId')
+					)
+					.subscribe();
+			} else if (this.showEdit === true) {
+				this.listingService
+					.editListing(
+						this.addForm.controls.title.value!,
+						this.addForm.controls.description.value!,
+						this.addForm.controls.location.value!,
+						this.addForm.controls.price.value!,
+						this.addForm.controls.photos.value,
+						this.addForm.controls.category.value!
+					)
+					.subscribe();
+			}
 	}
 
 	onChange(e: any, i: number) {
