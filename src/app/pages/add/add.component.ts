@@ -151,8 +151,7 @@ export class AddComponent implements OnInit {
 	openDialog() {
 		const dialogRef = this.dialog.open(PreviewComponent, {
 			height: '100%',
-			width: '100%',
-			maxWidth: '100vw',
+
 			panelClass: 'preview-dialog',
 			data: {
 				title: this.addForm.controls.title.value,
