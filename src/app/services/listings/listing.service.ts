@@ -156,11 +156,12 @@ export class ListingService {
 		location: string,
 		price: number,
 		images: (string | null)[],
-		category: string
+		category: string,
+		listingId: string | null
 	) {
 		return this.http
 			.put(
-				this.ROOT_URL + '/api/listing/create',
+				this.ROOT_URL + '/api/listing/' + listingId,
 				{
 					title: title,
 					description: description,

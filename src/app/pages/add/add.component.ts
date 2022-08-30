@@ -57,7 +57,7 @@ export class AddComponent implements OnInit {
 		private fb: FormBuilder,
 		public dialog: MatDialog
 	) {
-		if (this.route.snapshot.paramMap.get('id')) {
+		if (this.route.snapshot.paramMap.get('id') !== null) {
 			this.showEdit = true;
 			this.urlId = this.route.snapshot.paramMap.get('id');
 			this.listingService.getListingById(this.urlId).subscribe((result) => {
@@ -84,6 +84,8 @@ export class AddComponent implements OnInit {
 	ngOnInit(): void {}
 
 	onSubmit() {
+		console.log(this.showEdit);
+
 		if (this.addForm.valid)
 			if (this.showEdit === false) {
 				this.listingService
@@ -105,7 +107,8 @@ export class AddComponent implements OnInit {
 						this.addForm.controls.location.value!,
 						this.addForm.controls.price.value!,
 						this.addForm.controls.photos.value,
-						this.addForm.controls.category.value!
+						this.addForm.controls.category.value!,
+						this.route.snapshot.paramMap.get('id')
 					)
 					.subscribe();
 			}
