@@ -43,13 +43,20 @@
 	&__content {
 		display: grid;
 		grid-template-columns: auto;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
 		&--images {
 			display: grid;
 			grid-template-columns: auto;
 			align-self: start;
 			align-items: start;
 			justify-items: center;
-			gap: 10px;
+			gap: 20px;
+			img {
+				width: 600px;
+				height: 350px;
+			}
 		}
 	}
 }
