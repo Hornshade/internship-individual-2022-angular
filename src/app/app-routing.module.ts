@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardGuard } from './guards/auth-guard.guard';
 import { AddComponent } from './pages/add/add.component';
 import { CardsComponent } from './pages/cards/cards.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
@@ -19,8 +20,20 @@ const routes: Routes = [
 		path: 'favorite/:userId',
 		component: FavoritesComponent,
 		title: 'Favorites page',
+		canActivate: [AuthGuardGuard],
 	},
-	{ path: 'add', component: AddComponent, title: 'Add Page' },
+	{
+		path: 'add',
+		component: AddComponent,
+		title: 'Add Page',
+		canActivate: [AuthGuardGuard],
+	},
+	{
+		path: 'edit/:id',
+		component: AddComponent,
+		title: 'Add Page',
+		canActivate: [AuthGuardGuard],
+	},
 	{ path: 'login', component: LoginComponent, title: 'Login Page' },
 	{ path: 'signup', component: SignupComponent, title: 'Signup Page' },
 	{ path: 'forgot', component: ForgotComponent, title: 'Forgot page' },

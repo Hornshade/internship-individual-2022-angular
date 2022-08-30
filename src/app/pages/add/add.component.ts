@@ -7,6 +7,7 @@ import {
 	Validators,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscriber } from 'rxjs';
 import { PreviewComponent } from 'src/app/components/modal/preview/preview.component';
 import { ListingService } from 'src/app/services/listings/listing.service';
@@ -21,6 +22,8 @@ export class AddComponent implements OnInit {
 	myImage: any;
 	numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 	myImages!: any[];
+	urlId!: string | null;
+	showEdit: boolean = false;
 
 	addForm = this.fb.group({
 		title: [
@@ -49,10 +52,32 @@ export class AddComponent implements OnInit {
 	}
 
 	constructor(
+		private route: ActivatedRoute,
 		private listingService: ListingService,
 		private fb: FormBuilder,
 		public dialog: MatDialog
 	) {
+		if (this.route.snapshot.paramMap.get('id')) {
+			this.showEdit = true;
+			this.urlId = this.route.snapshot.paramMap.get('id');
+			this.listingService.getListingById(this.urlId).subscribe((result) => {
+				this.addForm.controls.title.setValue(result.title);
+				this.addForm.controls.category.setValue(result.category);
+				this.addForm.controls.price.setValue(result.price);
+				if (result.location.length > 2) {
+					this.addForm.controls.location.setValue(result.location[2]);
+				} else {
+					this.addForm.controls.location.setValue(result.location[0]);
+				}
+				this.addForm.controls.description.setValue(result.description);
+				if (result.images.length > 0) {
+					result.images.map((img) => {
+						this.photos.push(this.fb.control(img));
+					});
+					this.myImages = result.images.map((x) => x);
+				}
+			});
+		}
 		this.myImages = ['', '', '', '', '', '', '', '', ''];
 	}
 
@@ -119,6 +144,7 @@ export class AddComponent implements OnInit {
 				location: this.addForm.controls.location.value,
 				images: this.addForm.controls.photos.value,
 				author: localStorage.getItem('userId'),
+				editShow: this.showEdit,
 			},
 		});
 
