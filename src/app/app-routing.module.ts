@@ -31,7 +31,7 @@ const routes: Routes = [
 	{
 		path: 'edit/:id',
 		component: AddComponent,
-		title: 'Add Page',
+		title: 'Edit Page',
 		canActivate: [AuthGuardGuard],
 	},
 	{ path: 'login', component: LoginComponent, title: 'Login Page' },
