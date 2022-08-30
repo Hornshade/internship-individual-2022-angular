@@ -120,4 +120,33 @@ export class ListingService {
 			})
 			.pipe(catchError(this.handleError));
 	}
+
+	addListing(
+		title: string,
+		description: string,
+		location: string,
+		price: number,
+		images: (string | null)[],
+		category: string,
+		author: string | null
+	) {
+		return this.http
+			.post(
+				this.ROOT_URL + '/api/listing/create',
+				{
+					title: title,
+					description: description,
+					shortDescription: '',
+					location: [location],
+					price: price,
+					status: 0,
+					images: images,
+					category: category,
+					viewCounter: 0,
+					author: author,
+				},
+				{ headers: { Accept: '*/*', 'Content-Type': 'application/json' } }
+			)
+			.pipe(catchError(this.handleError));
+	}
 }
