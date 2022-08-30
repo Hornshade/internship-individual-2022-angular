@@ -6,7 +6,9 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { elementAt, Observable, Subscriber } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable, Subscriber } from 'rxjs';
+import { PreviewComponent } from 'src/app/components/modal/preview/preview.component';
 import { ListingService } from 'src/app/services/listings/listing.service';
 
 @Component({
@@ -46,7 +48,11 @@ export class AddComponent implements OnInit {
 		return this.addForm.controls['photos'] as FormArray;
 	}
 
-	constructor(private listingService: ListingService, private fb: FormBuilder) {
+	constructor(
+		private listingService: ListingService,
+		private fb: FormBuilder,
+		public dialog: MatDialog
+	) {
 		this.myImages = ['', '', '', '', '', '', '', '', ''];
 	}
 
@@ -100,5 +106,24 @@ export class AddComponent implements OnInit {
 			subscriber.error(error);
 			subscriber.complete();
 		};
+	}
+
+	openDialog() {
+		const dialogRef = this.dialog.open(PreviewComponent, {
+			height: '100%',
+			width: '100%',
+			data: {
+				title: this.addForm.controls.title.value,
+				price: this.addForm.controls.price.value,
+				description: this.addForm.controls.description.value,
+				location: this.addForm.controls.location.value,
+				images: this.addForm.controls.photos.value,
+				author: localStorage.getItem('userId'),
+			},
+		});
+
+		dialogRef.afterClosed().subscribe((result) => {
+			console.log(`Dialog result: ${result}`);
+		});
 	}
 }

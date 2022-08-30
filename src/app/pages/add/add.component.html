@@ -155,7 +155,13 @@
 	</div>
 	<mat-divider class="c-add__divider"></mat-divider>
 	<div class="c-add__actions">
-		<button mat-stroked-button class="c-add__actions--preview">Preview</button>
+		<button
+			mat-stroked-button
+			class="c-add__actions--preview"
+			(click)="openDialog()"
+		>
+			Preview
+		</button>
 		<button
 			ype="submit"
 			mat-flat-button
