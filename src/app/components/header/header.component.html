@@ -16,7 +16,13 @@
 			<!-- search input  -->
 			<div class="c-header__left--search">
 				<mat-form-field appearance="outline">
-					<input matInput placeholder="Search" type="search" />
+					<input
+						matInput
+						placeholder="Search"
+						type="search"
+						#searchInput
+						(keyup.enter)="searchListing(searchInput.value)"
+					/>
 					<mat-icon matSuffix>search</mat-icon>
 				</mat-form-field>
 			</div>

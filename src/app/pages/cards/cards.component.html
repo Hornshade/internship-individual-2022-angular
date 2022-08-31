@@ -1,5 +1,9 @@
 <!-- category page title  -->
-<h1 class="c-title">{{ category }}</h1>
+<h1 class="c-title">
+	{{
+		search ? resultCount + ' results for ' + '"' + searchString + '"' : category
+	}}
+</h1>
 <!-- filters  -->
 <div class="c-filters">
 	<app-filters [(gridView)]="gridView"></app-filters>

@@ -27,6 +27,11 @@ export class CardsComponent implements OnInit {
 	isLogged: boolean = false;
 	userId!: string | null;
 
+	//search variables
+	search: boolean = false;
+	resultCount: number = 0;
+	searchString: string | null = null;
+
 	//have to change route later to /category
 	constructor(
 		private listingsService: ListingService,
@@ -35,19 +40,22 @@ export class CardsComponent implements OnInit {
 		private favoriteService: FavoriteService
 	) {
 		this.userId = localStorage.getItem('userId');
+		this.searchString = this.route.snapshot.paramMap.get('searchString');
+		if (this.searchString !== null) this.search = true;
 	}
 
 	ngOnInit(): void {
 		this.loginService.isLoggedIn.subscribe(
 			(logged) => (this.isLogged = logged)
 		);
+
 		this.listingsService.currentCategory.subscribe((selectedCategory) => {
 			this.selectedCategory = selectedCategory;
 			if (selectedCategory === 'big') {
 				this.category = 'Big Houses';
 			} else if (selectedCategory === 'small') {
 				this.category = 'Small Houses';
-			} else {
+			} else if (selectedCategory === 'latest') {
 				this.category = 'Latest';
 			}
 		});
@@ -60,10 +68,29 @@ export class CardsComponent implements OnInit {
 		this.listingsService.currentOrder.subscribe(
 			(selectedOrder) => (this.selectedOrder = selectedOrder)
 		);
-		this.listingsService.currentListing.subscribe((listing) => {
-			this.listings = listing;
-			this.pageSlice = this.listings.slice(0, 4);
-		});
+
+		if (this.searchString === null) {
+			this.listingsService.currentListing.subscribe((listing) => {
+				this.listings = listing;
+				this.pageSlice = this.listings.slice(0, 4);
+			});
+		} else {
+			this.listingsService.getListings().subscribe((data) => {
+				data.map((result) => {
+					if (this.searchString !== null) {
+						if (
+							result.title
+								.toLowerCase()
+								.includes(this.searchString.toLowerCase())
+						) {
+							this.listings.push(result);
+							this.resultCount++;
+						}
+					}
+					this.pageSlice = this.listings.slice(0, 4);
+				});
+			});
+		}
 		if (this.isLogged) {
 			if (this.userId !== null)
 				this.favoriteService.getFavorite(this.userId).subscribe((data) => {
