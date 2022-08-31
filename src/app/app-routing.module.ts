@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardGuard } from './guards/auth-guard.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { AddComponent } from './pages/add/add.component';
 import { CardsComponent } from './pages/cards/cards.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
@@ -15,24 +15,25 @@ import { SingleComponent } from './pages/single/single.component';
 const routes: Routes = [
 	{ path: '', component: HomeComponent, title: 'Home page' },
 	{ path: 'category/:categ', component: CardsComponent, title: 'Category' },
+	{ path: 'search/:searchString', component: CardsComponent, title: 'Search' },
 	{ path: 'listing/:id', component: SingleComponent, title: 'Single page' },
 	{
 		path: 'favorite/:userId',
 		component: FavoritesComponent,
 		title: 'Favorites page',
-		canActivate: [AuthGuardGuard],
+		canActivate: [AuthGuard],
 	},
 	{
 		path: 'add',
 		component: AddComponent,
 		title: 'Add Page',
-		canActivate: [AuthGuardGuard],
+		canActivate: [AuthGuard],
 	},
 	{
 		path: 'edit/:id',
 		component: AddComponent,
 		title: 'Edit Page',
-		canActivate: [AuthGuardGuard],
+		canActivate: [AuthGuard],
 	},
 	{ path: 'login', component: LoginComponent, title: 'Login Page' },
 	{ path: 'signup', component: SignupComponent, title: 'Signup Page' },

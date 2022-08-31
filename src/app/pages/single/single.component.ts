@@ -32,6 +32,10 @@ export class SingleComponent implements OnInit {
 		const dialogRef = this.dialog.open(GaleryModalComponent, {
 			height: '100%',
 			width: '100%',
+			maxWidth: '100vw',
+			data: {
+				images: this.listing.images,
+			},
 		});
 
 		dialogRef.afterClosed().subscribe((result) => {

@@ -37,4 +37,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 		this.router.navigate(['']);
 		location.reload();
 	}
+
+	searchListing(searchString: string) {
+		this.router
+			.navigate(['search', searchString])
+			.then(() => location.reload());
+	}
 }
