@@ -1,8 +1,18 @@
 <div class="c-account">
 	<div class="c-account__tabs">
 		<div class="c-account__tabs--image">
-			<img src="" alt="" />
-			<button mat-mini-fab><mat-icon>edit</mat-icon></button>
+			<img *ngIf="myImage" [src]="myImage" alt="" />
+			<div class="c-account__tabs--image--picker">
+				<label for="image">
+					<mat-icon>edit</mat-icon>
+					<input
+						id="image"
+						type="file"
+						accept="image/x-png,image/png"
+						(change)="onChange($event)"
+					/>
+				</label>
+			</div>
 		</div>
 		<div class="c-account__tabs--options">
 			<button

@@ -62,8 +62,8 @@ import { PreviewComponent } from './components/modal/preview/preview.component';
 		NotificationsComponent,
 		NotificationModalComponent,
 		SecurityComponent,
-  AddComponent,
-  PreviewComponent,
+		AddComponent,
+		PreviewComponent,
 	],
 	imports: [
 		BrowserModule,
