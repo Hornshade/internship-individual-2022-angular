@@ -84,6 +84,8 @@ export class AddComponent implements OnInit {
 	ngOnInit(): void {}
 
 	onSubmit() {
+		console.log(this.showEdit);
+
 		if (this.addForm.valid)
 			if (this.showEdit === false) {
 				this.listingService
