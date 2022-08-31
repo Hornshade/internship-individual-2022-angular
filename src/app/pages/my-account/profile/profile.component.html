@@ -80,6 +80,7 @@
 						</div>
 					</div>
 					<button
+						type="submit"
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!fullNameForm.valid"
@@ -118,6 +119,7 @@
 					</mat-form-field>
 				</div>
 				<button
+					type="submit"
 					mat-flat-button
 					class="c-profile__content--item--form--button"
 					(click)="submitGender()"
@@ -153,10 +155,11 @@
 								matSuffix
 								[for]="picker"
 							></mat-datepicker-toggle>
-							<mat-datepicker #picker></mat-datepicker>
+							<mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
 						</mat-form-field>
 					</div>
 					<button
+						type="submit"
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!birthDateForm.valid"
@@ -208,6 +211,7 @@
 						</div>
 					</div>
 					<button
+						type="submit"
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!emailForm.valid"
@@ -259,6 +263,7 @@
 						</div>
 					</div>
 					<button
+						type="submit"
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!phoneForm.valid"
@@ -312,6 +317,7 @@
 						</div>
 					</div>
 					<button
+						type="submit"
 						mat-flat-button
 						class="c-profile__content--item--form--button"
 						[disabled]="!addressForm.valid"

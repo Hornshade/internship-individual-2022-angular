@@ -120,4 +120,60 @@ export class ListingService {
 			})
 			.pipe(catchError(this.handleError));
 	}
+	//endpoint to add listings
+	addListing(
+		title: string,
+		description: string,
+		location: string,
+		price: number,
+		images: (string | null)[],
+		category: string,
+		author: string | null
+	) {
+		return this.http
+			.post(
+				this.ROOT_URL + '/api/listing/create',
+				{
+					title: title,
+					description: description,
+					shortDescription: '',
+					location: [location],
+					price: price,
+					status: 0,
+					images: images,
+					category: category,
+					viewCounter: 0,
+					author: author,
+				},
+				{ headers: { Accept: '*/*', 'Content-Type': 'application/json' } }
+			)
+			.pipe(catchError(this.handleError));
+	}
+	//endpoint to edit listings
+	editListing(
+		title: string,
+		description: string,
+		location: string,
+		price: number,
+		images: (string | null)[],
+		category: string,
+		listingId: string | null
+	) {
+		return this.http
+			.put(
+				this.ROOT_URL + '/api/listing/' + listingId,
+				{
+					title: title,
+					description: description,
+					shortDescription: '',
+					location: [location],
+					price: price,
+					status: 0,
+					images: images,
+					category: category,
+				},
+				{ headers: { Accept: '*/*', 'Content-Type': 'application/json' } }
+			)
+			.pipe(catchError(this.handleError));
+	}
 }
