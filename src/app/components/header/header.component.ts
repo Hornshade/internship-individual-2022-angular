@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -14,7 +14,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 	isLogged!: boolean;
 	userId: string | null = '';
 
-	constructor(private loginService: LoginService, private router: Router) {
+	constructor(
+		private loginService: LoginService,
+		private router: Router,
+		private activeRoute: ActivatedRoute
+	) {
 		this.userId = localStorage.getItem('userId');
 	}
 
@@ -36,5 +40,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
 		this.router.navigate(['']);
 		location.reload();
+	}
+
+	searchListing(searchString: string) {
+		this.router
+			.navigate(['search', searchString])
+			.then(() => location.reload());
 	}
 }

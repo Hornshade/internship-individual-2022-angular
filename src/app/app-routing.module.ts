@@ -15,6 +15,7 @@ import { SingleComponent } from './pages/single/single.component';
 const routes: Routes = [
 	{ path: '', component: HomeComponent, title: 'Home page' },
 	{ path: 'category/:categ', component: CardsComponent, title: 'Category' },
+	{ path: 'search/:searchString', component: CardsComponent, title: 'Search' },
 	{ path: 'listing/:id', component: SingleComponent, title: 'Single page' },
 	{
 		path: 'favorite/:userId',
