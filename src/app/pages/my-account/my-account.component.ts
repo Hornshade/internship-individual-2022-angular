@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscriber } from 'rxjs';
 import { LoginService } from 'src/app/services/login/login.service';
 
@@ -15,7 +15,11 @@ export class MyAccountComponent implements OnInit {
 	chat: boolean = false;
 	myImage: any;
 
-	constructor(private router: Router, private loginService: LoginService) {}
+	constructor(
+		private router: Router,
+		private loginService: LoginService,
+		private activatedRoute: ActivatedRoute
+	) {}
 
 	ngOnInit(): void {
 		this.loginService
@@ -23,6 +27,19 @@ export class MyAccountComponent implements OnInit {
 			.subscribe((data) => {
 				this.myImage = data.photo;
 			});
+		if (this.activatedRoute.snapshot.paramMap.get('tab') === 'profile') {
+			this.toggle('profile');
+		} else if (
+			this.activatedRoute.snapshot.paramMap.get('tab') === 'security'
+		) {
+			this.toggle('security');
+		} else if (
+			this.activatedRoute.snapshot.paramMap.get('tab') === 'notifications'
+		) {
+			this.toggle('notifications');
+		} else if (this.activatedRoute.snapshot.paramMap.get('tab') === 'chat') {
+			this.toggle('chat');
+		}
 	}
 
 	logout() {
@@ -35,24 +52,28 @@ export class MyAccountComponent implements OnInit {
 	toggle(content: string) {
 		switch (content) {
 			case 'profile':
+				this.router.navigate(['my-account/profile']);
 				this.profile = true;
 				this.security = false;
 				this.notifications = false;
 				this.chat = false;
 				break;
 			case 'security':
+				this.router.navigate(['my-account/security']);
 				this.profile = false;
 				this.security = true;
 				this.notifications = false;
 				this.chat = false;
 				break;
 			case 'notifications':
+				this.router.navigate(['my-account/notifications']);
 				this.profile = false;
 				this.security = false;
 				this.notifications = true;
 				this.chat = false;
 				break;
 			case 'chat':
+				this.router.navigate(['my-account/chat']);
 				this.profile = false;
 				this.security = false;
 				this.notifications = false;
