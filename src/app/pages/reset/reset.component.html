@@ -1,0 +1,93 @@
+<div class="c-onboarding">
+	<div class="c-onboarding__left">
+		<div class="c-onboarding__left--form">
+			<img
+				class="c-onboarding__left--form--logo"
+				src="../../../assets/logo/logo-assist-tagline.png"
+				alt="Assist logo"
+			/>
+			<h1 class="c-onboarding__left--form--title">Reset password</h1>
+			<h3 class="c-onboarding__left--form--subtitle">
+				Create a new password for your account.
+			</h3>
+
+			<form
+				class="c-onboarding__left--form--group"
+				[formGroup]="resetForm"
+				novalidate
+			>
+				<label class="c-onboarding__left--form--group--label"
+					>Old Password</label
+				>
+				<mat-form-field appearance="outline">
+					<input
+						type="password"
+						matInput
+						placeholder="Placeholder"
+						formControlName="oldPassword"
+					/>
+					<mat-error
+						*ngIf="
+							resetForm.get('oldPassword')?.invalid &&
+							(resetForm.get('oldPassword')?.dirty ||
+								resetForm.get('oldPassword')?.touched) &&
+							resetForm.get('oldPassword')?.errors?.required
+						"
+					>
+						Password required
+					</mat-error>
+					<mat-error
+						*ngIf="
+							!resetForm.get('oldPassword')?.errors?.required &&
+							resetForm.get('oldPassowrd')?.value === userPassword
+						"
+					>
+						Invalid password</mat-error
+					>
+					<mat-hint *ngIf="resetForm.get('oldPassword')?.value.length < 8"
+						>At least 8 characters.</mat-hint
+					>
+				</mat-form-field>
+				<label class="c-onboarding__left--form--group--label"
+					>New Password</label
+				>
+				<mat-form-field appearance="outline">
+					<input
+						type="password"
+						matInput
+						placeholder="Placeholder"
+						formControlName="newPassword"
+					/>
+					<mat-error
+						*ngIf="
+							resetForm.get('newPassword')?.invalid &&
+							(resetForm.get('newPassword')?.dirty ||
+								resetForm.get('newPassword')?.touched) &&
+							resetForm.get('newPassword')?.errors?.required
+						"
+					>
+						Password required
+					</mat-error>
+					<mat-error *ngIf="!resetForm.get('newPassword')?.errors?.required">
+						Invalid password</mat-error
+					>
+					<mat-hint *ngIf="resetForm.get('newPassword')?.value.length < 8"
+						>At least 8 characters.</mat-hint
+					>
+				</mat-form-field>
+				<button
+					type="submit"
+					mat-flat-button
+					class="c-onboarding__left--form--group--submit"
+					[disabled]="!resetForm.valid"
+					(click)="onSubmit()"
+				>
+					Confirm password
+				</button>
+			</form>
+		</div>
+	</div>
+	<div class="c-onboarding__right">
+		<img src="../../../assets/images/splash.png" alt="Splash" />
+	</div>
+</div>

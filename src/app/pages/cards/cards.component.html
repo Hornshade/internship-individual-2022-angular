@@ -1,5 +1,9 @@
 <!-- category page title  -->
-<h1 class="c-title">{{ category }}</h1>
+<h1 class="c-title">
+	{{
+		search ? resultCount + ' results for ' + '"' + searchString + '"' : category
+	}}
+</h1>
 <!-- filters  -->
 <div class="c-filters">
 	<app-filters [(gridView)]="gridView"></app-filters>
@@ -10,11 +14,16 @@
 		class="c-cards__card"
 		*ngFor="let listing of pageSlice"
 		[listing]="listing"
+		[favorite]="getFavStatus(listing.id)"
 	></app-card>
 </div>
 <!-- list view  -->
 <div class="c-list" *ngIf="!gridView">
-	<app-list *ngFor="let listing of pageSlice" [listing]="listing"></app-list>
+	<app-list
+		*ngFor="let listing of pageSlice"
+		[listing]="listing"
+		[favorite]="getFavStatus(listing.id)"
+	></app-list>
 </div>
 <!-- pagination of 12 by default but i don't have 12 items in backend so i use 4 for now -->
 <mat-paginator

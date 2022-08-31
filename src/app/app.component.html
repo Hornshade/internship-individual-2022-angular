@@ -1,6 +1,8 @@
-<!-- header component -->
-<app-header></app-header>
-
-<div class="layout">
-  <router-outlet></router-outlet>
+<!-- header component  shows on all pages except onboarding(login/register/forgot password)-->
+<app-header *ngIf="checkPage()"></app-header>
+<!-- this router-outlet is for when the page is onboarding  -->
+<router-outlet *ngIf="checkPage() === false"></router-outlet>
+<!-- the router with layout shows on all pages except onboarding  -->
+<div class="layout" *ngIf="checkPage() === true">
+	<router-outlet></router-outlet>
 </div>

@@ -1,0 +1,40 @@
+@import '../../../../styles/variables.scss';
+
+.c-notifications {
+	&__title {
+		color: $color-black;
+		font-size: $font-h4;
+		font-weight: $font-bold;
+		margin-bottom: 40px;
+	}
+	&__content {
+		&--item {
+			&--top {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 20px;
+				&--text {
+					color: $color-gray-700;
+					font-size: $font-body-normal;
+					font-weight: $font-regular;
+					font-family: $primary_font_family;
+					margin-bottom: 0;
+				}
+				button {
+					color: $color-primary-500;
+					font-size: $font-button;
+					font-weight: $font-semibold;
+				}
+			}
+			&--bottom {
+				color: $color-gray-400;
+				font-size: $font-body-small;
+				font-weight: $font-regular;
+				font-family: $primary_font_family;
+				margin-bottom: 15px;
+			}
+		}
+	}
+}

@@ -1,0 +1,175 @@
+<div class="c-add">
+	<div class="c-add__title">Add new</div>
+	<div class="c-add__details">
+		<div class="c-add__details--left">
+			<h3>Details</h3>
+			<h4>Be as thorough as you can.</h4>
+		</div>
+		<div class="c-add__details--right">
+			<form class="c-add__details--right--form" [formGroup]="addForm">
+				<!-- Details : title  -->
+				<div class="c-add__details--right--form--input">
+					<label>Title</label>
+					<mat-form-field appearance="outline">
+						<input
+							type="text"
+							matInput
+							formControlName="title"
+							placeholder="Placeholder"
+						/>
+						<mat-error
+							*ngIf="
+								addForm.get('title')?.invalid &&
+								(addForm.get('title')?.dirty ||
+									addForm.get('title')?.touched) &&
+								addForm.get('title')?.errors?.['required']
+							"
+							>Title is required</mat-error
+						>
+						<mat-hint>Minimum 2 characters</mat-hint>
+					</mat-form-field>
+				</div>
+				<!-- Details : category  -->
+				<div class="c-add__details--right--form--input">
+					<label>Category</label>
+					<mat-form-field appearance="outline">
+						<mat-select
+							formControlName="category"
+							placeholder="Select a category"
+						>
+							<mat-option value="big">Big houses</mat-option>
+							<mat-option value="small">Small houses</mat-option>
+						</mat-select>
+						<mat-error
+							*ngIf="
+								addForm.get('category')?.invalid &&
+								(addForm.get('category')?.dirty ||
+									addForm.get('category')?.touched) &&
+								addForm.get('category')?.errors?.['required']
+							"
+							>Category is required</mat-error
+						>
+						<mat-hint>Category is required</mat-hint>
+					</mat-form-field>
+				</div>
+
+				<!-- Details : price  -->
+				<div class="c-add__details--right--form--input">
+					<label>Price</label>
+					<div class="c-add__details--right--form--input--price">
+						<mat-form-field appearance="outline">
+							<input matInput type="number" formControlName="price" />
+							<mat-error
+								*ngIf="
+									addForm.get('price')?.invalid &&
+									(addForm.get('price')?.dirty ||
+										addForm.get('price')?.touched) &&
+									addForm.get('price')?.errors?.['required']
+								"
+								>Price is required</mat-error
+							>
+							<mat-hint>Price is required</mat-hint>
+						</mat-form-field>
+						lei
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<mat-divider class="c-add__divider"></mat-divider>
+	<div class="c-add__photos">
+		<div class="c-add__photos--left">
+			<h3>Photos & videos</h3>
+			<h4>Lörem ipsum trede relig, oktig. Tism rallylydnad.</h4>
+		</div>
+		<div class="c-add__photos--right">
+			<form class="c-add__photos--right--form" [formGroup]="addForm">
+				<div
+					*ngFor="let idx of numbers; let i = index"
+					class="c-add__photos--right--form--input"
+				>
+					<label for="{{ i }}">
+						<img *ngIf="myImages[i]" [src]="myImages[i]" alt="" />
+						<mat-icon *ngIf="!myImages[i]">add</mat-icon>
+						<input
+							id="{{ i }}"
+							type="file"
+							formArrayName="photos"
+							accept="image/jpeg,image/x-png,image/png"
+							(change)="onChange($event, i)"
+						/>
+					</label>
+				</div>
+				<mat-hint>Minimum 5 photos(PNG or JPEG)</mat-hint>
+			</form>
+		</div>
+	</div>
+	<mat-divider class="c-add__divider"></mat-divider>
+	<div class="c-add__description">
+		<div class="c-add__description--left">
+			<h3>Description</h3>
+			<h4>Lörem ipsum trede relig, oktig. Tism rallylydnad.</h4>
+		</div>
+		<div class="c-add__description--right">
+			<form [formGroup]="addForm" class="c-add__description--right--form">
+				<label>Description details</label>
+				<mat-form-field appearance="outline">
+					<textarea rows="10" matInput formControlName="description"></textarea>
+					<mat-hint>{{
+						addForm.get('description')?.value?.length +
+							'/ 100 mandatory characters'
+					}}</mat-hint>
+					<mat-error>Description required</mat-error>
+				</mat-form-field>
+			</form>
+		</div>
+	</div>
+	<mat-divider class="c-add__divider"></mat-divider>
+	<div class="c-add__contact">
+		<div class="c-add__contact--left">
+			<h3>Contact info</h3>
+			<h4>Be as thorough as you can.</h4>
+		</div>
+		<div class="c-add__contact--right">
+			<form [formGroup]="addForm" class="c-add__contact--right--form">
+				<div class="c-add__contact--right--form--input">
+					<label>Location</label>
+					<mat-form-field appearance="outline">
+						<input matInput type="text" formControlName="location" />
+						<mat-error>Location is required</mat-error>
+						<mat-hint>Location is required</mat-hint>
+					</mat-form-field>
+				</div>
+				<div class="c-add__contact--right--form--input">
+					<label>Phone number</label>
+					<div class="c-add__contact--right--form--input--phone">
+						<mat-form-field appearance="outline">
+							<input matInput type="number" formControlName="phone" />
+							<mat-error>Phone number is required</mat-error>
+							<mat-hint>Phone number is required</mat-hint>
+						</mat-form-field>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<mat-divider class="c-add__divider"></mat-divider>
+	<div class="c-add__actions">
+		<button
+			mat-stroked-button
+			class="c-add__actions--preview"
+			(click)="openDialog()"
+		>
+			Preview
+		</button>
+		<button
+			ype="submit"
+			mat-flat-button
+			class="c-add__actions--publish"
+			[disabled]="!addForm.valid"
+			(click)="onSubmit()"
+		>
+			{{ showEdit ? 'Save changes' : 'Publish' }}
+		</button>
+	</div>
+</div>

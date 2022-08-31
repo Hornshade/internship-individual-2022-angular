@@ -1,0 +1,100 @@
+<div class="c-onboarding">
+	<div class="c-onboarding__left">
+		<div class="c-onboarding__left--form">
+			<img
+				class="c-onboarding__left--form--logo"
+				src="../../../assets/logo/logo-assist-tagline.png"
+				alt="Assist logo"
+			/>
+			<h1 class="c-onboarding__left--form--title">Log in</h1>
+			<h3 class="c-onboarding__left--form--subtitle">
+				Enter your account details below.
+			</h3>
+
+			<form class="c-onboarding__left--form--group" [formGroup]="loginForm">
+				<label>Email</label>
+				<mat-form-field appearance="outline">
+					<input
+						matInput
+						placeholder="Placeholder"
+						formControlName="email"
+						novalidate
+					/>
+					<mat-error
+						*ngIf="
+							loginForm.get('email')?.invalid &&
+							(loginForm.get('email')?.dirty ||
+								loginForm.get('email')?.touched) &&
+							loginForm.get('email')?.errors?.required
+						"
+					>
+						Email is required
+					</mat-error>
+					<mat-error *ngIf="!loginForm.get('email')?.errors?.required">
+						Invalid email</mat-error
+					>
+				</mat-form-field>
+				<label>Password</label>
+				<mat-form-field appearance="outline">
+					<input
+						[type]="hide ? 'password' : 'text'"
+						matInput
+						placeholder="Your password"
+						formControlName="password"
+					/>
+					<button
+						type="button"
+						mat-icon-button
+						matSuffix
+						(click)="hide = !hide"
+						[attr.aria-label]="'Hide password'"
+						[attr.aria-pressed]="hide"
+					>
+						<mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+					</button>
+					<mat-error *ngIf="!loginForm.get('password')?.errors?.required">
+						Password must have at least 8 characters
+					</mat-error>
+					<mat-error
+						*ngIf="
+							loginForm.get('password')?.invalid &&
+							(loginForm.get('password')?.dirty ||
+								loginForm.get('password')?.touched) &&
+							loginForm.get('password')?.errors?.required
+						"
+					>
+						Password is required
+					</mat-error>
+				</mat-form-field>
+				<div class="c-onboarding__left--form--group--options">
+					<mat-checkbox color="primary">Remember me</mat-checkbox>
+					<p routerLink="/forgot">Forgot your password?</p>
+				</div>
+				<button
+					mat-flat-button
+					class="c-onboarding__left--form--group--submit"
+					[disabled]="!loginForm.valid"
+					(click)="onSubmit()"
+				>
+					Log in
+				</button>
+				<button
+					type="button"
+					mat-stroked-button
+					class="c-onboarding__left--form--group--google"
+					(click)="googleSubmit()"
+				>
+					<img src="../../../assets/icons/google.svg" alt="google" />
+					Log in with Google
+				</button>
+				<div class="c-onboarding__left--form--group--sign">
+					Don't have an account?
+					<p routerLink="/signup">Sign up</p>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="c-onboarding__right">
+		<img src="../../../assets/images/splash.png" alt="Splash" />
+	</div>
+</div>
