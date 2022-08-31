@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -14,11 +14,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 	isLogged!: boolean;
 	userId: string | null = '';
 
-	constructor(
-		private loginService: LoginService,
-		private router: Router,
-		private activeRoute: ActivatedRoute
-	) {
+	constructor(private loginService: LoginService, private router: Router) {
 		this.userId = localStorage.getItem('userId');
 	}
 
