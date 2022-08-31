@@ -1,18 +1,18 @@
 <div class="c-single">
 	<div class="c-single__images">
 		<div class="c-single__images--big">
-			<img src="{{ listing.images[0] }}" alt="first" />
+			<img src="{{ listing.images ? listing.images[0] : null }}" alt="first" />
 		</div>
 		<div class="c-single__images--small">
-			<img src="{{ listing.images[1] }}" alt="second" />
+			<img src="{{ listing.images ? listing.images[1] : null }}" alt="second" />
 			<img
-				src="{{ listing.images[2] }}"
+				src="{{ listing.images ? listing.images[2] : null }}"
 				alt="third"
 				style="border-top-right-radius: 12px"
 			/>
-			<img src="{{ listing.images[3] }}" alt="fourth" />
+			<img src="{{ listing.images ? listing.images[3] : null }}" alt="fourth" />
 			<img
-				src="{{ listing.images[4] }}"
+				src="{{ listing.images ? listing.images[4] : null }}"
 				alt="fifth"
 				style="border-bottom-right-radius: 12px"
 			/>
@@ -40,7 +40,13 @@
 			<p>{{ listing.description }}</p>
 			<mat-divider></mat-divider>
 			<h5>Location</h5>
-			<p>{{ listing.location[2] + ' , ' + listing.location[5] }}</p>
+			<p>
+				{{
+					listing.location
+						? listing.location[2] + ' , ' + listing.location[5]
+						: 'Unknown location'
+				}}
+			</p>
 			<div class="c-single__description--left--google"></div>
 			<mat-divider></mat-divider>
 			<h5>Message the seller</h5>
@@ -55,11 +61,16 @@
 		<div class="c-single__description--right">
 			<div class="c-single__description--right--author">
 				<div class="c-single__description--right--author--photo">
-					<!-- <img src="{{ listing.author.photo }}" alt="Author" /> -->
+					<img src="{{ listing.author ? listing.author.photo : '' }}" alt="" />
 				</div>
 				<div class="c-single__description--right--author--text">
-					<h3>{{ listing.author.fullName }}</h3>
-					<p>Joined in {{ listing.author.createdAt }}</p>
+					<h3>
+						{{ listing.author ? listing.author.fullName : 'Unknown author' }}
+					</h3>
+					<p>
+						Joined in
+						{{ listing.author ? listing.author.createdAt : 'unknown' }}
+					</p>
 					<p>Response rate: 97%</p>
 					<p>Response time: within an hour</p>
 				</div>
@@ -77,7 +88,11 @@
 					class="c-single__description--right--author--buttons--favorite"
 					(click)="addToFavorite()"
 				>
-					<mat-icon>favorite_outline</mat-icon>
+					<mat-icon
+						[ngStyle]="{ color: getFavStatus(listing.id) ? 'red' : '#0356e8' }"
+					>
+						{{ getFavStatus(listing.id) ? 'favorite ' : 'favorite_border' }}
+					</mat-icon>
 				</button>
 			</div>
 		</div>
