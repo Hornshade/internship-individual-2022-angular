@@ -40,7 +40,7 @@ const routes: Routes = [
 	{ path: 'forgot', component: ForgotComponent, title: 'Forgot page' },
 	{ path: 'reset', component: ResetComponent, title: 'Reset page' },
 	{
-		path: 'my-account',
+		path: 'my-account/:tab',
 		component: MyAccountComponent,
 		title: 'My account page',
 	},
