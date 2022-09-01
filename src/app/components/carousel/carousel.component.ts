@@ -4,17 +4,23 @@ import { ListingService } from 'src/app/services/listings/listing.service';
 
 import { Listing } from '../../interfaces/listing';
 
+//firebase
+
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 @Component({
 	selector: 'app-carousel',
 	templateUrl: './carousel.component.html',
 	styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit {
-	@Input() category: string = '';
+	@Input() category: string = 'latest';
 	@Input() favorites: Listing[] = [];
 
 	listings: Listing[] = [];
 	favor: boolean = false;
+
+	firebaseListings!: Observable<Listing[]>;
 
 	customOptions: OwlOptions = {
 		loop: true,
@@ -46,7 +52,13 @@ export class CarouselComponent implements OnInit {
 		nav: true,
 	};
 
-	constructor(private listingsServices: ListingService) {}
+	constructor(private listingsServices: ListingService, firestore: Firestore) {
+		const collectionFire = collection(firestore, 'listings');
+		this.firebaseListings = collectionData(collectionFire) as Observable<
+			Listing[]
+		>;
+		console.log(this.category);
+	}
 
 	ngOnInit(): void {
 		this.listingsServices

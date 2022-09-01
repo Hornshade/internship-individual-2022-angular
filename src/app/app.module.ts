@@ -8,6 +8,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+//firebase
+import { environment } from 'src/environments/environment';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
 import { HeaderComponent } from './components/header/header.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { CardComponent } from './components/card/card.component';
@@ -74,6 +79,8 @@ import { PreviewComponent } from './components/modal/preview/preview.component';
 		CarouselModule,
 		FormsModule,
 		ReactiveFormsModule,
+		provideFirebaseApp(() => initializeApp(environment.firebase)),
+		provideFirestore(() => getFirestore()),
 	],
 	providers: [ListingService],
 	bootstrap: [AppComponent],

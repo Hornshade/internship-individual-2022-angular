@@ -8,9 +8,10 @@
 	<mat-card-content class="c-card__content">
 		<h1 class="c-card__content--title">{{ listing?.title }}</h1>
 		<h4 class="c-card__content--location">
-			{{
+			<!-- {{
 				listing ? listing.location[2] + ',' + listing.location[5] : 'Location'
-			}}
+			}} -->
+			{{ listing ? listing.location[0] : 'Location' }}
 		</h4>
 		<h2 class="c-card__content--price">{{ listing?.price }} lei</h2>
 	</mat-card-content>

@@ -12,7 +12,7 @@
 <div class="c-cards" *ngIf="gridView">
 	<app-card
 		class="c-cards__card"
-		*ngFor="let listing of pageSlice"
+		*ngFor="let listing of firebaseListings | async"
 		[listing]="listing"
 		[favorite]="getFavStatus(listing.id)"
 	></app-card>
@@ -20,7 +20,7 @@
 <!-- list view  -->
 <div class="c-list" *ngIf="!gridView">
 	<app-list
-		*ngFor="let listing of pageSlice"
+		*ngFor="let listing of firebaseListings | async"
 		[listing]="listing"
 		[favorite]="getFavStatus(listing.id)"
 	></app-list>
