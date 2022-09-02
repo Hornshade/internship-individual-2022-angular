@@ -40,6 +40,8 @@ import { NotificationModalComponent } from './components/modal/notification-moda
 import { SecurityComponent } from './pages/my-account/security/security.component';
 import { AddComponent } from './pages/add/add.component';
 import { PreviewComponent } from './components/modal/preview/preview.component';
+import { LoginService } from './services/login/login.service';
+import { FavoriteService } from './services/favorite/favorite.service';
 
 @NgModule({
 	declarations: [
@@ -82,7 +84,7 @@ import { PreviewComponent } from './components/modal/preview/preview.component';
 		provideFirebaseApp(() => initializeApp(environment.firebase)),
 		provideFirestore(() => getFirestore()),
 	],
-	providers: [ListingService],
+	providers: [ListingService, LoginService, FavoriteService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

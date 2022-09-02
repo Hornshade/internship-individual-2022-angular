@@ -1,18 +1,18 @@
 <div class="c-single">
 	<div class="c-single__images">
 		<div class="c-single__images--big">
-			<img src="{{ data.images[0] }}" alt="first" />
+			<img src="{{ data.images ? data.images[0] : '' }}" alt="first" />
 		</div>
 		<div class="c-single__images--small">
-			<img src="{{ data.images[1] }}" alt="second" />
+			<img src="{{ data.images ? data.images[1] : '' }}" alt="second" />
 			<img
-				src="{{ data.images[2] }}"
+				src="{{ data.images ? data.images[2] : '' }}"
 				alt="third"
 				style="border-top-right-radius: 12px"
 			/>
-			<img src="{{ data.images[3] }}" alt="fourth" />
+			<img src="{{ data.images ? data.images[3] : '' }}" alt="fourth" />
 			<img
-				src="{{ data.images[4] }}"
+				src="{{ data.images ? data.images[4] : '' }}"
 				alt="fifth"
 				style="border-bottom-right-radius: 12px"
 			/>
@@ -20,13 +20,13 @@
 	</div>
 	<div class="c-single__title">
 		<div class="c-single__title--top">
-			<h3 class="c-single__title--top--left">{{ data.title }}</h3>
+			<h3 class="c-single__title--top--left">{{ data ? data.title : '' }}</h3>
 			<div class="c-single__title--top--right">
 				<mat-icon>share</mat-icon>
 				<p>Share</p>
 			</div>
 		</div>
-		<h2 class="c-single__title--bottom">{{ data.price }} lei</h2>
+		<h2 class="c-single__title--bottom">{{ data ? data.price : '' }} lei</h2>
 	</div>
 	<div class="c-single__description">
 		<div class="c-single__description--left">

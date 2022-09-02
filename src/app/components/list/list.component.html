@@ -1,20 +1,24 @@
 <div class="c-list" [ngStyle]="{ height: showButtons ? '220px' : '160px' }">
 	<div class="c-list__top">
 		<div class="c-list__top--image">
-			<img src="{{ listing.images[0] }}" alt="Card photo" />
+			<img src="{{ listing ? listing.images[0] : '' }}" alt="Card photo" />
 		</div>
 		<div class="c-list__top--content">
 			<div class="c-list__top--content--header">
-				<h1 class="c-list__top--content--header--title">{{ listing.title }}</h1>
+				<h1 class="c-list__top--content--header--title">
+					{{ listing ? listing.title : '' }}
+				</h1>
 				<h4 class="c-list__top--content--header--location">
 					<!-- {{ listing.location[2] }},{{ listing.location[5] }} -->
-					{{ listing.location[0] }}
+					{{ listing ? listing.location[0] : 'Unknown' }}
 				</h4>
 			</div>
 			<h3 class="c-list__top--content--description">
-				{{ listing.description }}
+				{{ listing ? listing.description : '' }}
 			</h3>
-			<h2 class="c-list__top--content--price">{{ listing.price }} lei</h2>
+			<h2 class="c-list__top--content--price">
+				{{ listing ? listing.price : '' }} lei
+			</h2>
 		</div>
 		<div class="c-list__top--actions">
 			<button
