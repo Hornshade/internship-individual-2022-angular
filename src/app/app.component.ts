@@ -18,6 +18,7 @@ interface Item {
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+	title = 'internship-individual-2022-angular';
 	//firebase
 	item$!: Observable<Item[]>;
 
