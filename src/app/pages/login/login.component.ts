@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
 	selector: 'app-login',
@@ -11,7 +14,18 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class LoginComponent implements OnInit {
 	loginForm: FormGroup | any;
 	hide: boolean = true;
-	constructor(private router: Router, private loginService: LoginService) {
+
+	firebaseUser!: Observable<User[]>;
+	constructor(
+		private router: Router,
+		private loginService: LoginService,
+		firestore: Firestore
+	) {
+		const collectionFire = collection(firestore, 'users');
+		this.firebaseUser = collectionData(collectionFire, {
+			idField: 'id',
+		}) as Observable<User[]>;
+
 		this.loginForm = new FormGroup({
 			email: new FormControl('', [
 				Validators.required,
@@ -45,6 +59,11 @@ export class LoginComponent implements OnInit {
 		}
 	}
 	googleSubmit() {
+		this.firebaseUser.forEach((usr) => {
+			usr.map((item) => {
+				localStorage.setItem('userId', item.id);
+			});
+		});
 		console.log('google');
 	}
 }

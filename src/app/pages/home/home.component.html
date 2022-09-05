@@ -23,7 +23,10 @@
 						</div>
 					</div>
 					<div class="c-home__carousel--slider">
-						<app-carousel [favorites]="favorites"></app-carousel>
+						<app-carousel
+							category="latest"
+							[favorites]="favorites"
+						></app-carousel>
 					</div>
 				</div>
 				<!-- big houses carousel  -->
@@ -77,7 +80,7 @@
 				</div>
 			</div>
 		</mat-tab>
-		<mat-tab *ngIf="isUser()" label="My listings  {{ myListings }}">
+		<mat-tab label="My listings  {{ myListings }}">
 			<!-- filters  -->
 			<div class="c-filters">
 				<app-filters [(gridView)]="gridView"></app-filters>
@@ -85,14 +88,14 @@
 			<!-- cards view  -->
 			<div class="c-cards" *ngIf="gridView">
 				<app-card
+					*ngFor="let listing of firebaseUserListings | async"
 					class="c-cards__card"
-					*ngFor="let listing of user?.listings"
 					[listing]="listing"
 					[favorite]="getFavStatus(listing.id)"
 				></app-card>
 			</div>
 			<!-- list view  -->
-			<div class="c-list" *ngIf="!gridView">
+			<!-- <div class="c-list" *ngIf="!gridView">
 				<app-list
 					*ngFor="let listing of user?.listings"
 					[listing]="listing"
@@ -100,7 +103,7 @@
 					[showButtons]="true"
 					[favorite]="getFavStatus(listing.id)"
 				></app-list>
-			</div>
+			</div> -->
 		</mat-tab>
 		<mat-tab *ngIf="isAdmin()" label="Pending approval"></mat-tab>
 	</mat-tab-group>

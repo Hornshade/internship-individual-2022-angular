@@ -14,7 +14,7 @@ export interface Listing {
 		fullName: string;
 		createdAt: string;
 	};
-	viewCouter: number;
+	viewCounter: number;
 	createdAt: string;
 	updatedAt: string;
 }

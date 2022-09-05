@@ -6,6 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 
+//firebase
+
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
 @Component({
 	selector: 'app-cards',
 	templateUrl: './cards.component.html',
@@ -32,13 +37,21 @@ export class CardsComponent implements OnInit {
 	resultCount: number = 0;
 	searchString: string | null = null;
 
+	firebaseListings!: Observable<Listing[]>;
+
 	//have to change route later to /category
 	constructor(
 		private listingsService: ListingService,
 		private route: ActivatedRoute,
 		private loginService: LoginService,
-		private favoriteService: FavoriteService
+		private favoriteService: FavoriteService,
+		firestore: Firestore
 	) {
+		const collectionFire = collection(firestore, 'listings');
+		this.firebaseListings = collectionData(collectionFire) as Observable<
+			Listing[]
+		>;
+
 		this.userId = localStorage.getItem('userId');
 		this.searchString = this.route.snapshot.paramMap.get('searchString');
 		if (this.searchString !== null) this.search = true;
