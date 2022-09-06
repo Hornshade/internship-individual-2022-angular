@@ -6,6 +6,7 @@ import {
 	HttpTestingController,
 } from '@angular/common/http/testing';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Listing } from 'src/app/interfaces/listing';
 
 describe('FavoriteService', () => {
 	let service: FavoriteService;
@@ -25,38 +26,39 @@ describe('FavoriteService', () => {
 	});
 
 	it('should get all favourites', () => {
-		service
-			.getFavorite('a72ea39f-ec04-4d87-04b1-08da6f0bc7c0')
-			.subscribe((favorites) => {
-				expect(favorites).toBeTruthy();
-				// expect(favorites.length).toBeGreaterThanOrEqual(0);
-			});
+		const mockData: Listing[] = [
+			{
+				id: 'string',
+				title: 'string',
+				description: 'string',
+				shortDescription: 'string',
+				location: ['asd', 'ads'],
+				price: 0,
+				status: 1,
+				images: ['str', 'str'],
+				category: 'string',
+				author: {
+					id: 'string',
+					photo: 'string',
+					fullName: 'string',
+					createdAt: 'string',
+				},
+				viewCounter: 0,
+				createdAt: 'string',
+				updatedAt: 'string',
+			},
+		];
+		service.getFavorite('string').subscribe((favorites) => {
+			expect(favorites).toBeTruthy();
+			expect(favorites.length).toBeGreaterThanOrEqual(0);
+			expect(favorites).toEqual(mockData);
+		});
 		const req = httpTestingController.expectOne(
-			'http://assist-jully-2022-be2.azurewebsites.net/api/Favorite/' +
-				'a72ea39f-ec04-4d87-04b1-08da6f0bc7c0'
+			'http://assist-jully-2022-be2.azurewebsites.net/api/Favorite/' + 'string'
 		);
 		expect(req.request.method).toEqual('GET');
 
-		req.flush({
-			id: 'string',
-			title: 'string',
-			description: 'string',
-			shortDescription: 'string',
-			location: ['asd', 'ads'],
-			price: 0,
-			status: 1,
-			images: ['str', 'str'],
-			category: 'string',
-			author: {
-				id: 'string',
-				photo: 'string',
-				fullName: 'string',
-				createdAt: 'string',
-			},
-			viewCounter: 0,
-			createdAt: 'string',
-			updatedAt: 'string',
-		});
+		req.flush(mockData);
 	});
 
 	it('should add favorite', () => {

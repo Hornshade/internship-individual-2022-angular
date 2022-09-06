@@ -57,7 +57,6 @@ export class CarouselComponent implements OnInit {
 		this.firebaseListings = collectionData(collectionFire) as Observable<
 			Listing[]
 		>;
-		console.log(this.category);
 	}
 
 	ngOnInit(): void {
