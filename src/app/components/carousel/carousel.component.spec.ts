@@ -97,6 +97,8 @@ describe('CarouselComponent', () => {
 
 	it('should get fav status', () => {
 		const spy = spyOn(component, 'getFavStatus');
+		fixture.detectChanges();
+
 		component.getFavStatus('id');
 		expect(component.getFavStatus).toHaveBeenCalledWith(mockData.id);
 	});

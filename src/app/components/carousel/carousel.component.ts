@@ -8,13 +8,14 @@ import { Listing } from '../../interfaces/listing';
 
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+
 @Component({
 	selector: 'app-carousel',
 	templateUrl: './carousel.component.html',
 	styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit {
-	@Input() category: string = 'latest';
+	@Input() category: string = 'latestlatest';
 	@Input() favorites: Listing[] = [];
 
 	listings: Listing[] = [];
