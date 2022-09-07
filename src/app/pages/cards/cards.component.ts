@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Listing } from '../../interfaces/listing';
 import { PageEvent } from '@angular/material/paginator';
 import { ListingService } from '../../services/listings/listing.service';

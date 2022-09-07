@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
 		const collectionFire = collection(this.firestore, 'items');
 		this.item$ = collectionData(collectionFire) as Observable<Item[]>;
 	}
-	checkPage() {
+	checkPage(): boolean {
 		if (
 			this.router.url === '/login' ||
 			this.router.url === '/signup' ||
